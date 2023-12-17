@@ -6,7 +6,7 @@ module.exports = {
       fontFamily:{
         afa:['AfacadRegular'],
         afaItalic:['AfacadItalic'],
-        rubic:['RubikMonoOne'],
+        rubik:["rubik"]
       }
     },
   },

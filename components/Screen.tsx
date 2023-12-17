@@ -4,22 +4,24 @@ import ui from '../lib/constants'
 type Props = {
   title: string;
   subtitle: React.ReactNode;
-  children: React.ReactNode;
+  content: React.ReactNode;
 }
 export const Screen = (props: Props) => {
   const [scrollAmount, setScrollAmount] = useState(0)
   return (
     <>
-      <ScrollView className={`flex-1 h-${100 - ui.navHeight}`} contentContainerStyle={{ justifyContent: 'center', alignItems: 'center' }}>
-        <Text className='font-rubic text-3xl text-black font-bold'>{props.title}</Text>
-        <Text className='font-afa'>{props.subtitle}</Text>
+      <ScrollView className={`bg-green-600 flex flex-col w-full`} contentContainerStyle={{ justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+        <View className='bg-blue-500 w-full'>
+          <Text className='font-rubik text-2xl text-black font-bold'>{props.title}</Text>
+          <Text className='font-afa'>{props.subtitle}</Text>
+        </View>
         {scrollAmount > 20 ?
           <View className='bg-white p-4 w-full sticky top-0'>
             <Text className=' text-sm text-black font-bold'>{props.title}</Text>
           </View>
           : <></>}
         <View className='flex flex-col items-center justify-center'>
-          {props.children}
+          {props.content}
         </View>
       </ScrollView>
     </>
