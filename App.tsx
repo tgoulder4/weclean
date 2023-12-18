@@ -3,9 +3,11 @@ import { Text, View } from 'react-native';
 import { useFonts, RubikMonoOne_400Regular } from "@expo-google-fonts/rubik-mono-one";
 import * as SplashScreen from 'expo-splash-screen';
 import ActivityScreen from './components/Screens/ActivityScreen';
+import ui from './lib/constants';
 SplashScreen.preventAutoHideAsync();
 // using this file as the layout as if in nextjs
 const sleep = (ms: number) => new Promise<void>(r => setTimeout(r, ms));
+export type IColour = "black" | "white" | "yellow-500" | "green-500" | "blue-500" | "indigo-500" | "pink-500" | "red-500" | "gray-500" | "slate-900" | "[#55A38C]";
 export default function App() {
   const [fontsLoaded] = useFonts({
     "AfacadRegular": require('./assets/fonts/AfacadRegular.ttf'),
@@ -15,7 +17,7 @@ export default function App() {
   });
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
-      await sleep(2000);
+      // await sleep(2000);
       await SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
@@ -26,6 +28,8 @@ export default function App() {
   return (
     <>
       <View onLayout={onLayoutRootView} className=" bg-white outline-2 outline-yellow-500 h-full">
+        {/* // to get all tailwind colour classes */}
+        <View className={`hidden bg-[#55A38C] bg-black bg-white bg-yellow-500 bg-green-500 bg-blue-500 bg-indigo-500 bg-pink-500 bg-red-500 bg-gray-500 bg-slate-900`} />
         <ActivityScreen />
         {/* // navigationbar */}
       </View>

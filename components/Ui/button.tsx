@@ -10,10 +10,12 @@ type buttonProps = {
 
     onPress: () => void;
 
+    hasTopMargin?: boolean;
+
 }
 const Button = (props: buttonProps) => {
     return (
-        <Pressable className={`bg-${props.backgroundColor} w-min px-3 py-2 rounded-md`} onPress={props.onPress}>
+        <Pressable className={`${props.hasTopMargin ? 'mt-2' : ''} bg-${props.backgroundColor} w-min px-3 py-2 rounded-md`} onPress={props.onPress}>
             <Text className={`font-afaB text-${props.textColor}`}>{props.text}</Text>
         </Pressable>
     )

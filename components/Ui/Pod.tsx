@@ -1,5 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import { IColour } from '../../App';
 
 type PodProps = {
   variant?: 'pod' | 'pod-media' | 'pod-media-pod';
@@ -7,8 +8,8 @@ type PodProps = {
   children: React.ReactNode;
   secondPodContent?: React.ReactNode;
   media?: React.ReactNode;
-  backgroundColor: 'black' | 'white' | 'yellow-500' | 'green-500' | 'blue-500' | 'indigo-500' | 'pink-500' | 'red-500' | 'gray-500';
-  additionalClasses?: string;
+  backgroundColor: IColour;
+  className?: string;
 }
 function getMediaRoundedCorners(variant: PodProps['variant']) {
   switch (variant) {
@@ -21,11 +22,10 @@ function getMediaRoundedCorners(variant: PodProps['variant']) {
   }
 }
 const Pod = (podProps: PodProps) => {
-  const { noStroke, backgroundColor, media, variant, children, secondPodContent, additionalClasses } = podProps
+  const { noStroke, backgroundColor, media, variant, children, secondPodContent, className } = podProps
   return (
-    <View className={`mb-3 w-full bg-${backgroundColor} ${additionalClasses}  flex-1 border-4 border-black ${noStroke ? 'border-0' : ''} rounded-[20px]`}>
-      <View className='hidden bg-black bg-white bg-yellow-500 bg-green-500 bg-blue-500 bg-indigo-500 bg-pink-500 bg-red-500 bg-gray-500' />
-      <View className="p-6">
+    <View className={`mb-3 w-full bg-${backgroundColor} ${className}  flex-1 border-4 border-black ${noStroke ? 'border-0' : ''} rounded-[20px]`}>
+      <View className="px-5 py-6">
         {children}
       </View>
       {media ?

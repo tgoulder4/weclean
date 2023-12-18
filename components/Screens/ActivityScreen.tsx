@@ -17,8 +17,8 @@ const createTwoButtonAlert = () =>
 const content = () => {
   return (
     <View className='bg-yellow-500'>
-      <Incentive shadow={true} backgroundColor="blue-500" ctaButtonText='GO PRO →' description="We get it, it's a pain. Create a rota in seconds with pro, boosting your crew's productivity." mainText='Messy housemates?' ctaAction={createTwoButtonAlert} />
-      <ActivityEvent task={{ eventSummary: "Mopped & Swept the floor", taskType: "Request" }} user={{ name: "Tye", profileBackgroundColour: "#55A38C" }} />
+      <Incentive shadow={true} backgroundColor="slate-900" ctaButtonText='GO PRO →' description="We get it, it's a pain. Create a rota in seconds with pro, boosting your crew's productivity." mainText='Messy housemates?' ctaAction={createTwoButtonAlert} />
+      <ActivityEvent task={{ eventSummary: "Moved their cutlery.aaaaaaaaaaaaaaaaaaaaaaaaaa", taskType: "Request" }} user={{ name: "Mateusz", profileBackgroundColour: "[#55A38C]" }} />
     </View>
   )
 }
