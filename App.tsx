@@ -25,7 +25,7 @@ export default function App() {
   }
   return (
     <>
-      <View onLayout={onLayoutRootView} className="px-2 pt-32 flex-col items-center justify-between bg-[#ebfffc] outline-2 outline-yellow-500 h-full">
+      <View onLayout={onLayoutRootView} className=" bg-white outline-2 outline-yellow-500 h-full">
         <ActivityScreen />
         {/* // navigationbar */}
       </View>

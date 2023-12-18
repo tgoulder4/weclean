@@ -10,7 +10,7 @@ export const Screen = (props: Props) => {
   const [scrollAmount, setScrollAmount] = useState(0)
   return (
     <>
-      <ScrollView className={`bg-green-600 flex flex-col w-full`} contentContainerStyle={{ justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+      <ScrollView className={`bg-green-600 flex flex-col w-full px-2 pt-32`} contentContainerStyle={{ justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <View className='bg-blue-500 mb-6'>
           <Text className='font-rubik text-xl text-black font-bold'>{props.title}</Text>
           <Text className='font-afa text-lg'>{props.subtitle}</Text>
