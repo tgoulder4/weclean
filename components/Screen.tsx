@@ -4,7 +4,7 @@ import ui from '../lib/constants'
 type Props = {
   title: string;
   subtitle: React.ReactNode;
-  content: React.ReactNode;
+  children: React.ReactNode;
 }
 export const Screen = (props: Props) => {
   const [scrollAmount, setScrollAmount] = useState(0)
@@ -22,7 +22,7 @@ export const Screen = (props: Props) => {
           : <></>} */}
         <View className='w-full'>
 
-          {props.content}
+          {props.children}
         </View>
       </ScrollView>
     </>

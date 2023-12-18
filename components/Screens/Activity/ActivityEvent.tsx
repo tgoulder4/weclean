@@ -3,41 +3,33 @@ import React from 'react'
 import Pod from '../../Ui/Pod';
 import { IColour } from '../../../App';
 
-type EventProps = {
+export type ActivityEventProps = {
     user: {
         name: string;
-        profileBackgroundColour: IColour;
     },
+    userWhoMadeRequest?: {
+        name: string;
+        profileBackgroundColour: IColour;
+    }
     task: {
         eventSummary: string;
         taskType: "Rota" | "Request" | "Courtesy";
-        media?: React.ReactNode;
+        media?: Image;
     }
 }
-const Data = {
-    user: {
-        name: "Tye",
-        profileBackgroundColour: "[#55A38C]"
-    },
-    task: {
-        eventSummary: "Mopped & Swept the floor",
-        taskType: "Request"
-    }
-}
-const backgroundColour: IColour = Data.user.profileBackgroundColour as IColour;
-function createProfilePic(profileBackgroundColour: IColour, name: string): React.ReactNode {
+
+function createProfilePicOfUserWhoMadeRequest(colour: IColour, name: string): React.ReactNode {
     //create a circular profile pic with the first letter of the name
     return (
-        <View className={`relative border-2 border-black bg-${profileBackgroundColour} w-12 h-12 rounded-full flex justify-center items-center`}>
+        <View className={`relative border-2 border-black bg-${colour} w-12 h-12 rounded-full flex justify-center items-center`}>
             <Text className=' font-afaB text-sm text-white'>{name[0]}</Text>
             <View className='absolute left-8'>
-
                 <Text className='font-afaB text-sm text-white'>☝</Text>
             </View>
         </View>
     )
 }
-const ActivityEvent = (props: EventProps) => {
+const ActivityEvent = (props: ActivityEventProps) => {
     const { name } = props.user;
     const { eventSummary, taskType, media } = props.task;
     return (
@@ -47,7 +39,7 @@ const ActivityEvent = (props: EventProps) => {
                     <Text className='font-afaB uppercase text-black'>{name}</Text>
                     <Text className='font-afa'>{eventSummary}</Text>
                 </View>
-                {taskType == "Rota" ? <Text className='bg-indigo-500 font-bold'>📅</Text> : taskType == "Courtesy" ? <Image className='bg-indigo-500 w-5 h-5 object-contain' source={{ uri: '../../../assets/kindness.png' }}></Image> : createProfilePic(backgroundColour, Data.user.name)}
+                {taskType == "Rota" ? <Text className='bg-indigo-500 font-bold'>📅</Text> : taskType == "Courtesy" ? <Image className='bg-indigo-500 w-5 h-5 object-contain' source={{ uri: '../../../assets/kindness.png' }}></Image> : createProfilePicOfUserWhoMadeRequest(props.userWhoMadeRequest!.profileBackgroundColour, props.userWhoMadeRequest!.name)}
             </View>
         </Pod>
     )
