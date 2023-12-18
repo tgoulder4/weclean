@@ -5,9 +5,13 @@ module.exports = {
     extend: {
       fontFamily:{
         afa:['AfacadRegular'],
-        afaItalic:['AfacadItalic'],
+        afaIt:['AfacadItalic'],
+        afaB:['AfacadBold'],
         rubik:["rubik"]
-      }
+      },
+      // boxShadow:{
+      //   incentiveInset: 'inset_0px_8px_6px_0px_rgba(255,255,255,1)'
+      // }
     },
   },
   plugins: [],

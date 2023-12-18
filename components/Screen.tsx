@@ -11,28 +11,20 @@ export const Screen = (props: Props) => {
   return (
     <>
       <ScrollView className={`bg-green-600 flex flex-col w-full`} contentContainerStyle={{ justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-        <View className='bg-blue-500 w-full'>
-          <Text className='font-rubik text-2xl text-black font-bold'>{props.title}</Text>
-          <Text className='font-afa'>{props.subtitle}</Text>
+        <View className='bg-blue-500 mb-6'>
+          <Text className='font-rubik text-xl text-black font-bold'>{props.title}</Text>
+          <Text className='font-afa text-lg'>{props.subtitle}</Text>
         </View>
-        {scrollAmount > 20 ?
-          <View className='bg-white p-4 w-full sticky top-0'>
+        {/* {scrollAmount > 20 ?
+          <View className='bg-white p-4 sticky top-0'>
             <Text className=' text-sm text-black font-bold'>{props.title}</Text>
           </View>
-          : <></>}
-        <View className='flex flex-col items-center justify-center'>
+          : <></>} */}
+        <View className='w-full'>
+
           {props.content}
         </View>
       </ScrollView>
     </>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ebfffc',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
