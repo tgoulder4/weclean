@@ -64,3 +64,8 @@ async function getTaskByID(taskID: string) {
     await sleep(1000);
     return tasks.find(task => task.id === taskID);
 }
+async function getLast24hrCrewTasks(crewID: string) {
+    await sleep(1000);
+    //compare time now to time stored and return if their difference isn't more than one day
+
+}

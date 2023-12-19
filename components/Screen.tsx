@@ -3,7 +3,7 @@ import { View, Text, ScrollView, StyleSheet } from 'react-native'
 import ui from '../lib/constants'
 type Props = {
   title: string;
-  subtitle: React.ReactNode;
+  subtitle?: React.ReactNode;
   children: React.ReactNode;
 }
 export const Screen = (props: Props) => {
@@ -20,7 +20,7 @@ export const Screen = (props: Props) => {
             <Text className=' text-sm text-black font-bold'>{props.title}</Text>
           </View>
           : <></>} */}
-        <View className='w-full'>
+        <View className='w-full bg-yellow-500 pb-[80%]'>
 
           {props.children}
         </View>

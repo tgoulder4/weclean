@@ -3,9 +3,9 @@ import { View, Text, StyleSheet, Pressable } from 'react-native';
 type buttonProps = {
     text: string;
 
-    /**like [#value] or white */
-    backgroundColor: string;
+    className: string;
 
+    /**Like text-white or text-[#ABC] */
     textColor: string;
 
     onPress: () => void;
@@ -15,8 +15,8 @@ type buttonProps = {
 }
 const Button = (props: buttonProps) => {
     return (
-        <Pressable className={`${props.hasTopMargin ? 'mt-2' : ''} bg-${props.backgroundColor} w-min px-3 py-2 rounded-md`} onPress={props.onPress}>
-            <Text className={`font-afaB text-${props.textColor}`}>{props.text}</Text>
+        <Pressable className={` ${props.hasTopMargin ? 'mt-2' : ''} ${props.className} w-min px-3 py-2 rounded-md`} onPress={props.onPress}>
+            <Text className={`font-afaB ${props.textColor}`}>{props.text}</Text>
         </Pressable>
     )
 }

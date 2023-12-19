@@ -2,6 +2,7 @@ import { View, Text, Image } from 'react-native'
 import React from 'react'
 import Pod from '../../Ui/Pod';
 import { IColour } from '../../../App';
+import Button from '../../Ui/button';
 
 export type ActivityEventProps = {
     user: {
@@ -12,9 +13,10 @@ export type ActivityEventProps = {
         profileBackgroundColour: IColour;
     }
     task: {
-        eventSummary: string;
-        taskType: "Rota" | "Request" | "Courtesy";
-        media?: Image;
+        summary: string;
+        type: "Rota" | "Request" | "Courtesy";
+        media?: string;
+        completionTime: string;
     }
 }
 
@@ -29,19 +31,39 @@ function createProfilePicOfUserWhoMadeRequest(colour: IColour, name: string): Re
         </View>
     )
 }
+function getAfterText(dateAgo: string, taskType: string): React.ReactNode {
+    function getPrecedingText(taskType: string): string {
+        switch (taskType) {
+            case "Rota":
+                return "as rota task"
+            case "Request":
+                return "by request"
+            case "Courtesy":
+                return "out of courtesy"
+            default:
+                return "-"
+        }
+    }
+    return (
+        <View className='flex flex-row justify-between'>
+            <Text className='font-afa text-gray-500'>{dateAgo}, {getPrecedingText(taskType)}</Text>
+            <Button text='😻' className='bg-gray-300' onPress={() => { }} textColor='text-black' />
+        </View>
+    )
+}
 const ActivityEvent = (props: ActivityEventProps) => {
     const { name } = props.user;
-    const { eventSummary, taskType, media } = props.task;
+    const { summary, type, media, completionTime } = props.task;
     return (
-        <Pod className="" backgroundColor="white" variant={media ? 'pod-media-pod' : 'pod'} >
+        <Pod backgroundColor='white' variant={media ? 'pod-media-pod' : 'pod'} media={media} secondPodContent={getAfterText(completionTime + " ago", props.task.type)}>
             <View className='flex flex-row justify-between'>
                 <View className='flex-1 flex flex-col gap-y-1 mr-[10%]'>
                     <Text className='font-afaB uppercase text-black'>{name}</Text>
-                    <Text className='font-afa'>{eventSummary}</Text>
+                    <Text className='font-afa'>{summary}</Text>
                 </View>
-                {taskType == "Rota" ? <Text className='bg-indigo-500 font-bold'>📅</Text> : taskType == "Courtesy" ? <Image className='bg-indigo-500 w-5 h-5 object-contain' source={{ uri: '../../../assets/kindness.png' }}></Image> : createProfilePicOfUserWhoMadeRequest(props.userWhoMadeRequest!.profileBackgroundColour, props.userWhoMadeRequest!.name)}
+                {type == "Rota" ? <Text className='bg-indigo-500 font-bold'>📅</Text> : type == "Courtesy" ? <Image className='bg-indigo-500 w-5 h-5 object-contain' source={{ uri: './../../../assets/kindness.png' }}></Image> : createProfilePicOfUserWhoMadeRequest(props.userWhoMadeRequest!.profileBackgroundColour, props.userWhoMadeRequest!.name)}
             </View>
-        </Pod>
+        </Pod >
     )
 }
 
