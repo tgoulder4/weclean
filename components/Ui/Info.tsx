@@ -7,12 +7,13 @@ type InfoProps = {
     title?: string;
     description?: string;
     className?: string;
-    backgroundColor: IColour;
+    /**like bg-white or bg-[#ABC] */
     children?: React.ReactNode;
+    backgroundColour: IColour;
 }
 const Info = (props: InfoProps) => {
     return (
-        <Pod noStroke={true} className={props.className} backgroundColor={props.backgroundColor}>
+        <Pod noStroke={true} backgroundColour={props.backgroundColour}>
             <View className='flex flex-col gap-y-1'>
                 {
                     props.title ?

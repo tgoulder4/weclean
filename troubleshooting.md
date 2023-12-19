@@ -1,1 +1,2 @@
-tsc not responding? amend in tsconfig then use yarn tsc.
+- tsc not responding? amend in tsconfig then use yarn tsc.
+- passing down classnames doesn't work

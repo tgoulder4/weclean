@@ -8,8 +8,8 @@ type PodProps = {
   children: React.ReactNode;
   secondPodContent?: React.ReactNode;
   media?: string;
-  backgroundColor: IColour;
-  className?: string;
+  backgroundColour: IColour;
+  shadow?: boolean;
 }
 function getMediaRoundedCorners(variant: PodProps['variant']) {
   switch (variant) {
@@ -22,9 +22,9 @@ function getMediaRoundedCorners(variant: PodProps['variant']) {
   }
 }
 const Pod = (podProps: PodProps) => {
-  const { noStroke, backgroundColor, media, variant, children, secondPodContent, className } = podProps
+  const { noStroke, shadow, backgroundColour, media, variant, children, secondPodContent } = podProps;
   return (
-    <View className={`mb-3 w-full flex flex-col bg-${backgroundColor} ${className}  flex-1 border-4 border-black ${noStroke ? 'border-0' : ''} rounded-[20px]`}>
+    <View className={`mb-3 w-full flex flex-col bg-${backgroundColour} flex-1 border-4 ${shadow ? 'shadow-[inset_0px_8px_6px_0px_rgba(255,255,255,1)]' : ''} border-black ${noStroke ? 'border-0' : ''} rounded-[20px]`}>
       <View className="px-5 py-6">
         {children}
       </View>

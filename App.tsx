@@ -31,7 +31,7 @@ export default function App() {
       <View onLayout={onLayoutRootView} className=" bg-white outline-2 outline-yellow-500 h-full">
         {/* // to get all tailwind colour classes */}
         <View className={`hidden bg-[#55A38C] bg-[#4E9580] bg-[#4E9580]/50 bg-black bg-white bg-yellow-500 bg-green-500 bg-blue-500 bg-indigo-500 bg-pink-500 bg-red-500 bg-gray-500 bg-gray-300 bg-slate-900`} />
-        <TasksScreen />
+        <ActivityScreen />
         {/* // navigationbar */}
       </View>
     </>
