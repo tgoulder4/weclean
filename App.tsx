@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import { View } from 'react-native';
 import { useFonts, RubikMonoOne_400Regular } from "@expo-google-fonts/rubik-mono-one";
 import * as SplashScreen from 'expo-splash-screen';
 import ActivityScreen from './components/Screens/ActivityScreen';
@@ -8,29 +7,20 @@ import LeaderboardScreen from './components/Screens/LeaderboardScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 function ActivityScrn() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <ActivityScreen />
-
-    </View>)
+  return <ActivityScreen />
 }
 function TasksScrn() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <TasksScreen />
-    </View>)
+  return <TasksScreen />
 }
 function LeaderboardScrn() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <LeaderboardScreen />
-    </View>)
+  return <LeaderboardScreen />
 }
 const Tab = createBottomTabNavigator();
 SplashScreen.preventAutoHideAsync();
 // using this file as the layout as if in nextjs
 const sleep = (ms: number) => new Promise<void>(r => setTimeout(r, ms));
 export type IColour = "black" | "white" | "yellow-500" | "green-500" | "blue-500" | "indigo-500" | "pink-500" | "red-500" | "gray-500" | "slate-900" | "gray-300" | "[#55A38C]" | "[#4E9580]/50" | "white/50" | "[#310973]";
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     "AfacadRegular": require('./assets/fonts/AfacadRegular.ttf'),
@@ -50,7 +40,7 @@ export default function App() {
   }
   return (
     <NavigationContainer onReady={onLayoutRootView}>
-      <Tab.Navigator>
+      <Tab.Navigator screenOptions={{ tabBarActiveTintColor: 'white', headerShown: false, tabBarStyle: { backgroundColor: 'rgba(10,19,16,1)' } }} >
         <Tab.Screen name="Activity" component={ActivityScrn} />
         <Tab.Screen name="Tasks" component={TasksScrn} />
         <Tab.Screen name="Leaderboard" component={LeaderboardScrn} />
