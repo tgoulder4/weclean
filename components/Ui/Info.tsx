@@ -14,10 +14,10 @@ type InfoProps = {
 const Info = (props: InfoProps) => {
     return (
         <Pod noStroke={true} backgroundColour={props.backgroundColour}>
-            <View className='flex flex-col gap-y-1'>
+            <View className='flex flex-col gap-y-2'>
                 {
                     props.title ?
-                        <Text className='font-rubik text-xl text-black font-bold'>{props.title}</Text>
+                        <Text className='font-afaB text-lg text-black leading-6'>{props.title}</Text>
                         : <></>
                 }
                 <Text className='font-afa text-black'>{props.description}</Text>

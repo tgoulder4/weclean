@@ -15,23 +15,25 @@ export type IUser = {
     name: string,
     profileBackgroundColour: string
 }
+const requests = [{
+    id: "R1",
+    status: "Completed",
+    assignedAt: "2023-01-01 11:00:00",
+    userIDWhoMadeTheRequest: "ABC123",
+}]
 const tasks: ITask[] = [{
     id: "T1",
     userID: "GHI789",
     summary: "Mopped and swept the floor",
     type: "Request",
-    status: "Completed",
-    assignedAt: "2023-01-01 11:00:00",
-    userIDWhoMadeTheRequest: "ABC123",
+    requestID: "R1",
     completedAt: "2023-01-01 17:00:00"
 }, {
     id: "T2",
     userID: "ABC123",
     summary: "Cleared the sink",
     type: "Courtesy",
-    status: "Completed",
-    assignedAt: null,
-    userIDWhoMadeTheRequest: null,
+    requestID: null,
     completedAt: "2023-01-01 17:00:00"
 }];
 const users: IUser[] = [{
