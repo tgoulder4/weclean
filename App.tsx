@@ -1,11 +1,32 @@
-import React, { useState, useCallback } from 'react';
-import { Text, View } from 'react-native';
+import React, { useCallback } from 'react';
+import { View } from 'react-native';
 import { useFonts, RubikMonoOne_400Regular } from "@expo-google-fonts/rubik-mono-one";
 import * as SplashScreen from 'expo-splash-screen';
 import ActivityScreen from './components/Screens/ActivityScreen';
-import ui from './lib/constants';
 import TasksScreen from './components/Screens/TasksScreen';
 import LeaderboardScreen from './components/Screens/LeaderboardScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+function ActivityScrn() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <ActivityScreen />
+
+    </View>)
+}
+function TasksScrn() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <TasksScreen />
+    </View>)
+}
+function LeaderboardScrn() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <LeaderboardScreen />
+    </View>)
+}
+const Tab = createBottomTabNavigator();
 SplashScreen.preventAutoHideAsync();
 // using this file as the layout as if in nextjs
 const sleep = (ms: number) => new Promise<void>(r => setTimeout(r, ms));
@@ -28,14 +49,13 @@ export default function App() {
     return null;
   }
   return (
-    <>
-      <View onLayout={onLayoutRootView} className=" bg-white outline-2 outline-yellow-500 h-full">
-        {/* // to get all tailwind colour classes */}
-        <View className={`hidden bg-[#55A38C] bg-[#4E9580] bg-[#4E9580]/50 bg-black bg-white bg-yellow-500 bg-green-500 bg-blue-500 bg-indigo-500 bg-pink-500 bg-red-500 bg-gray-500 bg-gray-300 bg-slate-900 bg-white/50 bg-[#310973]`} />
-        <LeaderboardScreen />
-        {/* // navigationbar */}
-      </View>
-    </>
+    <NavigationContainer onReady={onLayoutRootView}>
+      <Tab.Navigator>
+        <Tab.Screen name="Activity" component={ActivityScrn} />
+        <Tab.Screen name="Tasks" component={TasksScrn} />
+        <Tab.Screen name="Leaderboard" component={LeaderboardScrn} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 
 }
