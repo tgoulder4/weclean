@@ -15,9 +15,6 @@ const createTwoButtonAlert = () =>
   ]);
 
 const subtitle = <Text className='text-xs text-black font-bold'>chun lee baddies crew score: <Text className='text-red-700'>2.9★</Text></Text>
-const getActivityEventsInDB = () => {
-
-}
 const ActivityScreen = () => {
   return (
     <Screen title="Activity" subtitle={subtitle}>
@@ -31,7 +28,7 @@ const ActivityScreen = () => {
         // olderEvents?.map
       }
       <Text className='font-rubik text-xl'>Older events</Text>
-      <ActivityEvent task={{ summary: "Moved their cutlery.aaaaaaaaaaaaaaaaaaaaabaaaaa", type: "Request", completionTime: "wha" }} usersWhoMadeRequest={[{ name: "Tye", profileBackgroundColour: "indigo-500" }]} user={{ name: "Mateusz" }} />
+      <ActivityEvent task={{ summary: "Moved their cutlery.aaaaaaaaaaaaaaaaaaaaabaaaaa", type: "Request", completionTime: "wha" }} usersWhoMadeRequest={[{ name: "Tye", profileBackgroundColour: "indigo-500" }, { name: "Tye", profileBackgroundColour: "indigo-500" }, { name: "Tye", profileBackgroundColour: "indigo-500" }]} user={{ name: "Mateusz" }} />
     </Screen>
   )
 }

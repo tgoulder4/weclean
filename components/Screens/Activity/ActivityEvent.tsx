@@ -50,6 +50,7 @@ const ActivityEvent = (props: ActivityEventProps) => {
                 <View className='flex-1 flex flex-col gap-y-1 mr-[10%]'>
                     <Text className='font-afaB uppercase text-black'>{name}</Text>
                     <Text className='font-afa'>{summary}</Text>
+                    {!media ? <Text className='font-afa text-gray-500'>{getAfterText(completionTime + " ago", props.task.type)}</Text> : <></>}
                 </View>
                 {type == "Rota" ? <Text className='bg-indigo-500 font-bold'>📅</Text> : type == "Courtesy" ? (images['kindness'] ? <Image className='w-12 h-12 object-contain' source={images['kindness']} /> : null) : <ProfilePic users={usersWhoMadeRequest!} />}
             </View>
