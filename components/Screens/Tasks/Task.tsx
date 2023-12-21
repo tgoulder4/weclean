@@ -29,7 +29,7 @@ const Task = (props: TaskProps) => {
                     <Text className='font-afaB text-xl'>{props.task.completionTime ? formatDistanceToNow(new Date(props.task.completionTime)) + " ago" : props.task.promiseTime}</Text>
                     <Text className='font-afa'>{props.task.summary}</Text>
                     <View className='flex flex-row justify-between items-center mt-1'>
-                        <Button text='Mark as done' backgroundColour='[#55A38C]' textColor='white' onPress={() => { }} />
+                        <Button type="success" text='Mark as done' backgroundColour='[#55A38C]' textColor='white' onPress={() => { }} />
                         {!usersWhoMadeRequest ? <Text className=' font-afa text-gray-400'>Rota task 📅</Text> : <ProfilePic users={usersWhoMadeRequest} />}
                     </View>
                 </View>

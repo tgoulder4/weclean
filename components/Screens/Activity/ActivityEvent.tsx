@@ -36,7 +36,7 @@ function getAfterText(dateAgo: string, taskType: string): React.ReactNode {
     return (
         <View className='flex flex-col justify-between items-start '>
             <Text className='font-afa text-gray-500'>{dateAgo}, {getPrecedingText(taskType)}</Text>
-            <Button text='😻' backgroundColour="gray-300" onPress={() => { }} textColor='text-black' />
+            <Button type="light" text='😻' backgroundColour="gray-300" onPress={() => { }} textColor='text-black' />
         </View>
     )
 }

@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import Pod from './Pod'
-import Button from './button'
+import Button, { ImpactProps } from './button'
 import { IColour } from '../../App'
 type IncentiveProps = {
   shadow?: boolean;
@@ -15,10 +15,11 @@ type IncentiveProps = {
   mainText: string;
   description: string;
   ctaButtonText: string;
+  ctaImpact: ImpactProps;
   ctaAction: () => void;
 }
 const Incentive = (props: IncentiveProps) => {
-  const { blackText, backgroundColor, mainText, description, ctaButtonText, legend, shadow, ctaAction, className } = props
+  const { blackText, backgroundColor, mainText, description, ctaButtonText, legend, shadow, ctaAction, className, ctaImpact } = props
   return (
     <Pod backgroundColour={backgroundColor} noStroke={true} shadow={shadow ? true : false}>
       <View className=' flex flex-col gap-y-1 items-end'>
@@ -27,7 +28,7 @@ const Incentive = (props: IncentiveProps) => {
           : <></>}
         <Text className={`font-rubik text-base w-full ${blackText ? 'text-black' : 'text-white'}`}>{mainText}</Text>
         <Text className={`font-afa w-full tracking-tighter leading-tight ${blackText ? 'text-black' : 'text-white'}`}>{description}</Text>
-        <Button hasTopMargin={true} backgroundColour={props.buttonColor} textColor={`${blackText ? 'white' : 'black'}`} text={ctaButtonText} onPress={props.ctaAction} />
+        <Button type={ctaImpact} hasTopMargin={true} backgroundColour={props.buttonColor} textColor={`${blackText ? 'white' : 'black'}`} text={ctaButtonText} onPress={props.ctaAction} />
       </View>
     </Pod>
   )
