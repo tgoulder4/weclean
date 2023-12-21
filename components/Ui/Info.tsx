@@ -17,10 +17,10 @@ const Info = (props: InfoProps) => {
             <View className='flex flex-col gap-y-2'>
                 {
                     props.title ?
-                        <Text className='font-afaB text-lg text-black leading-6'>{props.title}</Text>
+                        <Text className='font-afaB text-lg text-black leading-5'>{props.title}</Text>
                         : <></>
                 }
-                <Text className='font-afa text-black'>{props.description}</Text>
+                <Text className='font-afa text-black leading-5'>{props.description}</Text>
             </View>
             {props.children}
         </Pod>

@@ -30,10 +30,10 @@ const Pod = (podProps: PodProps) => {
       </View>
       {podProps.variant == "pod-media" || podProps.variant == "pod-media-pod" ?
         <View className={`bg-indigo-500 ${getMediaRoundedCorners(variant)}`}>
-          <Image className='w-full max-h-48 aspect-video object-fill' source={{ uri: media }} />
+          <Image className={`w-full max-h-52 aspect-video object-cover ${getMediaRoundedCorners(variant)}`} source={{ uri: media }} />
         </View> : <></>}
       {variant === 'pod-media-pod' ?
-        <View className="p-7">
+        <View className="px-5 py-6 mt-[-10px]">
           {secondPodContent}
         </View>
         : <></>}
