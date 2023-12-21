@@ -4,6 +4,7 @@ import Pod from '../../Ui/Pod';
 import { IColour } from '../../../App';
 import { formatDistanceToNow } from "date-fns";
 import Button from '../../Ui/button';
+import images from '../../../lib/images';
 
 export type TaskProps = {
     userWhoMadeRequest?: {
@@ -25,14 +26,12 @@ const Task = (props: TaskProps) => {
         <Pod backgroundColour="white" variant={media ? 'pod-media' : 'pod'} media={media}>
             <View className='flex flex-col'>
                 <View className='flex flex-col'>
-                    {
-                        !props.task.completionTime ? <Image source={{ uri: '../../../assets/timer.png' }}></Image> : <></>
-                    }
-                    {/* timer */}
+                    {!props.task.completionTime ? <Image className='w-8 h-8' source={images['timer']}></Image> : <></>}
+                    <Text className='font-afaB text-xl'>{props.task.completionTime ? formatDistanceToNow(new Date(props.task.completionTime)) + " ago" : props.task.promiseTime}</Text>
                     <Text className='font-afa'>{props.task.summary}</Text>
-                </View>
-                <View className='flex flex-row justify-between'>
-                    <Button text='Mark as done' backgroundColour='[#55A38C]' textColor='white' onPress={() => { }} />
+                    <View className='flex flex-row justify-between mt-2'>
+                        <Button text='Mark as done' backgroundColour='[#55A38C]' textColor='white' onPress={() => { }} />
+                    </View>
                 </View>
             </View>
         </Pod >
