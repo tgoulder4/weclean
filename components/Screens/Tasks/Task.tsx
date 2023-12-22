@@ -28,9 +28,9 @@ const Task = (props: TaskProps) => {
                     {!props.task.completionTime ? <Image className='w-8 h-8' source={images['timer']}></Image> : <></>}
                     <Text className='font-afaB text-xl'>{props.task.completionTime ? formatDistanceToNow(new Date(props.task.completionTime)) + " ago" : props.task.promiseTime}</Text>
                     <Text className='font-afa'>{props.task.summary}</Text>
-                    <View className='flex flex-row justify-between items-center mt-1'>
-                        <Button type="success" text='Mark as done' backgroundColour='[#55A38C]' textColor='white' onPress={() => { }} />
-                        {!usersWhoMadeRequest ? <Text className=' font-afa text-gray-400'>Rota task 📅</Text> : <ProfilePic users={usersWhoMadeRequest} />}
+                    <View className='flex flex-row justify-between items-end mt-1'>
+                        <Button hasTopMargin={true} type="medium" text='Mark as done' backgroundColour='[#55A38C]' textColor='white' onPress={() => { }} />
+                        {!usersWhoMadeRequest ? <Text className=' font-afa text-gray-400'>📅</Text> : <ProfilePic users={usersWhoMadeRequest} />}
                     </View>
                 </View>
             </View>

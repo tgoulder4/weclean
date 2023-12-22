@@ -11,7 +11,7 @@ export const Screen = (props: Props) => {
   return (
     <>
       <ScrollView className={`${mode == "development" ? "bg-red-500" : "from-white to-[#eeeeee]"} flex flex-col w-full px-2 pt-28`} contentContainerStyle={{ justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <View className={`${mode == "development" ? "bg-blue-500" : ""} mb-6`}>
+        <View className={`${mode == "development" ? "bg-blue-500" : ""} mb-4`}>
           <Text className='font-rubik text-xl text-black font-bold'>{props.title}</Text>
           {
             props.subtitle ? <Text className='font-afa'>{props.subtitle}</Text> : <></>

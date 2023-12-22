@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import * as Haptics from 'expo-haptics';
+import { IColour } from '../../App';
 export type ImpactProps = "light" | "medium" | "heavy" | "error" | "warning" | "success";
 type buttonProps = {
     text: string;
 
-    backgroundColour: string;
+    /**Like white or [#ABC] */
+    backgroundColour: IColour;
 
     /**Like text-white or text-[#ABC] */
     textColor: string;
@@ -52,7 +54,7 @@ const Button = (props: buttonProps) => {
         setShadow(true);
     }
     return (
-        <Pressable style={{ transform: [{ translateY: offset }], shadowColor: 'black', shadowOpacity: shadow ? 0.5 : 0, shadowOffset: { width: 0, height: 4 }, shadowRadius: 0 }} className={`${props.hasTopMargin ? 'mt-2' : ''} bg-${props.backgroundColour} w-min px-3 py-2  rounded-md`} onPressIn={handleOnPressIn} onPressOut={handleOnPressOut}>
+        <Pressable style={{ transform: [{ translateY: offset }], shadowColor: props.backgroundColour, shadowOpacity: shadow ? 2 : 0, shadowOffset: { width: 0, height: 4 }, shadowRadius: 0 }} className={`${props.hasTopMargin ? 'mt-2' : ''} bg-${props.backgroundColour} w-min px-3 py-2  rounded-md`} onPressIn={handleOnPressIn} onPressOut={handleOnPressOut}>
             <Text className={`font-afaB text-${props.textColor}`}>{props.text}</Text>
         </Pressable>
     )

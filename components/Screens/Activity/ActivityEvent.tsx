@@ -36,7 +36,7 @@ function getAfterText(dateAgo: string, taskType: string): React.ReactNode {
     return (
         <View className='flex flex-col justify-between items-start '>
             <Text className='font-afa text-gray-500'>{dateAgo}, {getPrecedingText(taskType)}</Text>
-            <Button type="light" text='😻' backgroundColour="gray-300" onPress={() => { }} textColor='text-black' />
+            <Button hasTopMargin={true} type="light" text='😻' backgroundColour="gray-200" onPress={() => { }} textColor='text-black' />
         </View>
     )
 }
@@ -48,7 +48,7 @@ const ActivityEvent = (props: ActivityEventProps) => {
         <Pod backgroundColour="white" variant={media ? 'pod-media-pod' : 'pod'} media={media} secondPodContent={getAfterText(completionTime + " ago", props.task.type)}>
             <View className='flex flex-col'>
                 <View className=' flex flex-row justify-between'>
-                    <View className='bg-yellow-500 flex-1 flex flex-col gap-y-1 mr-[10%]'>
+                    <View className=' flex-1 flex flex-col gap-y-1'>
                         <Text className='font-afaB uppercase text-black'>{name}</Text>
                         <Text className='font-afa'>{summary}</Text>
                     </View>
