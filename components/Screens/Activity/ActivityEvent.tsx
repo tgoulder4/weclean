@@ -45,7 +45,7 @@ const ActivityEvent = (props: ActivityEventProps) => {
     const { usersWhoMadeRequest } = props;
     const { summary, type, media, completionTime } = props.task;
     return (
-        <Pod backgroundColour="white" variant={media ? 'pod-media-pod' : 'pod'} media={media} secondPodContent={getAfterText(completionTime + " ago", props.task.type)}>
+        <Pod backgroundColour="white" variant={media ? 'pod-media-pod' : 'pod'} media={media} bottomPodContent={getAfterText(completionTime + " ago", props.task.type)}>
             <View className='flex flex-col'>
                 <View className=' flex flex-row justify-between'>
                     <View className=' flex-1 flex flex-col gap-y-1'>

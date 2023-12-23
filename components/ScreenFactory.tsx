@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { View, Text, ScrollView, StyleSheet } from 'react-native'
-import mode from '../lib/constants'
+import { mode } from '../lib/constants'
 type Props = {
   title: string;
   subtitle?: React.ReactNode;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Pressable } from 'react-native';
-import * as Haptics from 'expo-haptics';
+import { View, Text, StyleSheet, Pressable, AnimatableStringValue } from 'react-native';
 import { IColour } from '../../App';
+import performHaptic from '../../lib/performHaptic';
 export type ImpactProps = "light" | "medium" | "heavy" | "error" | "warning" | "success";
 type buttonProps = {
     text: string;
@@ -14,31 +14,10 @@ type buttonProps = {
     type: ImpactProps;
 
     onPress: () => void;
-
+    fullWidth?: boolean;
     hasTopMargin?: boolean;
+    customHeight?: number;
 
-}
-function performHaptic(type: "light" | "medium" | "heavy" | "error" | "warning" | "success") {
-    switch (type) {
-        case "light":
-            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-            break;
-        case "medium":
-            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-            break;
-        case "heavy":
-            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
-            break;
-        case "error":
-            Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
-            break;
-        case "warning":
-            Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
-            break;
-        case "success":
-            Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-            break;
-    }
 }
 const Button = (props: buttonProps) => {
     const [shadow, setShadow] = useState(true);
@@ -54,7 +33,7 @@ const Button = (props: buttonProps) => {
         setShadow(true);
     }
     return (
-        <Pressable style={{ transform: [{ translateY: offset }], shadowColor: props.backgroundColour, shadowOpacity: shadow ? 2 : 0, shadowOffset: { width: 0, height: 4 }, shadowRadius: 0 }} className={`${props.hasTopMargin ? 'mt-2' : ''} bg-${props.backgroundColour} w-min px-3 py-2  rounded-md`} onPressIn={handleOnPressIn} onPressOut={handleOnPressOut}>
+        <Pressable style={{ height: props.customHeight ? props.customHeight : "auto", transform: [{ translateY: offset }], shadowColor: props.backgroundColour, shadowOpacity: shadow ? 0.5 : 0, shadowOffset: { width: 0, height: 4 }, shadowRadius: 0 }} className={`${props.fullWidth ? "w-full" : ""} ${props.hasTopMargin ? 'mt-2' : ''} bg-${props.backgroundColour} w-min px-3 py-2 justify-center items-center rounded-md`} onPressIn={handleOnPressIn} onPressOut={handleOnPressOut}>
             <Text className={`font-afaB text-${props.textColor}`}>{props.text}</Text>
         </Pressable>
     )

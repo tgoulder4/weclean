@@ -9,7 +9,7 @@ const subtitle = <Text className='text-xs text-black font-bold'>Chun lee baddies
 const ActivityScreen = () => {
   return (
     <Screen title="Activity" subtitle={subtitle}>
-      <View className={`hidden bg-[#55A38C] bg-[#4E9580] bg-[#4E9580]/10 bg-black bg-white bg-yellow-500 bg-green-500 bg-blue-500 bg-indigo-500 bg-pink-500 bg-red-500 bg-gray-500 bg-gray-200 bg-slate-900 bg-white/50 bg-[#310973]`} />
+      <View className={`hidden bg-[#1D1D1D] bg-[#55A38C] bg-[#4E9580] bg-[#4E9580]/10 bg-black bg-white bg-yellow-500 bg-green-500 bg-blue-500 bg-indigo-500 bg-pink-500 bg-red-500 bg-gray-500 bg-gray-200 bg-slate-900 bg-white/50 bg-[#310973]`} />
 
       <Incentive ctaImpact='heavy' shadow={true} backgroundColor="slate-900" buttonColor='white' ctaButtonText='Create Rota →' description="We get it, it's a pain. Create a rota in seconds, boosting your crew's productivity." mainText='Messy housemates?' ctaAction={() => { }} />
       {/* activityEventsInLast24Hours.map */}
