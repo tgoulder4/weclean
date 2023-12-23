@@ -11,9 +11,9 @@ import ProPerk from './GoPro/ProPerk';
 const GoProScreen = () => {
     return (
         <>
-            <ScrollView className='h-full w-full bg-[#080808] flex flex-col px-2 pt-28 '>
-                <View className='flex flex-row justify-between mb-5'>
-                    <Text className='font-rubik text-2xl text-white w-4/5 mr-[-200px]' style={{ shadowColor: "#FFFFFF", shadowOffset: { height: 6, width: 0 }, shadowOpacity: 0.25, shadowRadius: 0.8 }}>Elevate Your Crew</Text>
+            <ScrollView className=' h-full w-full bg-[#080808] flex flex-col px-2 pt-28 '>
+                <View className='flex flex-row justify-between mb-5 w-full'>
+                    <Text className='font-rubik text-2xl text-white flex-0 w-4/5' style={{ shadowColor: "#FFFFFF", shadowOffset: { height: 6, width: 0 }, shadowOpacity: 0.25, shadowRadius: 0.8 }}>Elevate Your Crew</Text>
                     <AnimatedStairs />
                 </View>
                 <Pod backgroundColour={`[${foregroundColour}]`} >
