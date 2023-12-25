@@ -43,17 +43,20 @@ const GoProScreen = () => {
                     </View>
 
                 </ScrollView>
-                <ActionSheet ref={actionSheetRef}>
-                    <View className='flex flex-col gap-y-2 '>
-                        <Text className='font-rubik text-xl text-black'>Split the price?</Text>
-                        <Text className='font-afa text-black mb-[20px]'>Don't miss out!" Share the subscription among your crew to go Pro for as little as £2.49/month.</Text>
-                    </View>
-                    <View className='flex flex-col gap-y-2'>
-                        <Button fullWidth={true} customHeight={50} hasTopMargin={true} text="Sounds good!" backgroundColour='[#1D1D1D]' textColor='white' type='light' onPress={() => { }} />
-                        <Pressable
-                            onPress={() => { actionSheetRef.current?.hide(); }}>
-                            <Text className='font-afa text-slate-500 text-center'>I'll think about it</Text>
-                        </Pressable>
+                <ActionSheet ref={actionSheetRef} defaultOverlayOpacity={0.6} containerStyle={{ borderTopRightRadius: 20, borderTopLeftRadius: 20 }}>
+                    <View className='py-8 px-4 pb-12'>
+
+                        <View className='flex flex-col gap-y-2 '>
+                            <Text className='font-rubik text-xl text-black'>Split the price?</Text>
+                            <Text className='font-afa text-black mb-[20px]'>Don't miss out!" Share the subscription among your crew to go Pro for as little as £2.49/month.</Text>
+                        </View>
+                        <View className='flex flex-col gap-y-2'>
+                            <Button fullWidth={true} customHeight={50} hasTopMargin={true} text="Sounds good!" backgroundColour='[#1D1D1D]' textColor='white' type='light' onPress={() => { }} />
+                            <Pressable
+                                onPress={() => { actionSheetRef.current?.hide(); }}>
+                                <Text className='font-afa text-slate-500 text-center'>I'll think about it</Text>
+                            </Pressable>
+                        </View>
                     </View>
                 </ActionSheet>
                 <View className='w-full h-56 py-6 px-5 bg-[#080808] flex flex-col items-center'>
