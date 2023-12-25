@@ -7,6 +7,7 @@ import Pod from '../Ui/Pod';
 import { foregroundColour } from '../../lib/constants';
 import Button from '../Ui/button';
 import ProPerk from './GoPro/ProPerk';
+import performHaptic from '../../lib/performHaptic';
 
 const GoProScreen = () => {
     return (
@@ -40,7 +41,7 @@ const GoProScreen = () => {
             <View className='w-full h-56 py-6 px-5 bg-[#080808] flex flex-col items-center'>
                 <Button fullWidth={true} customHeight={50} hasTopMargin={false} text="Let's go!" backgroundColour='white' textColor='black' type='light' onPress={() => { }} />
                 <Pressable className='mt-4'
-                // onPress={() => { navigation.navigate}}
+                    onPress={() => { performHaptic("error") }}
                 >
                     <Text className='font-afa text-gray-400'>No thanks, go back</Text>
                 </Pressable>
