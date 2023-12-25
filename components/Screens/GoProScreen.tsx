@@ -7,9 +7,13 @@ import Pod from '../Ui/Pod';
 import { foregroundColour } from '../../lib/constants';
 import Button from '../Ui/button';
 import ProPerk from './GoPro/ProPerk';
+<<<<<<< HEAD
 import performHaptic from '../../lib/performHaptic';
 import BottomSheet from '@gorhom/bottom-sheet';
 import { useCallback, useMemo, useRef } from 'react';
+=======
+
+>>>>>>> parent of 7039766 (before bottom sheet)
 const GoProScreen = () => {
     // ref
     const bottomSheetRef = useRef<BottomSheet>(null);
@@ -62,6 +66,19 @@ const GoProScreen = () => {
                         <Text className='font-afa text-gray-400'>No thanks, go back</Text>
                     </Pressable>
                 </View>
+<<<<<<< HEAD
+=======
+
+            </ScrollView>
+
+            <View className='w-full h-56 py-6 px-5 bg-[#080808] flex flex-col items-center'>
+                <Button fullWidth={true} customHeight={50} hasTopMargin={false} text="Let's go!" backgroundColour='white' textColor='black' type='light' onPress={() => { }} />
+                <Pressable className='mt-4'
+                // onPress={() => { navigation.navigate}}
+                >
+                    <Text className='font-afa text-gray-400'>No thanks, go back</Text>
+                </Pressable>
+>>>>>>> parent of 7039766 (before bottom sheet)
             </View>
             <BottomSheet
                 ref={bottomSheetRef}
