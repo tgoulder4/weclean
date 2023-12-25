@@ -1,41 +1,27 @@
 import { View, Text, ScrollView, Pressable } from 'react-native'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import AnimatedStairs from './GoPro/AnimatedStairs'
-import { Link } from 'expo-router';
-import Info from '../Ui/Info';
 import Pod from '../Ui/Pod';
 import { foregroundColour } from '../../lib/constants';
 import Button from '../Ui/button';
 import ProPerk from './GoPro/ProPerk';
-<<<<<<< HEAD
 import performHaptic from '../../lib/performHaptic';
-import BottomSheet from '@gorhom/bottom-sheet';
-import { useCallback, useMemo, useRef } from 'react';
-=======
-
->>>>>>> parent of 7039766 (before bottom sheet)
+import ActionSheet, { ActionSheetRef } from "react-native-actions-sheet";
 const GoProScreen = () => {
-    // ref
-    const bottomSheetRef = useRef<BottomSheet>(null);
-
-    // variables
-    const snapPoints = useMemo(() => ["50%"], []);
-
-    // callbacks
-    const handleSheetChanges = useCallback((index: number) => {
-        console.log('handleSheetChanges', index);
-    }, []);
-    function handleOpenModal() {
-        bottomSheetRef.current?.expand()
-        performHaptic("error")
+    const actionSheetRef = useRef<ActionSheetRef>(null);
+    function handleNoThanksGoBack() {
+        //open modal
+        actionSheetRef.current?.show();
+        performHaptic("light")
     }
+    useEffect(() => {
+        performHaptic("error")
+    }, [])
     return (
         <>
             <View className='flex flex-col h-full flex-1'>
                 <ScrollView className=' bg-[#080808] border-2 flex-1  gap-y-4'>
                     <View className='px-2 pt-28'>
-
-
                         <View className='flex flex-row justify-between w-full'>
                             <Text className='font-rubik text-2xl text-white flex-0 w-64' style={{ shadowColor: "#FFFFFF", shadowOffset: { height: 6, width: 0 }, shadowOpacity: 0.25, shadowRadius: 0.8 }}>Elevate Your Crew</Text>
                             <AnimatedStairs />
@@ -45,10 +31,10 @@ const GoProScreen = () => {
                         </Text>
                         <Pod backgroundColour={`[${foregroundColour}]`} noStroke={true} >
                             <View className='flex flex-col'>
-                                <ProPerk perkIcon='🧼' perkTitle='Monthly Cleaning Supplies' perkText="Get regular cleaning supplies on us" />
+                                <ProPerk perkIcon='🧼' perkTitle='Monthly Cleaning Supplies' perkText="Get regular cleaning supplies to your doorstep" />
                                 <ProPerk perkIcon='📅' perkTitle='Automated Rota' perkText="Create a rota in seconds, instantly putting your team into action" />
                                 <ProPerk perkIcon='💸' perkTitle='Entry into Pro-Only Competitions' perkText="Win exclusive cash prizes in competitions of cleanliness" />
-                                <ProPerk perkIcon='👥' perkTitle="Join multiple crews" perkText="Join multiple Crews" />
+                                <ProPerk doesntHaveBottomDivide={true} perkIcon='👥' perkTitle="Join multiple crews" perkText="Join multiple Crews" />
                             </View>
                         </Pod>
                         <Text className='font-afa text-center text-white mb-[20px]'>
@@ -57,50 +43,29 @@ const GoProScreen = () => {
                     </View>
 
                 </ScrollView>
-
+                <ActionSheet ref={actionSheetRef}>
+                    <View className='flex flex-col gap-y-2 '>
+                        <Text className='font-rubik text-xl text-black'>Split the price?</Text>
+                        <Text className='font-afa text-black mb-[20px]'>Don't miss out!" Share the subscription among your crew to go Pro for as little as £2.49/month.</Text>
+                    </View>
+                    <View className='flex flex-col gap-y-2'>
+                        <Button fullWidth={true} customHeight={50} hasTopMargin={true} text="Sounds good!" backgroundColour='[#1D1D1D]' textColor='white' type='light' onPress={() => { }} />
+                        <Pressable
+                            onPress={() => { actionSheetRef.current?.hide(); }}>
+                            <Text className='font-afa text-slate-500 text-center'>I'll think about it</Text>
+                        </Pressable>
+                    </View>
+                </ActionSheet>
                 <View className='w-full h-56 py-6 px-5 bg-[#080808] flex flex-col items-center'>
                     <Button fullWidth={true} customHeight={50} hasTopMargin={false} text="Let's go!" backgroundColour='white' textColor='black' type='light' onPress={() => { }} />
                     <Pressable className='mt-4'
-                        onPress={() => { handleOpenModal() }}
+                        onPress={() => { handleNoThanksGoBack() }}
                     >
                         <Text className='font-afa text-gray-400'>No thanks, go back</Text>
                     </Pressable>
                 </View>
-<<<<<<< HEAD
-=======
-
-            </ScrollView>
-
-            <View className='w-full h-56 py-6 px-5 bg-[#080808] flex flex-col items-center'>
-                <Button fullWidth={true} customHeight={50} hasTopMargin={false} text="Let's go!" backgroundColour='white' textColor='black' type='light' onPress={() => { }} />
-                <Pressable className='mt-4'
-                // onPress={() => { navigation.navigate}}
-                >
-                    <Text className='font-afa text-gray-400'>No thanks, go back</Text>
-                </Pressable>
->>>>>>> parent of 7039766 (before bottom sheet)
             </View>
-            <BottomSheet
-                ref={bottomSheetRef}
-                index={0}
-                style={{ paddingHorizontal: 15, paddingVertical: 20 }}
-                snapPoints={snapPoints}
-                onChange={handleSheetChanges}
-                handleIndicatorStyle={{ backgroundColor: 'white' }}
-                backgroundStyle={{ borderTopLeftRadius: 20, borderTopRightRadius: 20 }}
-            >
-                <View className='flex flex-col gap-y-2 '>
-                    <Text className='font-rubik text-xl text-black'>Split the price?</Text>
-                    <Text className='font-afa text-black'>Don't miss out!" Share the subscription among your crew to <Text className='font-afaB'>go Pro for as little as £2.49/month.</Text></Text>
-                </View>
-                <View className='flex flex-col gap-y-2'>
-                    <Button fullWidth={true} customHeight={50} hasTopMargin={true} text="Sounds good!" backgroundColour='[#1D1D1D]' textColor='white' type='light' onPress={() => { }} />
-                    <Pressable
-                        onPress={() => { bottomSheetRef.current?.close() }}>
-                        <Text className='font-afa text-gray-400 text-center'>I'll think about it</Text>
-                    </Pressable>
-                </View>
-            </BottomSheet>
+            {/* MODAL CONTENT: */}
         </>
     )
 }
