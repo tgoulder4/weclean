@@ -15,7 +15,7 @@ const GoProScreen = () => {
     const bottomSheetRef = useRef<BottomSheet>(null);
 
     // variables
-    const snapPoints = useMemo(() => ['25%', '50%'], []);
+    const snapPoints = useMemo(() => ["50%"], []);
 
     // callbacks
     const handleSheetChanges = useCallback((index: number) => {
@@ -61,12 +61,14 @@ const GoProScreen = () => {
             </View>
             <BottomSheet
                 ref={bottomSheetRef}
-                index={1}
+                index={0}
                 snapPoints={snapPoints}
                 onChange={handleSheetChanges}
+                handleIndicatorStyle={{ backgroundColor: 'white' }}
+                backgroundStyle={{ borderTopLeftRadius: 20, borderTopRightRadius: 20 }}
             >
                 <View >
-                    <Text>Awesome 🎉</Text>
+                    <Text>Awesome 🎉 ffs</Text>
                 </View>
             </BottomSheet>
         </>
