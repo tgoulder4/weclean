@@ -20,7 +20,7 @@ const GoProScreen = () => {
                         <AnimatedStairs />
                     </View>
                     <Text className='font-afa text-white my-[20px]'>
-                        Enjoy this feature and many more with Pro from £2.49/month.
+                        This is a Pro-only competition. Enjoy this feature and many more with Pro.
                     </Text>
                     <Pod backgroundColour={`[${foregroundColour}]`} noStroke={true} >
                         <View className='flex flex-col'>
@@ -31,7 +31,7 @@ const GoProScreen = () => {
                         </View>
                     </Pod>
                     <Text className='font-afa text-center text-white mb-[20px]'>
-                        Enjoy this feature and many more with Pro from £2.49/month.
+                        From £2.49/month. Cancel anytime with no penalties or fees.
                     </Text>
                 </View>
 
