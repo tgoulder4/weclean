@@ -34,7 +34,7 @@ const Button = (props: buttonProps) => {
     }
     return (
         <Pressable style={{ height: props.customHeight ? props.customHeight : "auto", transform: [{ translateY: offset }], shadowColor: props.backgroundColour, shadowOpacity: shadow ? 0.5 : 0, shadowOffset: { width: 0, height: 4 }, shadowRadius: 0 }} className={`${props.fullWidth ? "w-full" : ""} ${props.hasTopMargin ? 'mt-2' : ''} bg-${props.backgroundColour} w-min px-3 py-2 justify-center items-center rounded-md`} onPressIn={handleOnPressIn} onPressOut={handleOnPressOut}>
-            <Text className={`font-afaB text-${props.textColor}`}>{props.text}</Text>
+            <Text allowFontScaling={true} className={`font-afaB text-${props.textColor}`}>{props.text}</Text>
         </Pressable>
     )
 }

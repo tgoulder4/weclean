@@ -21,6 +21,10 @@ const GoProScreen = () => {
     const handleSheetChanges = useCallback((index: number) => {
         console.log('handleSheetChanges', index);
     }, []);
+    function handleOpenModal() {
+        bottomSheetRef.current?.expand()
+        performHaptic("error")
+    }
     return (
         <>
             <View className='flex flex-col h-full flex-1'>
@@ -53,7 +57,7 @@ const GoProScreen = () => {
                 <View className='w-full h-56 py-6 px-5 bg-[#080808] flex flex-col items-center'>
                     <Button fullWidth={true} customHeight={50} hasTopMargin={false} text="Let's go!" backgroundColour='white' textColor='black' type='light' onPress={() => { }} />
                     <Pressable className='mt-4'
-                        onPress={() => { performHaptic("error") }}
+                        onPress={() => { handleOpenModal() }}
                     >
                         <Text className='font-afa text-gray-400'>No thanks, go back</Text>
                     </Pressable>
@@ -62,13 +66,22 @@ const GoProScreen = () => {
             <BottomSheet
                 ref={bottomSheetRef}
                 index={0}
+                style={{ paddingHorizontal: 15, paddingVertical: 20 }}
                 snapPoints={snapPoints}
                 onChange={handleSheetChanges}
                 handleIndicatorStyle={{ backgroundColor: 'white' }}
                 backgroundStyle={{ borderTopLeftRadius: 20, borderTopRightRadius: 20 }}
             >
-                <View >
-                    <Text>Awesome 🎉 ffs</Text>
+                <View className='flex flex-col gap-y-2 '>
+                    <Text className='font-rubik text-xl text-black'>Split the price?</Text>
+                    <Text className='font-afa text-black'>Don't miss out!" Share the subscription among your crew to <Text className='font-afaB'>go Pro for as little as £2.49/month.</Text></Text>
+                </View>
+                <View className='flex flex-col gap-y-2'>
+                    <Button fullWidth={true} customHeight={50} hasTopMargin={true} text="Sounds good!" backgroundColour='[#1D1D1D]' textColor='white' type='light' onPress={() => { }} />
+                    <Pressable
+                        onPress={() => { bottomSheetRef.current?.close() }}>
+                        <Text className='font-afa text-gray-400 text-center'>I'll think about it</Text>
+                    </Pressable>
                 </View>
             </BottomSheet>
         </>
