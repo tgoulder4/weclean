@@ -8,6 +8,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Text } from 'react-native';
 import GoProScreen from './components/Screens/GoProScreen';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 function ActivityScrn() {
   return <ActivityScreen />
 }
@@ -51,22 +52,24 @@ export default function App() {
     return null;
   }
   return (
-    <NavigationContainer onReady={onLayoutRootView}>
-      <Tab.Navigator screenOptions={{ tabBarActiveTintColor: 'white', headerShown: false, tabBarStyle: { backgroundColor: 'rgba(10,19,16,1)', height: 85 } }} >
-        <Tab.Screen name="Activity" component={ActivityScrn} />
-        <Tab.Screen name="Tasks" component={TasksScrn} />
-        <Tab.Screen name="New Request" component={NewRequestScrn} />
-        <Tab.Screen name="Leaderboard" component={LeaderboardScrn} />
-        <Tab.Screen name="Profile" component={ProfileScrn} />
-        <Tab.Screen name="Go Pro" component={GoProScrn}
-          options={() => ({
-            tabBarStyle: {
-              display: "none",
-            }
-          })}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <NavigationContainer onReady={onLayoutRootView}>
+        <Tab.Navigator screenOptions={{ tabBarActiveTintColor: 'white', headerShown: false, tabBarStyle: { backgroundColor: 'rgba(10,19,16,1)', height: 85 } }} >
+          <Tab.Screen name="Activity" component={ActivityScrn} />
+          <Tab.Screen name="Tasks" component={TasksScrn} />
+          <Tab.Screen name="New Request" component={NewRequestScrn} />
+          <Tab.Screen name="Leaderboard" component={LeaderboardScrn} />
+          <Tab.Screen name="Profile" component={ProfileScrn} />
+          <Tab.Screen name="Go Pro" component={GoProScrn}
+            options={() => ({
+              tabBarStyle: {
+                display: "none",
+              }
+            })}
+          />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </GestureHandlerRootView>
   );
 
 }
