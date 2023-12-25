@@ -19,7 +19,7 @@ const GoProScreen = () => {
                         <Text className='font-rubik text-2xl text-white flex-0 w-64' style={{ shadowColor: "#FFFFFF", shadowOffset: { height: 6, width: 0 }, shadowOpacity: 0.25, shadowRadius: 0.8 }}>Elevate Your Crew</Text>
                         <AnimatedStairs />
                     </View>
-                    <Text className='font-afa text-white mb-[20px]'>
+                    <Text className='font-afa text-white my-[20px]'>
                         Enjoy this feature and many more with Pro from £2.49/month.
                     </Text>
                     <Pod backgroundColour={`[${foregroundColour}]`} noStroke={true} >
@@ -27,7 +27,7 @@ const GoProScreen = () => {
                             <ProPerk perkIcon='🧼' perkTitle='Monthly Cleaning Supplies' perkText="Get regular cleaning supplies on us" />
                             <ProPerk perkIcon='📅' perkTitle='Automated Rota' perkText="Create a rota in seconds, instantly putting your team into action" />
                             <ProPerk perkIcon='💸' perkTitle='Entry into Pro-Only Competitions' perkText="Win exclusive cash prizes in competitions of cleanliness" />
-                            <ProPerk perkIcon='' perkTitle="Join multiple crews" perkText="Join multiple Crews" />
+                            <ProPerk perkIcon='👥' perkTitle="Join multiple crews" perkText="Join multiple Crews" />
                         </View>
                     </Pod>
                     <Text className='font-afa text-center text-white mb-[20px]'>
