@@ -9,10 +9,10 @@ import { foregroundColour } from '../../../lib/constants';
 
 const AnimatedStairs = () => {
     return (
-        <View className='mr-[3px] h-40 flex-1 flex flex-row justify-end items-end gap-x-2'>
-            <Animatable.View delay={0} onAnimationBegin={() => performHaptic("light")} animation={{ from: { height: 10 }, to: { height: 30 } }} style={{ width: 40, borderRadius: 8, backgroundColor: foregroundColour, height: 100, borderColor: '#2A2A2A', borderWidth: 2 }} />
-            <Animatable.View delay={300} onAnimationBegin={() => performHaptic("light")} animation={{ from: { height: 10 }, to: { height: 60 } }} style={{ width: 40, borderRadius: 8, backgroundColor: foregroundColour, height: 100, borderColor: '#2A2A2A', borderWidth: 2 }} />
-            <Animatable.View delay={600} onAnimationBegin={() => performHaptic("light")} animation={{ from: { height: 10 }, to: { height: 120 } }} style={{ width: 40, borderRadius: 8, backgroundColor: foregroundColour, height: 100, borderColor: '#2A2A2A', borderWidth: 2 }} />
+        <View className='mr-[3px] bg-green-500 h-40 flex-1 flex flex-row justify-end items-end gap-x-2'>
+            <Animatable.View delay={0} onAnimationBegin={() => performHaptic("light")} animation={{ from: { height: 10 }, to: { height: 30 } }} style={{ width: 40, borderRadius: 8, backgroundColor: foregroundColour, height: 100 }} />
+            <Animatable.View delay={300} onAnimationBegin={() => performHaptic("light")} animation={{ from: { height: 10 }, to: { height: 60 } }} style={{ width: 40, borderRadius: 8, backgroundColor: foregroundColour, height: 100 }} />
+            <Animatable.View delay={600} onAnimationBegin={() => performHaptic("light")} animation={{ from: { height: 10 }, to: { height: 120 } }} style={{ width: 40, borderRadius: 8, backgroundColor: foregroundColour, height: 100 }} />
         </View>
     )
 }
