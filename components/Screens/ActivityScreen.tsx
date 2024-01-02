@@ -13,7 +13,7 @@ const ActivityScreen = () => {
     <Screen title="Activity" subtitle={subtitle}>
       <View className={`hidden bg-transparent bg-[#1D1D1D] bg-[#55A38C] bg-[#4E9580] bg-[#4E9580]/10 bg-black bg-white bg-yellow-500 bg-green-500 bg-blue-500 bg-indigo-500 bg-pink-500 bg-red-500 bg-gray-500 bg-gray-200 bg-slate-900 bg-white/50 bg-[#310973]`} />
 
-      <Incentive ctaImpact='heavy' shadow={true} backgroundColor="slate-900" buttonColor='white' ctaButtonText='CREATE →' description="We get it, it's a pain. Create a rota in seconds, boosting your crew's productivity." mainText='Messy housemates?' ctaAction={() => {
+      <Incentive ctaImpact='heavy' shadow={true} backgroundColor="[#1D1D1D]" buttonColor='white' ctaButtonText='CREATE →' description="We get it, it's a pain. Create a rota in seconds, boosting your crew's productivity." mainText='Messy housemates?' ctaAction={() => {
         navigation.navigate('Go Pro')
       }} />
       {/* activityEventsInLast24Hours.map */}

@@ -15,6 +15,7 @@ export type IUser = {
     name: string,
     profileBackgroundColour: string
 }
+export const pricePerCrewMember = 2.49;
 const requests = [{
     id: "R1",
     status: "Completed",
