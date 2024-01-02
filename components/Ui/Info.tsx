@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import Pod from './Pod'
-import { IColour } from '../../App';
+import { IColour } from '../../lib/constants';
 
 type InfoProps = {
     title?: string;

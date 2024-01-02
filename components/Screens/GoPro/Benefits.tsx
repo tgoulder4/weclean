@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import Pod from '../../Ui/Pod';
-import { foregroundColour } from '../../../lib/constants';
+import { colours } from '../../../lib/constants';
 import ProPerk from './ProPerk';
 
 const Benefits = () => {
     return (
-        <Pod backgroundColour={`[${foregroundColour}]`} noStroke={true} >
+        <Pod backgroundColour={colours.offBlack} noStroke={true} >
             <View className='flex flex-col'>
                 <ProPerk perkIcon='🧼' perkTitle='Monthly Cleaning Supplies' perkText="Get cleaning supplies straight to your doorstep" />
                 <ProPerk perkIcon='📅' perkTitle='Automated Rota' perkText="Create a rota in seconds, instantly putting your team into action" />

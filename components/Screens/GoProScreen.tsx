@@ -2,7 +2,7 @@ import { View, Text, ScrollView, Pressable } from 'react-native'
 import React, { useEffect, useRef } from 'react'
 import AnimatedStairs from './GoPro/AnimatedStairs'
 import Pod from '../Ui/Pod';
-import { foregroundColour } from '../../lib/constants';
+import { colours } from '../../lib/constants';
 import Button from '../Ui/button';
 import ProPerk from './GoPro/ProPerk';
 import performHaptic from '../../lib/performHaptic';
@@ -10,7 +10,7 @@ import ActionSheet, { ActionSheetRef } from "react-native-actions-sheet";
 import Benefits from './GoPro/Benefits';
 import { useNavigation } from '@react-navigation/native';
 import { pricePerCrewMember } from '../../lib/backend/actions';
-const GoProScreen = () => {
+const GoProScreen = (props: { andText: string }) => {
     const navigation = useNavigation()
     const actionSheetRef = useRef<ActionSheetRef>(null);
     function handleNoThanksGoBack() {
@@ -37,7 +37,7 @@ const GoProScreen = () => {
                             <AnimatedStairs />
                         </View>
                         <Text className='font-afa text-white my-[20px]'>
-                            Pro Crews are 3x more likely to complete their tasks on time.
+                            Pro Crews are 3x more likely to complete their tasks on time and {props.andText}
                         </Text>
                         <Benefits />
                         <Text className='font-afa text-center text-white mb-[20px]'>
@@ -55,16 +55,16 @@ const GoProScreen = () => {
                         <View className='flex flex-col gap-y-2'>
                             <Button fullWidth={true} customHeight={50} hasTopMargin={true} text="Sounds good!" backgroundColour='[#1D1D1D]' textColor='white' type='light' onPress={() => { }} />
                             <Pressable
-                                onPress={handleIllThinkAboutIt}>
+                                onPressOut={handleIllThinkAboutIt}>
                                 <Text className='font-afa text-gray-400 text-center mt-[10px]'>I'll think about it</Text>
                             </Pressable>
                         </View>
                     </View>
                 </ActionSheet>
                 <View className='w-full h-56 py-6 px-5 bg-[#080808] flex flex-col items-center'>
-                    <Button fullWidth={true} customHeight={50} hasTopMargin={false} text="Let's go!" backgroundColour='white' textColor='black' type='light' onPress={() => { }} />
+                    <Button fullWidth={true} customHeight={50} hasTopMargin={false} text="Let's go!" backgroundColour='white' textColor='black' type='light' onPress={() => { navigation.navigate("Payment" as never) }} />
                     <Pressable className='mt-4'
-                        onPress={() => { handleNoThanksGoBack() }}
+                        onPressOut={() => { handleNoThanksGoBack() }}
                     >
                         <Text className='font-afa text-gray-400'>No thanks, go back</Text>
                     </Pressable>

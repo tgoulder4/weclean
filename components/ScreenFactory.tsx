@@ -4,15 +4,16 @@ import { mode } from '../lib/constants'
 type Props = {
   title: string;
   subtitle?: React.ReactNode;
+  largerTitle?: boolean;
   children: React.ReactNode;
 }
 export const Screen = (props: Props) => {
   const [scrollAmount, setScrollAmount] = useState(0)
   return (
     <>
-      <ScrollView className={`${mode == "development" ? "bg-red-500" : "from-white to-[#eeeeee]"} flex flex-col w-full px-2 pt-28`} contentContainerStyle={{ justifyContent: 'space-between', alignItems: 'flex-start' }}>
+      <ScrollView className={`${mode == "development" ? "bg-red-500" : "from-white to-[#eeeeee]"} flex flex-col w-full px-2 mt-28`} contentContainerStyle={{ justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <View className={`${mode == "development" ? "bg-blue-500" : ""} mb-4`}>
-          <Text className='font-rubik text-xl text-black font-bold'>{props.title}</Text>
+          <Text className={`font-rubik ${props.largerTitle ? 'text-2xl' : 'text-xl'} text-black font-bold`}>{props.title}</Text>
           {
             props.subtitle ? <Text className='font-afa'>{props.subtitle}</Text> : <></>
           }

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Pressable, AnimatableStringValue } from 'react-native';
-import { IColour } from '../../App';
+import { IColour } from '../../lib/constants';
 import performHaptic from '../../lib/performHaptic';
+import sleep from '../../lib/sleep';
 export type ImpactProps = "light" | "medium" | "heavy" | "error" | "warning" | "success";
 type buttonProps = {
     text: string;

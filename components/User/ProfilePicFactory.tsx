@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import { IColour } from '../../App';
+import { IColour } from '../../lib/constants';
 type ProfilePicProps = {
     users: User[];
 }

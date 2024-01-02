@@ -11,14 +11,7 @@ import { useNavigation } from '@react-navigation/native'
 const LeaderboardScreen = () => {
     const navigation = useNavigation();
     function handleEnter() {
-        navigation.navigate('Go Pro')
-        Alert.alert("", "Pro crews enjoy cash prize competitions.", [
-            {
-                text: "Okay",
-                onPress: () => { }
-            },
-        ])
-
+        navigation.navigate('Go Pro' as never, { andText: "can enter cash prize competitions." } as never)
     }
     return (
         <Screen title="Leaderboard" subtitle="Cleanest crews ranked by crew score and popularity.">

@@ -1,5 +1,5 @@
 import * as Haptics from 'expo-haptics';
-export default function performHaptic(type: "light" | "medium" | "heavy" | "error" | "warning" | "success") {
+export default function performHaptic(type: "light" | "medium" | "heavy" | "error" | "warning" | "success" | "selection") {
     switch (type) {
         case "light":
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -18,6 +18,9 @@ export default function performHaptic(type: "light" | "medium" | "heavy" | "erro
             break;
         case "success":
             Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+            break;
+        case "selection":
+            Haptics.selectionAsync();
             break;
     }
 }

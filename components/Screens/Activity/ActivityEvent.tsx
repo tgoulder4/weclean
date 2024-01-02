@@ -1,7 +1,7 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
 import Pod from '../../Ui/Pod';
-import { IColour } from '../../../App';
+import { IColour } from '../../../lib/constants';
 import Button from '../../Ui/button';
 import { useAssets } from 'expo-asset';
 import images from '../../../lib/images';

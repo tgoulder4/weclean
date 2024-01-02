@@ -2,7 +2,7 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import Pod from './Pod'
 import Button, { ImpactProps } from './button'
-import { IColour } from '../../App'
+import { IColour } from '../../lib/constants'
 type IncentiveProps = {
   shadow?: boolean;
   legend?: string;
