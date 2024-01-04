@@ -5,9 +5,11 @@ import { colours } from '../../../lib/constants'
 import { getUsersInCrew, pricePerCrewMember } from '../../../lib/backend/actions'
 import { Pressable } from 'react-native';
 import SelectMembers from '../../Ui/SelectMembers'
+import { UserCrewInfo } from '../PaymentScreen'
+var equal = require('deep-equal')
 
-const ChippingInSelection = (props: { loading: boolean, onSelect: Function, selected: boolean, mainText: string, subText?: string }) => {
-    const { onSelect, selected, mainText, subText, loading } = props;
+const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mainText: string, subText?: string, userCrewInfo: UserCrewInfo }) => {
+    const { onSelect, selected, mainText, subText, userCrewInfo } = props;
     return (
         <Pressable onPress={() => { onSelect(mainText) }}>
             <Pod backgroundColour="white" strokeColour={selected ? colours.pureBlack : colours.deselected} >
@@ -16,9 +18,10 @@ const ChippingInSelection = (props: { loading: boolean, onSelect: Function, sele
                         <Text className=' font-afaB text-base'>{mainText}</Text>
                         {mainText == "Select members" ? <SelectMembers /> : <></>}
                         {
-                            loading ? <View className='bg-gray-200 animate-pulse w-36 h-8 rounded-lg'></View> :
-                                subText || (mainText == "Select members" && selected) ?
-                                    <Text className='font-afa'>£2.49/mo for you</Text> : <></>
+                            equal(userCrewInfo, { totalCost: -1, noOfMembers: -1 }) ? <View className='bg-gray-200 animate-pulse w-36 h-8 rounded-lg'></View> :
+                                <Text className='font-afa'>
+                                    {mainText == "Everyone" ? `£${userCrewInfo.totalCost / userCrewInfo.noOfMembers}/mo for you` : mainText == "Only me" ? `£${userCrewInfo.totalCost}/mo for you` : mainText == "Select members" ? `/mo for you` : `Error`}
+                                </Text>
                         }
                     </View>
                 </View>

@@ -45,14 +45,14 @@ const tasks: ITask[] = [{
 }];
 const users: IUser[] = [{
     id: "ABC123",
-    crewID: ["C1"],
+    crewID: ["abc"],
     taskIDs: ["T1", "T2"],
     name: "Mateusz",
     profileBackgroundColour: "indigo-500"
 },
 {
     id: "GHI789",
-    crewID: ["C1"],
+    crewID: ["abc"],
     name: "Tye",
     taskIDs: ["T1", "T2"],
     profileBackgroundColour: "[#55A38C]"

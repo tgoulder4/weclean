@@ -17,6 +17,7 @@
     "@react-navigation/native": "^6.1.9",
     "@shopify/flash-list": "1.4.3",
     "date-fns": "^3.0.0",
+    "deep-equal": "^2.2.3",
     "expo": "~49.0.15",
     "expo-haptics": "~12.4.0",
     "expo-router": "^2.0.14",

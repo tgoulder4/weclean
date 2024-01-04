@@ -20,7 +20,7 @@ const Info = (props: InfoProps) => {
                         <Text className='font-afaB text-lg text-black leading-5'>{props.title}</Text>
                         : <></>
                 }
-                <Text className='font-afa border-2 border-red-500 text-black leading-5'>{props.description}</Text>
+                <Text allowFontScaling={true} className='font-afa border-2 border-red-500 text-black leading-5'>{props.description}</Text>
             </View>
             {props.children}
         </Pod>
