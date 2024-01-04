@@ -25,7 +25,7 @@ function getMediaRoundedCorners(variant: PodProps['variant']) {
 const Pod = (podProps: PodProps) => {
   const { noStroke, shadow, backgroundColour, media, variant, children, bottomPodContent, strokeColour } = podProps;
   return (
-    <View className={`mb-3 w-full flex flex-col bg-${backgroundColour} flex-1 border-4 ${shadow ? 'shadow-[inset_0px_8px_6px_0px_rgba(255,255,255,1)]' : ''} ${strokeColour ? 'border-' + strokeColour : 'border-black'}  ${noStroke ? 'border-0' : ''} rounded-[20px]`}>
+    <View className={`mb-3 w-full flex flex-col bg-${backgroundColour} border-4 ${shadow ? 'shadow-[inset_0px_8px_6px_0px_rgba(255,255,255,1)]' : ''} ${strokeColour ? 'border-' + strokeColour : 'border-black'}  ${noStroke ? 'border-0' : ''} rounded-[20px]`}>
       <View className="px-5 py-6">
         {children}
       </View>
