@@ -8,6 +8,7 @@ import ChippingInSelection from './Payment/ChippingInSelection'
 import performHaptic from '../../lib/performHaptic'
 import Info from '../Ui/Info'
 import Button from '../Ui/button'
+import { StatusBar } from 'expo-status-bar'
 export type UserCrewInfo = {
     noOfMembers: number,
     totalCost: number

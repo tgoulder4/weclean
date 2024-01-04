@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useFonts, RubikMonoOne_400Regular } from "@expo-google-fonts/rubik-mono-one";
 import * as SplashScreen from 'expo-splash-screen';
 import ActivityScreen from './components/Screens/ActivityScreen';
@@ -10,6 +10,8 @@ import { Text } from 'react-native';
 import GoProScreen from './components/Screens/GoProScreen';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import PaymentScreen from './components/Screens/PaymentScreen';
+import type { StatusBarStyle } from 'react-native';
+import { setStatusBarBackgroundColor } from 'expo-status-bar';
 function ActivityScrn() {
   return <ActivityScreen />
 }
@@ -38,6 +40,7 @@ SplashScreen.preventAutoHideAsync();
 const sleep = (ms: number) => new Promise<void>(r => setTimeout(r, ms));
 
 export default function App() {
+  const [statusBarStyle, setStatusBarStyle] = useState<StatusBarStyle>("light-content")
   const [fontsLoaded] = useFonts({
     "AfacadRegular": require('./assets/fonts/AfacadRegular.ttf'),
     "AfacadItalic": require('./assets/fonts/AfacadItalic.ttf'),
@@ -58,12 +61,12 @@ export default function App() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <NavigationContainer onReady={onLayoutRootView}>
         <Tab.Navigator screenOptions={{ tabBarActiveTintColor: 'white', headerShown: false, tabBarStyle: { backgroundColor: 'rgba(10,19,16,1)', height: 85 } }} >
-          <Tab.Screen name="Activity" component={ActivityScrn} />
+          <Tab.Screen name="Activity" component={ActivityScrn} initialParams={setStatusBarBackgroundColor} />
           <Tab.Screen name="Tasks" component={TasksScrn} />
           <Tab.Screen name="New Request" component={NewRequestScrn} />
           <Tab.Screen name="Leaderboard" component={LeaderboardScrn} />
           <Tab.Screen name="Profile" component={ProfileScrn} />
-          <Tab.Screen name="Go Pro" component={GoProScrn}
+          <Tab.Screen name="Go Pro" component={GoProScrn} initialParams={{ andText: "can enter cash prize competitions." }}
             options={() => ({
               tabBarStyle: {
                 display: "none",

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { View, Text, ScrollView, StyleSheet } from 'react-native'
 import { mode } from '../lib/constants'
+import { StatusBar } from 'expo-status-bar';
 type Props = {
   title: string;
   subtitle?: React.ReactNode;
@@ -11,7 +12,8 @@ export const Screen = (props: Props) => {
   const [scrollAmount, setScrollAmount] = useState(0)
   return (
     <>
-      <ScrollView className={`${mode == "development" ? "bg-red-500" : "from-white to-[#eeeeee]"} flex flex-col w-full px-2 mt-28`} contentContainerStyle={{ justifyContent: 'space-between', alignItems: 'flex-start' }}>
+      <StatusBar style='dark' />
+      <ScrollView className={`${mode == "development" ? "bg-red-500" : "bg-[#ededed]"} flex flex-col w-full px-2 mt-28`} contentContainerStyle={{ justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <View className={`${mode == "development" ? "bg-blue-500" : ""} mb-4`}>
           <Text className={`font-rubik ${props.largerTitle ? 'text-2xl' : 'text-xl'} text-black font-bold`}>{props.title}</Text>
           {
