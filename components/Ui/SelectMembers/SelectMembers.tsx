@@ -11,16 +11,17 @@ export type SetSelectedMembers = {
 
 const SelectMembers = (props: {
     setSelectedMembers: React.Dispatch<React.SetStateAction<string[]
-    >>, members: Array<IUser>
+    >>, members: Array<IUser>, alreadySelectedMembers?: string[]
 }) => {
+    const { setSelectedMembers, members, alreadySelectedMembers } = props;
     return (
         <View className='flex flex-col flex-1'>
             <TextInput placeholder='Search' className='py-4 px-3 rounded-lg mb-2 font-afaB' style={{ backgroundColor: '#f3f4f6' }}></TextInput>
             <ScrollView horizontal={true} className='flex flex-row pt-2 w-full'>
                 {
-                    props.members.length == 0 ? <Member loading={true} user={{ name: "a", profileBackgroundColour: "b" as IColour, id: '0', crewID: ['0'], taskIDs: ['0'] }} /> :
-                        props.members.map((member, index) =>
-                            <Member setSelectedMembers={props.setSelectedMembers} key={index} user={{ name: member.name, profileBackgroundColour: member.profileBackgroundColour as IColour, id: member.id, crewID: ['0'], taskIDs: ['0'] }} />)
+                    members.length == 0 ? <Member loading={true} user={{ name: "a", profileBackgroundColour: "b" as IColour, id: '0', crewID: ['0'], taskIDs: ['0'] }} /> :
+                        members.map((member, index) =>
+                            <Member alreadySelectedMembers={alreadySelectedMembers} setSelectedMembers={setSelectedMembers} key={index} user={{ name: member.name, profileBackgroundColour: member.profileBackgroundColour as IColour, id: member.id, crewID: ['0'], taskIDs: ['0'] }} />)
                 }
             </ScrollView>
         </View>

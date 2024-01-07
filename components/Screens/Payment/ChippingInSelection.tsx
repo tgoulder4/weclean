@@ -23,7 +23,7 @@ const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mai
                     <MultipleChoiceSelectionIndicator selected={selected} />
                     <View className='flex flex-1 flex-col justify-between'>
                         <Text className='font-afaB text-lg'>{mainText}</Text>
-                        {mainText == "Select members" && selected ? <SelectMembers members={usersInThisCrew} setSelectedMembers={setSelectedMembers} /> : <></>}
+                        {mainText == "Select members" && selected ? <SelectMembers alreadySelectedMembers={selectedMembers} members={usersInThisCrew} setSelectedMembers={setSelectedMembers} /> : <></>}
                         {
                             equal(props.usersInThisCrew, [] as IUser[]) ? <View className='bg-gray-200 animate-pulse w-36 h-8 rounded-lg'></View> :
 

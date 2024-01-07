@@ -9,6 +9,7 @@ type Props = {
     setSelectedMembers?: React.Dispatch<React.SetStateAction<string[]>>,
     user: IUser,
     loading?: boolean
+    alreadySelectedMembers?: string[]
 }
 const Member = (props: Props) => {
     const user = [props.user];
@@ -40,6 +41,11 @@ const Member = (props: Props) => {
         if (user[0].id == userIDLoggedIn) {
             setSelected(true);
             setIsThemSelves(true);
+        }
+        if (props.alreadySelectedMembers) {
+            if (props.alreadySelectedMembers.includes(user[0].id)) {
+                setSelected(true);
+            }
         }
     })
     return (
