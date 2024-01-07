@@ -1,9 +1,9 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const ProPerk = (props: { perkIcon: string, perkTitle: string, perkText: string, doesntHaveBottomDivide?: boolean }) => {
+const ProPerk = (props: { perkIcon: string, perkTitle: string, perkText: string, doesntHaveBottomDivide?: boolean, badge?: string }) => {
     return (<>
-        <View className={`flex-1 flex flex-row gap-x-2 ${props.doesntHaveBottomDivide ? "" : "mb-[20px]"}`}>
+        <View className={`flex-1 flex flex-row gap-x-4 pl-2 ${props.doesntHaveBottomDivide ? "" : "mb-[20px]"}`}>
             <Text className='font-afa text-white'>{props.perkIcon}</Text>
             <View className='flex-1 flex flex-col gap-y-1'>
                 <Text className='font-afaB text-base text-white'>{props.perkTitle}</Text>

@@ -20,7 +20,7 @@ const LeaderboardEntry = (props: LeaderboardProps) => {
                     <Text className='font-afaB text-base text-black'>{position}.</Text>
                     <View className='flex flex-row gap-x-2 items-start'>
                         <Image className='w-8 h-8 rounded-full' source={{ uri: photo }}></Image>
-                        <Text className='font-afaB truncate text-base text-black'>{name}</Text>
+                        <Text numberOfLines={1} ellipsizeMode='tail' className='font-afaB truncate text-base text-black'>{name}</Text>
                     </View>
                 </View>
                 <Text className='font-afaB flex-1 text-right text-base text-green-700'>{score}★</Text>

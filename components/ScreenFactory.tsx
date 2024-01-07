@@ -23,12 +23,7 @@ export const Screen = (props: Props) => {
             }
 
           </View>
-          {/* {scrollAmount > 20 ?
-          <View className='bg-white p-4 sticky top-0'>
-            <Text className=' text-sm text-black font-bold'>{props.title}</Text>
-          </View>
-          : <></>} */}
-          <View style={{ paddingTop: spacing.gaps.normal }} className={`w-full flex flex-col gap-y-4 ${mode == "development" ? "bg-yellow-500" : ""} pb-[80%]`}>
+          <View style={{ rowGap: spacing.gaps.normal }} className={`w-full flex flex-col ${mode == "development" ? "bg-yellow-500" : ""} pb-16`}>
             {props.children}
           </View>
         </ScrollView>

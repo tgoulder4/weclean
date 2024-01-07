@@ -10,7 +10,7 @@ import ActionSheet, { ActionSheetRef } from "react-native-actions-sheet";
 import Benefits from './GoPro/Benefits';
 import { useNavigation } from '@react-navigation/native';
 import { pricePerCrewMember } from '../../lib/backend/actions';
-const GoProScreen = ({ route }) => {
+const GoProScreen = ({ params }) => {
     // const { andText } = route.params;
     const navigation = useNavigation()
     const actionSheetRef = useRef<ActionSheetRef>(null);
@@ -26,7 +26,7 @@ const GoProScreen = ({ route }) => {
         navigation.goBack()
     }
     useEffect(() => {
-        console.log("route object: ", route)
+        console.log("params object: ", params)
     }, [])
     return (
         <>

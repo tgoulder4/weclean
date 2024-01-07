@@ -1,8 +1,8 @@
 import { View, Text, TextInput, ScrollView } from 'react-native'
 import React, { useEffect } from 'react'
 import Member from './Member'
-import { IUser, getProfileBackgroundColour, } from '../../../lib/backend/actions'
-import { IColour } from '../../../lib/constants'
+import { getProfileBackgroundColour, } from '../../../lib/backend/actions'
+import { IColour, IUser } from '../../../lib/types'
 //return the tsx and the count
 export type SetSelectedMembers = {
     count: number,
@@ -10,10 +10,8 @@ export type SetSelectedMembers = {
 }
 
 const SelectMembers = (props: {
-    setSelectedMembers: React.Dispatch<React.SetStateAction<{
-        count: number;
-        userIDs: string[]
-    }>>, members: Array<IUser>
+    setSelectedMembers: React.Dispatch<React.SetStateAction<string[]
+    >>, members: Array<IUser>
 }) => {
     return (
         <View className='flex flex-col flex-1'>

@@ -1,34 +1,6 @@
-import { IColour } from "../constants"
-
-export type ITask = {
-    id: string,
-    userID: string,
-    summary: string,
-    type: string,
-    status: string,
-    assignedAt: string | null,
-    userIDWhoMadeTheRequest: string | null,
-    completedAt: string
-}
-export type IUser = {
-    id: string,
-    crewID: string[],
-    taskIDs: string[],
-    name: string,
-    profileBackgroundColour: IColour
-}
-export type ICrew = {
-    id: string,
-    name: string,
-    taskIDs: string[],
-    members: IUser[]
-}
-export type IPerk = {
-    icon: string,
-    title: string,
-    description: string
-
-}
+import { IColour } from "../types"
+import { ITask, IUser, ICrew, IPerk } from "../types"
+export const brandName: string = "CleenCrew"
 export const pricePerCrewMember: number = 2.49;
 const requests = [{
     id: "R1",
@@ -73,7 +45,8 @@ const crews: ICrew[] = [{
 const perks: IPerk[] = [{
     icon: "🧼",
     title: "Monthly Cleaning Supplies",
-    description: "Get cleaning supplies straight to your doorstep"
+    description: "Get cleaning supplies straight to your doorstep",
+    badge: "Soon"
 }, {
     icon: "📅",
     title: "Automated Rota",
@@ -85,9 +58,14 @@ const perks: IPerk[] = [{
 }, {
     icon: "👥",
     title: "Join multiple crews",
-    description: "Now you can join multiple crews, so you can help out your friends and family too"
-
-}]
+    description: "Now you can help out your friends and families spaces too"
+},
+{
+    icon: "🚀",
+    title: "Support " + brandName + "'s mission",
+    description: "Help turn shared living spaces clean and tidy, one crew at a time"
+},
+]
 const users: IUser[] = [{
     id: "ABC123",
     crewID: ["abc"],
@@ -126,7 +104,13 @@ export async function getProfileBackgroundColour(userID: string): Promise<IColou
     if (result === undefined) return "gray-500";
     return result;
 }
-export async function getUsersInCrew(crewID: string): Promise<IUser[]> {
+/**
+ * 
+ * @param crewID 
+ * @param inPerspectiveOfUserID The userID which will always show first in the list returned.
+ * @returns 
+ */
+export async function getUsersInCrew(crewID: string, inPerspectiveOfUserID: string): Promise<IUser[]> {
     await sleep(1000);
     const result = users.filter(user => user.crewID.includes(crewID));
     if (result === undefined) return [];

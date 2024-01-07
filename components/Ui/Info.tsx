@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import Pod from './Pod'
-import { IColour } from '../../lib/constants';
+import { IColour } from '../../lib/types';
 
 type InfoProps = {
     title?: string;
@@ -19,7 +19,7 @@ const Info = (props: InfoProps) => {
         <Pod
             customPadding={props.customPadding}
             noStroke={true} backgroundColour={props.backgroundColour}>
-            <View className={`flex  ${centerAligned ? "center flex-col items-center" : "flex-row"}`}>
+            <View className={`flex flex-col ${centerAligned ? "center items-center" : ""}`}>
                 {
                     props.title ?
                         <Text className={`font-afaB text-lg ${centerAligned ? "text-center" : ""} text-black leading-5`}>{props.title}</Text>

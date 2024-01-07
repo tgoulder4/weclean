@@ -36,7 +36,7 @@ function getAfterText(dateAgo: string, taskType: string): React.ReactNode {
     }
     return (
         <View className='flex flex-col justify-between items-start '>
-            <Text className='font-afa text-gray-500'>{dateAgo}, {getPrecedingText(taskType)}</Text>
+            <Text className='font-afa text-base text-gray-700'>{dateAgo}, {getPrecedingText(taskType)}</Text>
             <Button hasTopMargin={true} type="light" text='😻' backgroundColour="gray-200" onPress={() => { }} textColor='text-black' />
         </View>
     )
@@ -50,12 +50,12 @@ const ActivityEvent = (props: ActivityEventProps) => {
             <View className='flex flex-col'>
                 <View className=' flex flex-row justify-between'>
                     <View className=' flex-1 flex flex-col gap-y-1'>
-                        <Text className='font-afaB text-base uppercase text-black'>{name}</Text>
+                        <Text className='font-afaB text-lg uppercase text-black'>{name}</Text>
                         <Text className='font-afa text-base'>{summary}</Text>
                     </View>
                     {type == "Rota" ? <Text className='bg-indigo-500 font-bold'>📅</Text> : type == "Courtesy" ? (images['kindness'] ? <Image className='w-12 h-12 object-contain' source={images['kindness']} /> : null) : <ProfilePic isRequest={true} users={usersWhoMadeRequest!} />}
                 </View>
-                {!media ? <Text className='font-afa text-base text-gray-500'>{getAfterText(completionTime + " ago", props.task.type)}</Text> : <></>}
+                {!media ? <Text className='bg-blue-500 font-afa text-base text-gray-500'>{getAfterText(completionTime + " ago", props.task.type)}</Text> : <></>}
             </View>
         </Pod >
     )

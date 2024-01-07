@@ -18,7 +18,7 @@ const Benefits = () => {
         <Pod backgroundColour={colours.offBlack} noStroke={true} >
             <View className='flex flex-col'>
                 {
-                    perks.map((perk, index) => <ProPerk doesntHaveBottomDivide={index == perks.length - 1} key={index} perkIcon={perk.icon} perkTitle={perk.title} perkText={perk.description} />)
+                    perks.map((perk, index) => <ProPerk badge={perk.badge} doesntHaveBottomDivide={index == perks.length - 1} key={index} perkIcon={perk.icon} perkTitle={perk.title} perkText={perk.description} />)
                 }
             </View>
         </Pod>

@@ -38,6 +38,7 @@ const Tab = createBottomTabNavigator();
 SplashScreen.preventAutoHideAsync();
 // using this file as the layout as if in nextjs
 const sleep = (ms: number) => new Promise<void>(r => setTimeout(r, ms));
+export const userIDLoggedIn: string = 'GHI789';
 
 export default function App() {
   const [statusBarStyle, setStatusBarStyle] = useState<StatusBarStyle>("light-content")
@@ -61,12 +62,12 @@ export default function App() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <NavigationContainer onReady={onLayoutRootView}>
         <Tab.Navigator screenOptions={{ tabBarActiveTintColor: 'white', headerShown: false, tabBarStyle: { backgroundColor: 'rgba(10,19,16,1)', height: 85 } }} >
-          <Tab.Screen name="Activity" component={ActivityScrn} initialParams={setStatusBarBackgroundColor} />
+          <Tab.Screen name="Activity" component={ActivityScrn} />
           <Tab.Screen name="Tasks" component={TasksScrn} />
           <Tab.Screen name="New Request" component={NewRequestScrn} />
           <Tab.Screen name="Leaderboard" component={LeaderboardScrn} />
           <Tab.Screen name="Profile" component={ProfileScrn} />
-          <Tab.Screen name="Go Pro" component={GoProScrn} initialParams={{ andText: "can enter cash prize competitions." }}
+          <Tab.Screen name="Go Pro" component={GoProScrn}
             options={() => ({
               tabBarStyle: {
                 display: "none",
@@ -92,5 +93,4 @@ export default function App() {
       </NavigationContainer>
     </GestureHandlerRootView>
   );
-
 }
