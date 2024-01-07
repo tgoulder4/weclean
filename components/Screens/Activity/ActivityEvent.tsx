@@ -5,13 +5,14 @@ import { IColour } from '../../../lib/constants';
 import Button from '../../Ui/button';
 import { useAssets } from 'expo-asset';
 import images from '../../../lib/images';
-import ProfilePic, { User } from '../../User/ProfilePicFactory';
+import ProfilePic from '../../User/ProfilePicFactory';
+import { IUser } from '../../../lib/backend/actions';
 
 export type ActivityEventProps = {
     user: {
         name: string;
     },
-    usersWhoMadeRequest?: User[];
+    usersWhoMadeRequest?: IUser[];
     task: {
         summary: string;
         type: "Rota" | "Request" | "Courtesy";
@@ -49,12 +50,12 @@ const ActivityEvent = (props: ActivityEventProps) => {
             <View className='flex flex-col'>
                 <View className=' flex flex-row justify-between'>
                     <View className=' flex-1 flex flex-col gap-y-1'>
-                        <Text className='font-afaB uppercase text-black'>{name}</Text>
-                        <Text className='font-afa'>{summary}</Text>
+                        <Text className='font-afaB text-base uppercase text-black'>{name}</Text>
+                        <Text className='font-afa text-base'>{summary}</Text>
                     </View>
-                    {type == "Rota" ? <Text className='bg-indigo-500 font-bold'>📅</Text> : type == "Courtesy" ? (images['kindness'] ? <Image className='w-12 h-12 object-contain' source={images['kindness']} /> : null) : <ProfilePic users={usersWhoMadeRequest!} />}
+                    {type == "Rota" ? <Text className='bg-indigo-500 font-bold'>📅</Text> : type == "Courtesy" ? (images['kindness'] ? <Image className='w-12 h-12 object-contain' source={images['kindness']} /> : null) : <ProfilePic isRequest={true} users={usersWhoMadeRequest!} />}
                 </View>
-                {!media ? <Text className='font-afa text-gray-500'>{getAfterText(completionTime + " ago", props.task.type)}</Text> : <></>}
+                {!media ? <Text className='font-afa text-base text-gray-500'>{getAfterText(completionTime + " ago", props.task.type)}</Text> : <></>}
             </View>
         </Pod >
     )

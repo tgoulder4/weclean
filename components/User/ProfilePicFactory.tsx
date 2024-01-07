@@ -1,13 +1,10 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { IColour } from '../../lib/constants';
+import { IUser } from '../../lib/backend/actions';
 type ProfilePicProps = {
-    users: User[];
-}
-export type User = {
-    name: string;
-    profileBackgroundColour: IColour;
-
+    users: IUser[];
+    isRequest?: boolean;
 }
 const ProfilePic = (props: ProfilePicProps): React.ReactNode => {
     // the position of each profile pic depends on the length up to 3
@@ -22,9 +19,13 @@ const ProfilePic = (props: ProfilePicProps): React.ReactNode => {
                     <Text className=' font-afaB text-sm text-white'>{user.name[0]}</Text>
                 </View>
             ))}
-            <View className='absolute  outline-2 outline-black' style={{ zIndex: 5, elevation: 5, left: 30 }}>
-                <Text className='font-afaB text-sm text-white'>☝</Text>
-            </View>
+            {
+                props.isRequest ?
+
+                    <View className='absolute  outline-2 outline-black' style={{ zIndex: 5, elevation: 5, left: 30 }}>
+                        <Text className='font-afaB text-sm text-white'>☝</Text>
+                    </View> : <></>
+            }
         </View>
     )
 }

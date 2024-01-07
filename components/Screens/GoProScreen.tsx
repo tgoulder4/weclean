@@ -2,7 +2,7 @@ import { View, Text, ScrollView, Pressable } from 'react-native'
 import React, { useEffect, useRef } from 'react'
 import AnimatedStairs from './GoPro/AnimatedStairs'
 import Pod from '../Ui/Pod';
-import { colours } from '../../lib/constants';
+import { colours, spacing } from '../../lib/constants';
 import Button from '../Ui/button';
 import ProPerk from './GoPro/ProPerk';
 import performHaptic from '../../lib/performHaptic';
@@ -10,7 +10,8 @@ import ActionSheet, { ActionSheetRef } from "react-native-actions-sheet";
 import Benefits from './GoPro/Benefits';
 import { useNavigation } from '@react-navigation/native';
 import { pricePerCrewMember } from '../../lib/backend/actions';
-const GoProScreen = (props: { andText: string }) => {
+const GoProScreen = ({ route }) => {
+    // const { andText } = route.params;
     const navigation = useNavigation()
     const actionSheetRef = useRef<ActionSheetRef>(null);
     function handleNoThanksGoBack() {
@@ -25,7 +26,7 @@ const GoProScreen = (props: { andText: string }) => {
         navigation.goBack()
     }
     useEffect(() => {
-        performHaptic("error")
+        console.log("route object: ", route)
     }, [])
     return (
         <>
@@ -36,11 +37,12 @@ const GoProScreen = (props: { andText: string }) => {
                             <Text className='font-rubik text-2xl text-white flex-0 w-64' style={{ shadowColor: "#FFFFFF", shadowOffset: { height: 6, width: 0 }, shadowOpacity: 0.25, shadowRadius: 0.8 }}>Elevate Your Crew</Text>
                             <AnimatedStairs />
                         </View>
-                        <Text className='font-afa text-white my-[20px]'>
-                            Pro Crews are 3x more likely to complete their tasks on time and {props.andText}
+                        <Text className='font-afa text-base text-white my-[20px]'>
+                            Pro Crews are 3x more likely to complete their tasks on time and
+                            {/* {andText} */}
                         </Text>
                         <Benefits />
-                        <Text className='font-afa text-center text-white mb-[20px]'>
+                        <Text className='font-afa text-base text-center text-white mb-[20px]'>
                             From £{pricePerCrewMember}/mo. Cancel anytime with no penalties or fees.
                         </Text>
                     </View>
@@ -49,8 +51,8 @@ const GoProScreen = (props: { andText: string }) => {
                 <ActionSheet ref={actionSheetRef} defaultOverlayOpacity={0.6} containerStyle={{ height: 'auto', borderTopRightRadius: 20, borderTopLeftRadius: 20 }}>
                     <View className='py-8 px-4 pb-12'>
                         <View className='flex flex-col gap-y-2 '>
-                            <Text className='font-rubik text-xl text-black'>Split the price?</Text>
-                            <Text className='font-afa text-black mb-[30px] leading-[4.5]'>Don't miss out! Share the subscription among your crew to go Pro for as little as £{pricePerCrewMember}/month.</Text>
+                            <Text style={{ marginTop: spacing.gaps.normal, marginBottom: spacing.gaps.smaller }} className='font-rubik text-xl text-black'>Split the price?</Text>
+                            <Text style={{ marginBottom: spacing.gaps.normal }} className='font-afa text-black text-base'>Don't miss out! Share the subscription among your crew to go Pro for as little as £{pricePerCrewMember}/month.</Text>
                         </View>
                         <View className='flex flex-col gap-y-2'>
                             <Button fullWidth={true} customHeight={50} hasTopMargin={true} text="Sounds good!" backgroundColour='[#1D1D1D]' textColor='white' type='light' onPress={() => { }} />

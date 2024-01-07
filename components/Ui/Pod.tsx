@@ -11,6 +11,8 @@ type PodProps = {
   backgroundColour: IColour;
   shadow?: boolean;
   strokeColour?: IColour;
+  strokeWidth?: number;
+  customPadding?: { paddingX?: number, paddingY?: number }
 }
 function getMediaRoundedCorners(variant: PodProps['variant']) {
   switch (variant) {
@@ -23,10 +25,12 @@ function getMediaRoundedCorners(variant: PodProps['variant']) {
   }
 }
 const Pod = (podProps: PodProps) => {
-  const { noStroke, shadow, backgroundColour, media, variant, children, bottomPodContent, strokeColour } = podProps;
+  const { customPadding, strokeWidth, noStroke, shadow, backgroundColour, media, variant, children, bottomPodContent, strokeColour } = podProps;
   return (
-    <View className={`mb-3 w-full flex flex-col bg-${backgroundColour} border-4 ${shadow ? 'shadow-[inset_0px_8px_6px_0px_rgba(255,255,255,1)]' : ''} ${strokeColour ? 'border-' + strokeColour : 'border-black'}  ${noStroke ? 'border-0' : ''} rounded-[20px]`}>
-      <View className="px-5 py-6">
+    <View className={`w-full flex flex-col bg-${backgroundColour} ${strokeWidth ? `border-${strokeWidth}` : "border-4"} ${shadow ? 'shadow-[inset_0px_8px_6px_0px_rgba(255,255,255,1)]' : ''} ${strokeColour ? 'border-' + strokeColour : 'border-black'}  ${noStroke ? 'border-0' : ''} rounded-[20px]`}>
+      <View style={customPadding ? { paddingHorizontal: customPadding.paddingX, paddingVertical: customPadding.paddingY } : { paddingHorizontal: 20, paddingVertical: 24 }}
+      // className={customPadding?`px-5 py-6`}
+      >
         {children}
       </View>
       {podProps.variant == "pod-media" || podProps.variant == "pod-media-pod" ?

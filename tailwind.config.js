@@ -9,6 +9,10 @@ module.exports = {
         afaB:['AfacadBold'],
         rubik:["rubik"]
       },
+      fontSize:{
+        base:['12px','16px'],
+        lg: ['14px','22px']
+      },
       // boxShadow:{
       //   incentiveInset: 'inset_0px_8px_6px_0px_rgba(255,255,255,1)'
       // }
