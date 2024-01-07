@@ -2,16 +2,16 @@ import { View, Text } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { Screen } from '../ScreenFactory'
 import { colours, mode, spacing } from '../../lib/constants'
-import { getPricePerCrewMember, getUsersInCrew, pricePerCrewMember } from '../../lib/backend/actions'
+import { getUsersInCrew, pricePerCrewMember } from '../../lib/backend/actions'
 import { IUser } from '../../lib/types'
 import ChippingInSelection from './Payment/ChippingInSelection'
 import performHaptic from '../../lib/performHaptic'
 import Info from '../Ui/Info'
 import Button from '../Ui/button'
-import { userIDLoggedIn } from '../../App'
+import { userIDLoggedIn } from '../../lib/globals'
 const PaymentScreen = () => {
     //this crew ID should be passed into screen as props, as if it were a URL.
-    const thisCrewID = "abc";
+    const thisCrewID = "C1";
 
     const [selection, setSelection] = useState("Everyone");
     const [usersInThisCrew, setUsersInThisCrew] = useState({ usersInThisCrew: [] as IUser[] });
@@ -31,7 +31,7 @@ const PaymentScreen = () => {
     }, [])
 
     return (
-        <Screen title="Payment" subtitle="Who's chipping in?">
+        <Screen title="Who's chipping in?" >
             <View className={mode == "development" ? "bg-green-500" : ""}>
                 <ChippingInSelection pricePerCrewMember={pricePerCrewMember} usersInThisCrew={usersInThisCrew.usersInThisCrew} onSelect={handleSetSelectedPeopleChippingIn} mainText='Everyone' selected={selection == 'Everyone'} />
                 <ChippingInSelection pricePerCrewMember={pricePerCrewMember} usersInThisCrew={usersInThisCrew.usersInThisCrew} onSelect={handleSetSelectedPeopleChippingIn} mainText='Select members' noStrokeOnSelection={true} selected={selection == 'Select members'} />
@@ -56,10 +56,12 @@ const PaymentScreen = () => {
                 </View>
             </View>
             <View style={{ rowGap: spacing.gaps.smaller }} className={`${mode == "development" ? "bg-green-500" : ""} flex flex-col`}>
-                <Info
-                    centerAligned={true}
-                    customPadding={{ paddingX: 20, paddingY: 16 }}
-                    backgroundColour='[#DDEDEE]' title='ⓘ' description='Your crew will be elevated once you and all selected members subscribe.'></Info>
+                {selection == "Select members" || selection == "Everyone" ?
+                    <Info
+                        centerAligned={true}
+                        customPadding={{ paddingX: 20, paddingY: 16 }}
+                        backgroundColour='[#DDEDEE]' title='ⓘ' description='Your crew will be elevated once you and all selected members subscribe.'></Info> : <></>
+                }
                 <Button text="Continue" backgroundColour={colours.offBlack} textColor='white' type='light' onPress={() => { }} />
             </View>
         </Screen>

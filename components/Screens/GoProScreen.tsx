@@ -55,7 +55,7 @@ const GoProScreen = ({ params }) => {
                             <Text style={{ marginBottom: spacing.gaps.normal }} className='font-afa text-black text-base'>Don't miss out! Share the subscription among your crew to go Pro for as little as £{pricePerCrewMember}/month.</Text>
                         </View>
                         <View className='flex flex-col gap-y-2'>
-                            <Button fullWidth={true} customHeight={50} hasTopMargin={true} text="Sounds good!" backgroundColour='[#1D1D1D]' textColor='white' type='light' onPress={() => { }} />
+                            <Button fullWidth={true} customHeight={50} hasTopMargin={true} text="Sounds good!" backgroundColour='[#1D1D1D]' textColor='white' type='light' onPress={() => { navigation.push("Payment") }} />
                             <Pressable
                                 onPressOut={handleIllThinkAboutIt}>
                                 <Text className='font-afa text-gray-400 text-center mt-[10px]'>I'll think about it</Text>

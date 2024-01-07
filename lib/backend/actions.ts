@@ -23,25 +23,150 @@ const tasks: ITask[] = [{
     requestID: null,
     completedAt: "2023-01-01 17:00:00"
 }];
-const crews: ICrew[] = [{
-    id: "C1",
-    name: "The A Team",
-    taskIDs: ["T1", "T2"],
-    members: [{
-        id: "ABC123",
-        crewID: ["C1"],
+const crews: ICrew[] = [
+    {
+        id: "C1",
+        name: "The A Team",
         taskIDs: ["T1", "T2"],
-        name: "Mateusz",
-        profileBackgroundColour: "indigo-500"
+        members: [
+            {
+                id: "ABC123",
+                crewID: ["C1"],
+                taskIDs: ["T1", "T2"],
+                name: "Mateusz",
+                profileBackgroundColour: "indigo-500",
+            },
+            {
+                id: "GHI789",
+                crewID: ["abc"],
+                name: "Tye",
+                taskIDs: ["T1", "T2"],
+                profileBackgroundColour: "[#55A38C]",
+            },
+            {
+                id: "DEF456",
+                crewID: ["C1"],
+                name: "Kate",
+                taskIDs: ["T1", "T2"],
+                profileBackgroundColour: "pink-500",
+            },
+            {
+                id: "JKL012",
+                crewID: ["C1"],
+                name: "John",
+                taskIDs: ["T1", "T2"],
+                profileBackgroundColour: "blue-500",
+            },
+            {
+                id: "MNO345",
+                crewID: ["C1"],
+                name: "Sarah",
+                taskIDs: ["T1", "T2"],
+                profileBackgroundColour: "red-500",
+            },
+            {
+                id: "PQR678",
+                crewID: ["C1"],
+                name: "Alex",
+                taskIDs: ["T1", "T2"],
+                profileBackgroundColour: "green-500",
+            },
+            {
+                id: "STU901",
+                crewID: ["C1"],
+                name: "Emily",
+                taskIDs: ["T1", "T2"],
+                profileBackgroundColour: "yellow-500",
+            },
+        ],
     },
     {
-        id: "DEF456",
-        crewID: ["C1"],
-        name: "Kate",
-        taskIDs: ["T1", "T2"],
-        profileBackgroundColour: "pink-500"
-    }]
-}]
+        id: "C2",
+        name: "The B Team",
+        taskIDs: ["T3", "T4"],
+        members: [
+            {
+                id: "VWX234",
+                crewID: ["C2"],
+                name: "Mike",
+                taskIDs: ["T3", "T4"],
+                profileBackgroundColour: "[#55A38C]",
+            },
+            {
+                id: "YZA567",
+                crewID: ["C2"],
+                name: "Lisa",
+                taskIDs: ["T3", "T4"],
+                profileBackgroundColour: "blue-500",
+            },
+            {
+                id: "BCD890",
+                crewID: ["C2"],
+                name: "Chris",
+                taskIDs: ["T3", "T4"],
+                profileBackgroundColour: "blue-500",
+            },
+        ],
+    },
+    {
+        id: "C3",
+        name: "The C Team",
+        taskIDs: ["T5", "T6"],
+        members: [
+            {
+                id: "EFG123",
+                crewID: ["C3"],
+                name: "Jessica",
+                taskIDs: ["T5", "T6"],
+                profileBackgroundColour: "indigo-500",
+            },
+            {
+                id: "HIJ456",
+                crewID: ["C3"],
+                name: "Ryan",
+                taskIDs: ["T5", "T6"],
+                profileBackgroundColour: "green-500",
+            },
+            {
+                id: "KLM789",
+                crewID: ["C3"],
+                name: "Sophia",
+                taskIDs: ["T5", "T6"],
+                profileBackgroundColour: "pink-500",
+            },
+        ],
+    },
+    {
+        id: "C4",
+        name: "The D Team",
+        taskIDs: ["T7", "T8"],
+        members: [
+            {
+                id: "NOP012",
+                crewID: ["C4"],
+                name: "David",
+                taskIDs: ["T7", "T8"],
+                profileBackgroundColour: "indigo-500",
+            },
+            {
+                id: "QRS345",
+                crewID: ["C4"],
+                name: "Emma",
+                taskIDs: ["T7", "T8"],
+                profileBackgroundColour: "pink-500",
+            },
+            {
+                id: "TUV678",
+                crewID: ["C4"],
+                name: "Michael",
+                taskIDs: ["T7", "T8"],
+                profileBackgroundColour: "blue-500",
+            },
+        ],
+    },
+];
+
+
 const perks: IPerk[] = [{
     icon: "🧼",
     title: "Monthly Cleaning Supplies",
@@ -112,7 +237,7 @@ export async function getProfileBackgroundColour(userID: string): Promise<IColou
  */
 export async function getUsersInCrew(crewID: string, inPerspectiveOfUserID: string): Promise<IUser[]> {
     await sleep(1000);
-    const result = users.filter(user => user.crewID.includes(crewID));
+    const result = crews.find(crew => crew.id === crewID)?.members;
     if (result === undefined) return [];
     return result;
 }

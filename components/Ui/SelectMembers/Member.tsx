@@ -4,7 +4,7 @@ import ProfilePic from '../../User/ProfilePicFactory'
 import { IColour, IUser } from '../../../lib/types'
 import { colours } from '../../../lib/constants'
 import performHaptic from '../../../lib/performHaptic'
-import { userIDLoggedIn } from '../../../App'
+import { userIDLoggedIn } from '../../../lib/globals'
 type Props = {
     setSelectedMembers?: React.Dispatch<React.SetStateAction<string[]>>,
     user: IUser,
@@ -50,7 +50,7 @@ const Member = (props: Props) => {
     })
     return (
         <Pressable className='flex flex-col items-center bg-white' onPress={toggleMemberPress}>
-            <View className={`mr-2 rounded-lg px-3 py-2 w-28 flex flex-col justify-center items-center gap-y-2 ${selected ? 'border-4 border-black' : `border-2 border-${colours.offWhite}`}`}>
+            <View className={`mr-2 rounded-lg px-3 py-2 w-24 flex flex-col justify-center items-center gap-y-2 ${selected ? 'border-4 border-black' : `border-2 border-${colours.offWhite}`}`}>
                 {props.loading ?
                     <>
                         <View className='bg-gray-200  animate-pulse w-8 h-8 rounded-full'></View>

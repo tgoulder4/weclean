@@ -38,7 +38,6 @@ const Tab = createBottomTabNavigator();
 SplashScreen.preventAutoHideAsync();
 // using this file as the layout as if in nextjs
 const sleep = (ms: number) => new Promise<void>(r => setTimeout(r, ms));
-export const userIDLoggedIn: string = 'GHI789';
 
 export default function App() {
   const [statusBarStyle, setStatusBarStyle] = useState<StatusBarStyle>("light-content")
