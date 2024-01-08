@@ -57,27 +57,27 @@ const crews: ICrew[] = [
                 taskIDs: ["T1", "T2"],
                 profileBackgroundColour: "blue-500",
             },
-            {
-                id: "MNO345",
-                crewID: ["C1"],
-                name: "Sarah",
-                taskIDs: ["T1", "T2"],
-                profileBackgroundColour: "red-500",
-            },
-            {
-                id: "PQR678",
-                crewID: ["C1"],
-                name: "Alex",
-                taskIDs: ["T1", "T2"],
-                profileBackgroundColour: "green-500",
-            },
-            {
-                id: "STU901",
-                crewID: ["C1"],
-                name: "Emily",
-                taskIDs: ["T1", "T2"],
-                profileBackgroundColour: "yellow-500",
-            },
+            // {
+            //     id: "MNO345",
+            //     crewID: ["C1"],
+            //     name: "Sarah",
+            //     taskIDs: ["T1", "T2"],
+            //     profileBackgroundColour: "red-500",
+            // },
+            // {
+            //     id: "PQR678",
+            //     crewID: ["C1"],
+            //     name: "Alex",
+            //     taskIDs: ["T1", "T2"],
+            //     profileBackgroundColour: "green-500",
+            // },
+            // {
+            //     id: "STU901",
+            //     crewID: ["C1"],
+            //     name: "Emily",
+            //     taskIDs: ["T1", "T2"],
+            //     profileBackgroundColour: "yellow-500",
+            // },
         ],
     },
     {
@@ -239,7 +239,14 @@ export async function getUsersInCrew(crewID: string, inPerspectiveOfUserID: stri
     await sleep(1000);
     const result = crews.find(crew => crew.id === crewID)?.members;
     if (result === undefined) return [];
-    return result;
+
+    const sortedMembers = result.sort((a, b) => {
+        if (a.id === inPerspectiveOfUserID) return -1;
+        if (b.id === inPerspectiveOfUserID) return 1;
+        return 0;
+    });
+
+    return sortedMembers;
 }
 export async function getPricePerCrewMember(): Promise<number> {
     await sleep(1000);

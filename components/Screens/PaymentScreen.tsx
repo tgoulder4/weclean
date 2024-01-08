@@ -17,9 +17,9 @@ const PaymentScreen = () => {
     const [selectedMembersChippingIn, setSelectedMembersChippingIn] = useState([userIDLoggedIn] as string[]);
     const [usersInThisCrew, setUsersInThisCrew] = useState({ usersInThisCrew: [] as IUser[] });
     //fetch price pppm
-    function handleSetSelectedPeopleChippingIn(newSelectedPeopleChippingIn: string) {
-        if (newSelectedPeopleChippingIn !== selection && newSelectedPeopleChippingIn !== "Select members") performHaptic("selection");
-        setSelection(newSelectedPeopleChippingIn)
+    function handleSetSelection(newSelection: string) {
+        if (newSelection !== selection && newSelection !== "Select members") performHaptic("selection");
+        setSelection(newSelection)
     }
 
     useEffect(() => {
@@ -34,13 +34,15 @@ const PaymentScreen = () => {
     return (
         <Screen title="Payment" subtitle="Who's contributing towards Pro?" largerSubtitle={true}>
             <View className={mode == "development" ? "bg-green-500" : ""}>
-                <ChippingInSelection selectedMembers={selectedMembersChippingIn} setSelectedMembers={setSelectedMembersChippingIn} pricePerCrewMember={pricePerCrewMember} usersInThisCrew={usersInThisCrew.usersInThisCrew} onSelect={handleSetSelectedPeopleChippingIn} mainText='Everyone' selected={selection == 'Everyone'} />
-                <ChippingInSelection selectedMembers={selectedMembersChippingIn} setSelectedMembers={setSelectedMembersChippingIn} pricePerCrewMember={pricePerCrewMember} usersInThisCrew={usersInThisCrew.usersInThisCrew} onSelect={handleSetSelectedPeopleChippingIn} mainText='Select members' noStrokeOnSelection={true} selected={selection == 'Select members'} />
-                <ChippingInSelection selectedMembers={selectedMembersChippingIn} setSelectedMembers={setSelectedMembersChippingIn} last={true} pricePerCrewMember={pricePerCrewMember} usersInThisCrew={usersInThisCrew.usersInThisCrew} onSelect={handleSetSelectedPeopleChippingIn} mainText='Only me' selected={selection == 'Only me'} />
+                <ChippingInSelection selectedMembers={selectedMembersChippingIn} setSelectedMembers={setSelectedMembersChippingIn} pricePerCrewMember={pricePerCrewMember} usersInThisCrew={usersInThisCrew.usersInThisCrew} onSelect={handleSetSelection} mainText='Everyone' selected={selection == 'Everyone'} />
+                <ChippingInSelection selectedMembers={selectedMembersChippingIn} setSelectedMembers={setSelectedMembersChippingIn} pricePerCrewMember={pricePerCrewMember} usersInThisCrew={usersInThisCrew.usersInThisCrew} onSelect={handleSetSelection} mainText='Select members' noStrokeOnSelection={true} selected={selection == 'Select members'} />
+                <ChippingInSelection selectedMembers={selectedMembersChippingIn} setSelectedMembers={setSelectedMembersChippingIn} last={true} pricePerCrewMember={pricePerCrewMember} usersInThisCrew={usersInThisCrew.usersInThisCrew} onSelect={handleSetSelection} mainText='Only me' selected={selection == 'Only me'} />
             </View>
-            <View className={mode == "development" ? "bg-green-500" : ""}>
-                <Info className='' description="You're 1 step away from tripling your crew's performance. 🎯" backgroundColour={colours.offWhite} />
-
+            <View style={{ rowGap: spacing.gaps.smaller }} className={`flex flex-col ${mode == "development" ? "bg-green-500" : ""}`}>
+                <Info className='' description="You're 1 step away from tripling your crew's performance. 🎯" backgroundColour={'[#4E9580]/10'} />
+                {selection == "Select members" || selection == "Everyone" ?
+                    <Info className='' description="Your crew will be elevated once you and all selected members subscribe." backgroundColour={colours.offWhite} /> : <></>
+                }
             </View>
             <View className={`${mode == "development" ? "bg-green-500" : ""} flex px-4 flex-row justify-between`}>
                 <View className={`flex flex-col `}>
@@ -62,9 +64,6 @@ const PaymentScreen = () => {
             </View>
             <View style={{ rowGap: spacing.gaps.smaller }} className={`${mode == "development" ? "bg-green-500" : ""} flex flex-col`}>
                 <Button text="Continue" backgroundColour={colours.offBlack} textColor='white' type='light' onPress={() => { }} />
-                {selection == "Select members" || selection == "Everyone" ?
-                    <Text className='px-4 font-afa text-base' style={{ color: '#696969' }}>Your crew will be elevated once you and all selected members subscribe.</Text> : <></>
-                }
             </View>
         </Screen>
     )

@@ -41,18 +41,18 @@ const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mai
     }, [selectedMembers])
     return (
         <Pressable onPress={() => { onSelect(mainText) }} className={`${last ? "" : "mb-2"}`}>
-            <Pod customPadding={{ paddingX: 20, paddingY: 20 }} backgroundColour="white" strokeWidth={selected ? 4 : 2} strokeColour={selected ? !noStrokeOnSelection ? colours.pureBlack : colours.deselected : colours.deselected} >
+            <Pod customPadding={{ paddingX: 20, paddingY: 20 }} backgroundColour="white" strokeWidth={2} strokeColour={selected ? !noStrokeOnSelection ? colours.pureBlack : colours.deselected : colours.deselected} >
                 <View className='px-5 flex flex-row gap-x-4 items-center'>
                     <MultipleChoiceSelectionIndicator selected={selected} />
                     <View style={{ rowGap: spacing.gaps.smaller, }} className='flex flex-1 flex-col justify-between'>
-                        <Text className='font-afaB text-base '>{mainText}</Text>
+                        <Text className='font-afaB text-base text-[13px]'>{mainText}</Text>
                         {mainText == "Select members" && selected ? <SelectMembers alreadySelectedMembers={selectedMembers} _members={usersInThisCrew} setSelectedMembers={setSelectedMembers} /> : <></>}
                         {
                             equal(props.usersInThisCrew, [] as IUser[]) ? <View className='bg-gray-200 animate-pulse w-36 h-8 rounded-lg'></View> :
 
                                 (mainText == "Select members" && selected) || mainText == "Everyone" || mainText == "Only me" && selected ?
 
-                                    <Text className='font-afa text-base '>
+                                    <Text className='font-afa text-base'>
                                         {`£${total}/mo ${mainText != "Only me" ? "for you" : ""}`}
                                         {total == null ?
                                             <View className='p-2 bg-red-500 rounded-lg h-min'>
