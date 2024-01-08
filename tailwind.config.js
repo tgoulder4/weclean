@@ -11,7 +11,7 @@ module.exports = {
       },
       fontSize:{
         base:['12px','16px'],
-        lg: ['16px','22px']
+        lg: ['16px','20px']
       },
       // boxShadow:{
       //   incentiveInset: 'inset_0px_8px_6px_0px_rgba(255,255,255,1)'

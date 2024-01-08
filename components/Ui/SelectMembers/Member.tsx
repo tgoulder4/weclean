@@ -14,17 +14,22 @@ type Props = {
 const Member = (props: Props) => {
     const user = [props.user];
     const { setSelectedMembers } = props;
-    const [selected, setSelected] = useState(false);
-    const [isThemSelves, setIsThemSelves] = useState(false);
+    const [state, setState] = useState({
+        selected: false,
+        isThemSelves: false
+    })
     function toggleMemberPress(): void {
         if (!props.loading) {
             if (!setSelectedMembers) throw new Error('setSelectedMembers is undefined');
-            if (selected) {
-                if (!isThemSelves) {
+            if (state.selected) {
+                if (!state.isThemSelves) {
                     setSelectedMembers((prevState) => (prevState.filter((userID) => userID !== user[0].id)
                     ))
                     performHaptic("selection");
-                    setSelected(false);
+                    setState((prev) => ({
+                        ...prev,
+                        selected: false
+                    }))
                 }
                 else {
                     performHaptic("warning")
@@ -33,24 +38,32 @@ const Member = (props: Props) => {
             else {
                 setSelectedMembers((prevState) => ([...prevState, user[0].id]))
                 performHaptic("selection");
-                setSelected(true);
+                setState((prev) => ({
+                    ...prev,
+                    selected: true
+                }))
             }
         }
     }
     useEffect(() => {
         if (user[0].id == userIDLoggedIn) {
-            setSelected(true);
-            setIsThemSelves(true);
+            setState({
+                selected: true,
+                isThemSelves: true
+            })
         }
         if (props.alreadySelectedMembers) {
             if (props.alreadySelectedMembers.includes(user[0].id)) {
-                setSelected(true);
+                setState((prev) => ({
+                    ...prev,
+                    selected: true
+                }))
             }
         }
-    })
+    }, [])
     return (
-        <Pressable className='flex flex-col items-center bg-white' onPress={toggleMemberPress}>
-            <View className={`mr-2 rounded-lg px-3 py-2 w-24 flex flex-col justify-center items-center gap-y-2 ${selected ? 'border-4 border-black' : `border-2 border-${colours.offWhite}`}`}>
+        <Pressable className='flex flex-col items-center bg-white' onPress={setSelectedMembers ? toggleMemberPress : null}>
+            <View className={`mr-2 rounded-lg px-3 py-2 w-24 flex flex-col justify-center items-center gap-y-2 ${state.selected ? 'border-4 border-black' : `border-2 border-${colours.offWhite}`}`}>
                 {props.loading ?
                     <>
                         <View className='bg-gray-200  animate-pulse w-8 h-8 rounded-full'></View>
@@ -58,8 +71,8 @@ const Member = (props: Props) => {
                     </> :
                     <>
                         <ProfilePic users={user} />
-                        {user[0].id == userIDLoggedIn ? <Text className={`text-base ${selected ? 'font-afaB' : 'font-afa'} text-black`}>Me</Text>
-                            : <Text numberOfLines={1} ellipsizeMode='tail' className={`text-base ${selected ? 'font-afaB' : 'font-afa'}`}>{user[0].name}</Text>}
+                        {user[0].id == userIDLoggedIn ? <Text className={`text-base ${state.selected ? 'font-afaB' : 'font-afa'} text-black`}>Me</Text>
+                            : <Text numberOfLines={1} ellipsizeMode='tail' className={`text-base ${state.selected ? 'font-afaB' : 'font-afa'}`}>{user[0].name}</Text>}
                     </>
                 }
             </View>

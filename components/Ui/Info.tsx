@@ -25,7 +25,9 @@ const Info = (props: InfoProps) => {
                         <Text className={`font-afaB text-lg ${centerAligned ? "text-center" : ""} text-black leading-5`}>{props.title}</Text>
                         : <></>
                 }
-                <Text allowFontScaling={true} className={`font-afa leading-[0.2rem] ${centerAligned ? "text-center" : ""} text-base border-2 border-red-500 text-black leading-5`}>{props.description}</Text>
+                <Text
+                    // allowFontScaling={true}
+                    className={`font-afa ${centerAligned ? "text-center" : ""} text-base border-2 border-red-500 text-black `}>{props.description}</Text>
             </View>
             {props.children}
         </Pod>

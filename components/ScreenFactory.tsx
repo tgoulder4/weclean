@@ -6,6 +6,7 @@ type Props = {
   title: string;
   subtitle?: React.ReactNode;
   largerTitle?: boolean;
+  largerSubtitle?: boolean;
   children: React.ReactNode;
   bottomStickyElement?: React.ReactNode;
 }
@@ -19,7 +20,7 @@ export const Screen = (props: Props) => {
           <View className={`${mode == "development" ? "bg-blue-500" : ""} mb-4`}>
             <Text className={`tracking-tighter font-rubik ${props.largerTitle ? 'text-2xl' : 'text-xl'} text-black font-bold`}>{props.title}</Text>
             {
-              props.subtitle ? <Text className='font-afa text-base ml-1'>{props.subtitle}</Text> : <></>
+              props.subtitle ? <Text className={`font-afa text-base ml-1`}>{props.subtitle}</Text> : <></>
             }
 
           </View>
