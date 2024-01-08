@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import Member from './Member'
 import { getProfileBackgroundColour, } from '../../../lib/backend/actions'
 import { IColour, IUser } from '../../../lib/types'
+import { spacing } from '../../../lib/constants'
+import { userIDLoggedIn } from '../../../lib/globals'
 //return the tsx and the count
 export type SetSelectedMembers = {
     userIDs: string[]
@@ -16,15 +18,19 @@ const SelectMembers = (props: {
     const [members, setMembers] = useState<Array<IUser>>(_members)
     console.log("members shown: ", members)
     const [viewingMode, setViewingMode] = useState(_viewingMode)
-    const names = alreadySelectedMembers?.map(userID => {
-        const result = members.find(member => member.id == userID)?.name;
-        if (result) return result;
+    const names: string[] = alreadySelectedMembers?.map(userID => {
+        if (userID == userIDLoggedIn) return ""
+        const _name = members.find(member => member.id == userID)?.name;
+        if (_name) return _name;
         else return ""
-    })
+    }).filter(name => name != "") as string[]
     return (
-        <View className='flex flex-col flex-1'>
+        <View style={{ rowGap: spacing.gaps.smaller }} className='flex flex-col flex-1'>
             <View className='flex flex-row'>
-                <Text className='font-afa text-base'>{names?.join(", ")}</Text>
+                {
+                    names.length > 0 ?
+                        <Text className='font-afa text-base'>Splitting with {names?.join(", ")}</Text> : <></>
+                }
             </View>
             <TextInput
                 onChangeText={(text) => {
