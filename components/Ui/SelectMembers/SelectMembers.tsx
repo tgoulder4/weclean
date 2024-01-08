@@ -16,14 +16,15 @@ const SelectMembers = (props: {
     const [members, setMembers] = useState<Array<IUser>>(_members)
     console.log("members shown: ", members)
     const [viewingMode, setViewingMode] = useState(_viewingMode)
+    const names = alreadySelectedMembers?.map(userID => {
+        const result = members.find(member => member.id == userID)?.name;
+        if (result) return result;
+        else return ""
+    })
     return (
         <View className='flex flex-col flex-1'>
             <View className='flex flex-row'>
-                {alreadySelectedMembers?.map((userID, index) => {
-                    return (<Text key={userID} className='font-afa text-base mr-2'>{
-                        members.find((member) => member.id == userID)?.name
-                    }{index == alreadySelectedMembers.length - 1 ? "" : ","}</Text>)
-                })}
+                <Text className='font-afa text-base'>{names?.join(", ")}</Text>
             </View>
             <TextInput
                 onChangeText={(text) => {
