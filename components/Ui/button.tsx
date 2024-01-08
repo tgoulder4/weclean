@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Pressable, AnimatableStringValue } from 'react-native';
-import { IColour } from '../../lib/constants';
+import { View, Text, StyleSheet, Pressable, AnimatableStringValue, StyleProp, ViewStyle } from 'react-native';
+import { IColour } from '../../lib/types';
 import performHaptic from '../../lib/performHaptic';
 import sleep from '../../lib/sleep';
 export type ImpactProps = "light" | "medium" | "heavy" | "error" | "warning" | "success";
@@ -13,29 +13,42 @@ type buttonProps = {
     /**Like text-white or text-[#ABC] */
     textColor: string;
     type: ImpactProps;
-
+    style: any;
     onPress: () => void;
     fullWidth?: boolean;
     hasTopMargin?: boolean;
     customHeight?: number;
+    className?: string;
 
 }
-const Button = (props: buttonProps) => {
+const Button = ({
+    text,
+    backgroundColour,
+    textColor,
+    type,
+    onPress,
+    fullWidth,
+    hasTopMargin,
+    customHeight,
+    className,
+    style,
+    ...others
+}: buttonProps) => {
     const [shadow, setShadow] = useState(true);
     const [offset, setOffset] = useState(0)
     function handleOnPressIn() {
         setOffset(5);
-        performHaptic(props.type);
+        performHaptic(type);
         setShadow(false);
-        props.onPress();
+        onPress();
     }
     function handleOnPressOut() {
         setOffset(0);
         setShadow(true);
     }
     return (
-        <Pressable style={{ height: props.customHeight ? props.customHeight : "auto", transform: [{ translateY: offset }], shadowColor: props.backgroundColour, shadowOpacity: shadow ? 0.5 : 0, shadowOffset: { width: 0, height: 4 }, shadowRadius: 0 }} className={`${props.fullWidth ? "w-full" : ""} ${props.hasTopMargin ? 'mt-2' : ''} bg-${props.backgroundColour} w-min px-3 py-2 justify-center items-center rounded-md`} onPressIn={handleOnPressIn} onPressOut={handleOnPressOut}>
-            <Text allowFontScaling={true} className={`font-afaB text-${props.textColor}`}>{props.text}</Text>
+        <Pressable {...others} style={{ ...style, height: customHeight ? customHeight : "auto", transform: [{ translateY: offset }], shadowColor: backgroundColour, shadowOpacity: shadow ? 0.5 : 0, shadowOffset: { width: 0, height: 4 }, shadowRadius: 0 }} className={`${className}  bg-${backgroundColour} w-min px-3 py-2 justify-center items-center rounded-md`} onPressIn={handleOnPressIn} onPressOut={handleOnPressOut}>
+            <Text allowFontScaling={true} className={`font-afaB text-${textColor}`}>{text}</Text>
         </Pressable>
     )
 }

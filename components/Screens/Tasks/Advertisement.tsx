@@ -21,7 +21,7 @@ const Advertisement = (props: AdvertisementProps) => {
                     <Text className='font-afaB text-xl'>Advertisement</Text>
                     <Text className='font-afa text-base'>Ads help support {brandName}'s mission</Text>
                     <View className='flex flex-row justify-between items-end mt-1'>
-                        <Button hasTopMargin={true} type="medium" text='Hide' backgroundColour='[#55A38C]' textColor='white' onPress={() => { }} />
+                        <Button className='mt-2' type="medium" text='Hide' backgroundColour='[#55A38C]' textColor='white' onPress={() => { }} />
                     </View>
                 </View>
             </View>

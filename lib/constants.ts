@@ -12,7 +12,7 @@ export const colours = {
 }
 export const spacing = {
     gaps: {
-        normal: 20,
+        normal: 30,
         smaller: 8
     }
 }

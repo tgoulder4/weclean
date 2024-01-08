@@ -12,15 +12,14 @@ export type SetSelectedMembers = {
 
 const SelectMembers = (props: {
     setSelectedMembers: React.Dispatch<React.SetStateAction<string[]
-    >>, _members: Array<IUser>, alreadySelectedMembers?: string[], _viewingMode: "edit" | "view"
+    >>, action: string, _members: Array<IUser>, alreadySelectedMembers?: string[], _viewingMode: "edit" | "view"
 }) => {
-    const { setSelectedMembers, _members, alreadySelectedMembers, _viewingMode } = props;
+    const { action, setSelectedMembers, _members, alreadySelectedMembers, _viewingMode } = props;
     const [members, setMembers] = useState<Array<IUser>>(_members)
-    console.log("members shown: ", members)
     const [viewingMode, setViewingMode] = useState(_viewingMode)
     const names: string[] = alreadySelectedMembers?.map(userID => {
         if (userID == userIDLoggedIn) return ""
-        const _name = members.find(member => member.id == userID)?.name;
+        const _name = _members.find(_member => _member.id == userID)?.name;
         if (_name) return _name;
         else return ""
     }).filter(name => name != "") as string[]
@@ -29,10 +28,10 @@ const SelectMembers = (props: {
             <View className='flex flex-row'>
                 {
                     names.length > 0 ?
-                        <Text className='font-afa text-base'>Splitting with {names?.join(", ")}</Text> : <></>
+                        <Text className='font-afa text-base'>{action} {names?.join(", ")}</Text> : <Text className='font-afa text-gray-300 text-base'>No one else selected</Text>
                 }
             </View>
-            <TextInput
+            <TextInput clearButtonMode='unless-editing'
                 onChangeText={(text) => {
                     if (text == "") {
                         setMembers(_members)
@@ -43,7 +42,7 @@ const SelectMembers = (props: {
                     }
                 }}
                 placeholder='Search' className='py-2 px-3 rounded-lg mb-2 font-afaB text-base' style={{ backgroundColor: '#f3f4f6' }}></TextInput>
-            <ScrollView horizontal={true} className='flex flex-row py-2 w-full'>
+            <ScrollView horizontal={true} className='flex flex-row py-2 mt-[-1] w-full'>
                 {
                     //if there are no passed to this component yet, show loading members
                     _members.length == 0 ?

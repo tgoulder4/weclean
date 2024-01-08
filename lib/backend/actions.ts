@@ -1,7 +1,7 @@
 import { IColour } from "../types"
 import { ITask, IUser, ICrew, IPerk } from "../types"
 export const brandName: string = "CleenCrew"
-export const pricePerCrewMember: number = 2.49;
+export const pricePerCrewMember: number = 3.49;
 const requests = [{
     id: "R1",
     status: "Completed",
