@@ -55,7 +55,7 @@ const GoProScreen = ({ params }) => {
                             <Text style={{ marginBottom: spacing.gaps.normal }} className='font-afa text-black text-base'>Don't miss out! Share the subscription among your crew to go Pro for as little as £{pricePerCrewMember}/month.</Text>
                         </View>
                         <View className='flex flex-col'>
-                            <Button className='w-full mt-2' customHeight={50} text="Sounds good!" backgroundColour='[#1D1D1D]' textColor='white' type='light' onPress={() => { navigation.push("Payment") }} />
+                            <Button style={{ height: 50, width: "100%", marginTop: spacing.gaps.smaller }} text="Sounds good!" backgroundColour='[#1D1D1D]' textColor='white' type='light' onPress={() => { navigation.push("Payment") }} />
                             <Pressable
                                 onPressOut={handleIllThinkAboutIt}>
                                 <Text className='font-afa text-gray-400 text-base text-center mt-[10px]'>I'll think about it</Text>
@@ -64,7 +64,7 @@ const GoProScreen = ({ params }) => {
                     </View>
                 </ActionSheet>
                 <View className='w-full h-56 py-6 px-5 bg-[#080808] flex flex-col items-center'>
-                    <Button className='w-full mt-2' customHeight={50} text="Let's go!" backgroundColour='white' textColor='black' type='light' onPress={() => { navigation.navigate("Payment" as never) }} />
+                    <Button style={{ width: "100%", marginTop: spacing.gaps.smaller }} customHeight={50} text="Let's go!" backgroundColour='white' textColor='black' type='light' onPress={() => { navigation.navigate("Payment" as never) }} />
                     <Pressable className='mt-4'
                         onPressOut={() => { handleNoThanksGoBack() }}
                     >

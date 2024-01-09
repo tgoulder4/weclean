@@ -41,7 +41,7 @@ const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mai
     }, [])
     return (
         <Pressable onPress={() => { onSelect(mainText) }} className={`${last ? "" : "mb-2"}`}>
-            <Pod customPadding={{ paddingX: 20, paddingY: 20 }} backgroundColour="white" strokeWidth={selected ? 2 : 0} noStroke={!selected} strokeColour={selected ? !noStrokeOnSelection ? colours.pureBlack : colours.deselected : colours.deselected} >
+            <Pod customPadding={{ paddingX: 20, paddingY: 20 }} backgroundColour="white" strokeWidth={2} strokeColour={selected ? !noStrokeOnSelection ? colours.pureBlack : colours.deselected : colours.deselected} >
                 <View className='px-5 flex flex-row gap-x-4 items-center'>
                     <MultipleChoiceSelectionIndicator selected={selected} />
                     <View style={{ rowGap: spacing.gaps.smaller, }} className='flex flex-1 flex-col justify-between'>

@@ -6,7 +6,7 @@ import { formatDistanceToNow } from "date-fns";
 import Button from '../../Ui/button';
 import images from '../../../lib/images';
 import ProfilePic from '../../User/ProfilePicFactory';
-import { brandName } from '../../../lib/constants';
+import { brandName, spacing } from '../../../lib/constants';
 
 export type AdvertisementProps = {
     media: string
@@ -21,7 +21,7 @@ const Advertisement = (props: AdvertisementProps) => {
                     <Text className='font-afaB text-xl'>Advertisement</Text>
                     <Text className='font-afa text-base'>Ads help support {brandName}'s mission</Text>
                     <View className='flex flex-row justify-between items-end mt-1'>
-                        <Button className='mt-2' type="medium" text='Hide' backgroundColour='[#55A38C]' textColor='white' onPress={() => { }} />
+                        <Button style={{ marginTop: spacing.gaps.smaller }} type="medium" text='Hide' backgroundColour='[#55A38C]' textColor='white' onPress={() => { }} />
                     </View>
                 </View>
             </View>

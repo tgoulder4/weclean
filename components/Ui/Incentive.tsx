@@ -2,7 +2,8 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import Pod from './Pod'
 import Button, { ImpactProps } from './button'
-import { IColour } from '../../lib/constants'
+import { IColour } from '../../lib/types'
+import { spacing } from '../../lib/constants'
 type IncentiveProps = {
   shadow?: boolean;
   legend?: string;
@@ -28,7 +29,7 @@ const Incentive = (props: IncentiveProps) => {
           : <></>}
         <Text className={`font-rubik text-lg w-full ${blackText ? 'text-black' : 'text-white'}`}>{mainText}</Text>
         <Text className={`font-afa text-base w-full tracking-tighter leading-tight ${blackText ? 'text-black' : 'text-white'}`}>{description}</Text>
-        <Button className='mt-2' type={ctaImpact} backgroundColour={props.buttonColor} textColor={`${blackText ? 'white' : 'black'}`} text={ctaButtonText} onPress={props.ctaAction} />
+        <Button style={{ marginTop: spacing.gaps.smaller }} type={ctaImpact} backgroundColour={props.buttonColor} textColor={`${blackText ? 'white' : 'black'}`} text={ctaButtonText} onPress={props.ctaAction} />
       </View>
     </Pod>
   )
