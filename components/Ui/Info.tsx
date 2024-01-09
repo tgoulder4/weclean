@@ -1,24 +1,25 @@
-import { View, Text } from 'react-native'
+import { View, Text, StyleProp, ViewStyle } from 'react-native'
 import React from 'react'
 import Pod from './Pod'
 import { IColour } from '../../lib/types';
 
 type InfoProps = {
     title?: string;
+    style?: StyleProp<ViewStyle>;
     description?: string;
     className?: string;
     /**like bg-white or bg-[#ABC] */
     children?: React.ReactNode;
-    backgroundColour: IColour;
     centerAligned?: boolean;
     customPadding?: { paddingX?: number, paddingY?: number }
 }
 const Info = (props: InfoProps) => {
-    const { centerAligned } = props;
+    const { centerAligned, style } = props;
     return (
-        <Pod
+        <Pod style={style}
             customPadding={props.customPadding}
-            noStroke={true} backgroundColour={props.backgroundColour}>
+            customBorder={{ width: -2 }}
+        >
             <View className={`flex flex-col ${centerAligned ? "center items-center" : ""}`}>
                 {
                     props.title ?

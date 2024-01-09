@@ -40,11 +40,23 @@ const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mai
 
     }, [])
     return (
-        <Pressable onPress={() => { onSelect(mainText) }} className={`${last ? "" : "mb-2"}`}>
-            <Pod customPadding={{ paddingX: 20, paddingY: 20 }} backgroundColour="white" strokeWidth={2} strokeColour={selected ? !noStrokeOnSelection ? colours.pureBlack : colours.deselected : colours.deselected} >
-                <View className='px-5 flex flex-row gap-x-4 items-center'>
-                    <MultipleChoiceSelectionIndicator selected={selected} />
-                    <View style={{ rowGap: spacing.gaps.smaller, }} className='flex flex-1 flex-col justify-between'>
+        <Pressable onPress={() => { onSelect(mainText) }} className={`p-0 ${last ? "" : "mb-2"}`}>
+            <Pod customPadding={{
+                paddingX: spacing.padding.normalX,
+                paddingY: spacing.padding.normalY,
+            }} customBorder={
+                {
+                    width: 2,
+                    colour: selected ?
+                        !noStrokeOnSelection ?
+                            colours.pureBlack
+                            : colours.deselected
+                        : colours.deselected
+                }
+            }>
+                <View className='flex flex-row items-center'>
+                    <MultipleChoiceSelectionIndicator style={{ marginRight: spacing.gaps.groupedElement }} selected={selected} />
+                    <View style={{ rowGap: spacing.gaps.groupedElement, }} className='flex flex-1 flex-col justify-between'>
                         <Text className='font-afaB text-base text-[13px]'>{mainText}</Text>
                         {mainText == "Select members" && selected ? <SelectMembers action="Splitting with" alreadySelectedMembers={selectedMembers} _members={usersInThisCrew} setSelectedMembers={setSelectedMembers} /> : <></>}
                         {

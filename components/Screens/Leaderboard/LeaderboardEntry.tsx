@@ -14,7 +14,7 @@ const LeaderboardEntry = (props: LeaderboardProps) => {
     const { name, photo, score } = props.crew;
     const { position } = props;
     return (
-        <Pod backgroundColour='white' variant='pod'>
+        <Pod style={{ backgroundColor: 'white' }} variant='pod'>
             <View className='flex flex-row justify-between'>
                 <View className='flex flex-row flex-1 gap-x-2'>
                     <Text className='font-afaB text-base text-black'>{position}.</Text>

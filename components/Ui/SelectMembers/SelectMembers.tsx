@@ -24,7 +24,7 @@ const SelectMembers = (props: {
         else return ""
     }).filter(name => name != "") as string[]
     return (
-        <View style={{ rowGap: spacing.gaps.smaller }} className='flex flex-col flex-1'>
+        <View style={{ rowGap: spacing.gaps.groupedElement }} className='flex flex-col flex-1'>
             <View className='flex flex-row'>
                 {
                     names.length > 0 ?

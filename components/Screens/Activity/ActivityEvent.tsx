@@ -1,12 +1,11 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
 import Pod from '../../Ui/Pod';
-import { IColour } from '../../../lib/constants';
 import Button from '../../Ui/button';
-import { useAssets } from 'expo-asset';
 import images from '../../../lib/images';
 import ProfilePic from '../../User/ProfilePicFactory';
-import { IUser } from '../../../lib/backend/actions';
+import { IUser } from '../../../lib/types';
+import { spacing } from '../../../lib/constants';
 
 export type ActivityEventProps = {
     user: {
@@ -37,7 +36,7 @@ function getAfterText(dateAgo: string, taskType: string): React.ReactNode {
     return (
         <View className='flex flex-col justify-between items-start '>
             <Text className='font-afa text-base text-gray-700'>{dateAgo}, {getPrecedingText(taskType)}</Text>
-            <Button hasTopMargin={true} type="light" text='😻' backgroundColour="gray-200" onPress={() => { }} textColor='text-black' />
+            <Button style={{ marginTop: spacing.gaps.groupedElement }} type="light" text='😻' backgroundColour="gray-200" onPress={() => { }} textColor='text-black' />
         </View>
     )
 }
@@ -46,7 +45,7 @@ const ActivityEvent = (props: ActivityEventProps) => {
     const { usersWhoMadeRequest } = props;
     const { summary, type, media, completionTime } = props.task;
     return (
-        <Pod backgroundColour="white" variant={media ? 'pod-media-pod' : 'pod'} media={media} bottomPodContent={getAfterText(completionTime + " ago", props.task.type)}>
+        <Pod style={{ backgroundColor: 'white' }} variant={media ? 'pod-media-pod' : 'pod'} media={media} bottomPodContent={getAfterText(completionTime + " ago", props.task.type)}>
             <View className='flex flex-col'>
                 <View className=' flex flex-row justify-between'>
                     <View className=' flex-1 flex flex-col gap-y-1'>

@@ -1,18 +1,15 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, StyleProp, ViewStyle } from 'react-native'
 import React from 'react'
-import { IColour } from '../../lib/constants';
+import { IColour } from '../../lib/types';
 
 type PodProps = {
   variant?: 'pod' | 'pod-media' | 'pod-media-pod';
-  noStroke?: boolean;
   children: React.ReactNode;
   bottomPodContent?: React.ReactNode;
   media?: string;
-  backgroundColour: IColour;
-  shadow?: boolean;
-  strokeColour?: IColour;
-  strokeWidth?: number;
-  customPadding?: { paddingX?: number, paddingY?: number }
+  style?: StyleProp<ViewStyle>;
+  customPadding?: { paddingX?: number, paddingY?: number };
+  customBorder?: { colour?: string, width?: number };
 }
 function getMediaRoundedCorners(variant: PodProps['variant']) {
   switch (variant) {
@@ -24,10 +21,16 @@ function getMediaRoundedCorners(variant: PodProps['variant']) {
       return ''
   }
 }
+/**
+ * 
+ * @param podProps style is for outer podwrapper ONLY. do not apply padding here - use customPadding instead
+ * @returns 
+ */
 const Pod = (podProps: PodProps) => {
-  const { customPadding, strokeWidth, noStroke, shadow, backgroundColour, media, variant, children, bottomPodContent, strokeColour } = podProps;
+  const { style, customBorder, customPadding, media, variant, children, bottomPodContent } = podProps;
+  //to do here: if want shadow, pass it to style
   return (
-    <View className={`w-full flex flex-col bg-${backgroundColour} ${strokeWidth ? `border-${strokeWidth}` : "border-4"} ${shadow ? 'shadow-[inset_0px_8px_6px_0px_rgba(255,255,255,1)]' : ''} ${strokeColour ? 'border-' + strokeColour : 'border-black'}  ${noStroke ? 'border-0' : ''} rounded-[20px]`}>
+    <View style={[style, { borderWidth: customBorder?.width || 4, borderColor: customBorder?.colour || 'black' }]} className={`w-full flex flex-col rounded-[20px]`}>
       <View style={customPadding ? { paddingHorizontal: customPadding.paddingX, paddingVertical: customPadding.paddingY } : { paddingHorizontal: 20, paddingVertical: 24 }}
       // className={customPadding?`px-5 py-6`}
       >

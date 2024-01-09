@@ -32,7 +32,7 @@ export const Screen = (props: Props) => {
             }
 
           </View>
-          <View style={{ rowGap: spacing.gaps.normal }} className={`pb-36 w-full flex flex-col ${mode == "development" ? "bg-yellow-500" : ""}`}>
+          <View style={{ rowGap: spacing.gaps.separateElement }} className={`pb-36 w-full flex flex-col ${mode == "development" ? "bg-yellow-500" : ""}`}>
             {props.children}
           </View>
         </ScrollView>

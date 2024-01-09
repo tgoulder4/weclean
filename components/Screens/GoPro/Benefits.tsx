@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react'
 import Pod from '../../Ui/Pod';
 import { colours } from '../../../lib/constants';
 import ProPerk from './ProPerk';
-import { IPerk, getPerks } from '../../../lib/backend/actions';
+import { getPerks } from '../../../lib/backend/actions';
+import { IPerk } from '../../../lib/types';
 
 const Benefits = () => {
     const [perks, setPerks] = useState([] as IPerk[]);
@@ -15,7 +16,7 @@ const Benefits = () => {
         main();
     })
     return (
-        <Pod backgroundColour={colours.offBlack} noStroke={true} >
+        <Pod style={{ backgroundColor: colours.offBlack }} customBorder={{ width: -2 }} >
             <View className='flex flex-col'>
                 {
                     perks.map((perk, index) => <ProPerk badge={perk.badge} doesntHaveBottomDivide={index == perks.length - 1} key={index} perkIcon={perk.icon} perkTitle={perk.title} perkText={perk.description} />)

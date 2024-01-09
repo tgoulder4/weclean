@@ -51,11 +51,11 @@ const GoProScreen = ({ params }) => {
                 <ActionSheet ref={actionSheetRef} defaultOverlayOpacity={0.6} containerStyle={{ height: 'auto', borderTopRightRadius: 20, borderTopLeftRadius: 20 }}>
                     <View className='pt-4 px-4 pb-12'>
                         <View className='flex flex-col '>
-                            <Text style={{ marginTop: spacing.gaps.normal, marginBottom: spacing.gaps.smaller }} className='font-rubik text-xl text-black'>Split the price?</Text>
-                            <Text style={{ marginBottom: spacing.gaps.normal }} className='font-afa text-black text-base'>Don't miss out! Share the subscription among your crew to go Pro for as little as £{pricePerCrewMember}/month.</Text>
+                            <Text style={{ marginTop: spacing.gaps.separateElement, marginBottom: spacing.gaps.groupedElement }} className='font-rubik text-xl text-black'>Split the price?</Text>
+                            <Text style={{ marginBottom: spacing.gaps.separateElement }} className='font-afa text-black text-base'>Don't miss out! Share the subscription among your crew to go Pro for as little as £{pricePerCrewMember}/month.</Text>
                         </View>
                         <View className='flex flex-col'>
-                            <Button style={{ height: 50, width: "100%", marginTop: spacing.gaps.smaller }} text="Sounds good!" backgroundColour='[#1D1D1D]' textColor='white' type='light' onPress={() => { navigation.push("Payment") }} />
+                            <Button style={{ height: 50, width: "100%", marginTop: spacing.gaps.groupedElement }} text="Sounds good!" backgroundColour='[#1D1D1D]' textColor='white' type='light' onPress={() => { navigation.push("Payment") }} />
                             <Pressable
                                 onPressOut={handleIllThinkAboutIt}>
                                 <Text className='font-afa text-gray-400 text-base text-center mt-[10px]'>I'll think about it</Text>
@@ -64,7 +64,7 @@ const GoProScreen = ({ params }) => {
                     </View>
                 </ActionSheet>
                 <View className='w-full h-56 py-6 px-5 bg-[#080808] flex flex-col items-center'>
-                    <Button style={{ width: "100%", marginTop: spacing.gaps.smaller }} customHeight={50} text="Let's go!" backgroundColour='white' textColor='black' type='light' onPress={() => { navigation.navigate("Payment" as never) }} />
+                    <Button style={{ height: 50, width: "100%", marginTop: spacing.gaps.groupedElement }} text="Let's go!" backgroundColour='white' textColor='black' type='light' onPress={() => { navigation.navigate("Payment" as never) }} />
                     <Pressable className='mt-4'
                         onPressOut={() => { handleNoThanksGoBack() }}
                     >
