@@ -55,8 +55,10 @@ const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mai
                 }
             }>
                 <View className='flex flex-row items-center'>
-                    <MultipleChoiceSelectionIndicator style={{ marginRight: spacing.gaps.groupedElement }} selected={selected} />
-                    <View style={{ rowGap: spacing.gaps.groupedElement, }} className='flex flex-1 flex-col justify-between'>
+                    <MultipleChoiceSelectionIndicator style={{ marginRight: spacing.gaps.separateElement - 10 }} selected={selected} />
+                    <View
+                        // style={{ rowGap: spacing.gaps.groupedElement, }} 
+                        className='flex flex-1 flex-col justify-between'>
                         <Text className='font-afaB text-base text-[13px]'>{mainText}</Text>
                         {mainText == "Select members" && selected ? <SelectMembers action="Splitting with" alreadySelectedMembers={selectedMembers} _members={usersInThisCrew} setSelectedMembers={setSelectedMembers} /> : <></>}
                         {
@@ -64,7 +66,7 @@ const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mai
 
                                 (mainText == "Select members" && selected) || mainText == "Everyone" || mainText == "Only me" && selected ?
 
-                                    <Text className='font-afa text-base'>
+                                    <Text style={{ marginTop: spacing.gaps.groupedElement }} className='font-afa text-base'>
                                         {`£${total}/mo ${mainText != "Only me" ? "for you" : ""}`}
                                         {total == null ?
                                             <View className='p-2 bg-red-500 rounded-lg h-min'>

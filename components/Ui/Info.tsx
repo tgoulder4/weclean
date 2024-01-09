@@ -2,12 +2,14 @@ import { View, Text, StyleProp, ViewStyle } from 'react-native'
 import React from 'react'
 import Pod from './Pod'
 import { IColour } from '../../lib/types';
+import tinycolor from 'tinycolor2';
 
 type InfoProps = {
     title?: string;
     style?: StyleProp<ViewStyle>;
     description?: string;
     className?: string;
+    backgroundColour?: string;
     /**like bg-white or bg-[#ABC] */
     children?: React.ReactNode;
     centerAligned?: boolean;
@@ -16,9 +18,10 @@ type InfoProps = {
 const Info = (props: InfoProps) => {
     const { centerAligned, style } = props;
     return (
-        <Pod style={style}
+        <Pod style={[style, { backgroundColor: tinycolor(props.backgroundColour).lighten(40).toString() }]}
             customPadding={props.customPadding}
             customBorder={{ width: -2 }}
+
         >
             <View className={`flex flex-col ${centerAligned ? "center items-center" : ""}`}>
                 {
