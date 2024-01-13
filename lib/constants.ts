@@ -5,10 +5,31 @@ export let brandName = "WeClean";
 
 /**must mirror the colours in hidden <View> in activity screen. This is so tailwind recognises these colours when they're dynamically created as classes.*/
 export const colours = {
-    pureBlack: '#000',
-    offBlack: '#1D1D1D',
-    deselected: '#C1C1C1',
-    offWhite: '#F3F3F3',
+    accent: '#55a38c',
+    dark: {
+        background: '#000',
+        textPrimary: '#f6f6f6',
+        textSecondary: '#848484',
+        primary: '#1d1d1d',
+        secondary: '#f3f3f3',
+        input: {
+            background: '#2b2b2b',
+            border: '#eaeaea',
+            indicator: "#fff"
+        }
+    },
+    light: {
+        background: '#f2f2f2',
+        textPrimary: '#1d1d1d',
+        textSecondary: '#636363',
+        primary: '#f3f3f3',
+        secondary: '#1d1d1d',
+        input: {
+            background: '#f3f3f3',
+            border: '#d9d9d9',
+            indicator: "#1d1d1d"
+        }
+    },
 }
 export const spacing = {
     gaps: {
