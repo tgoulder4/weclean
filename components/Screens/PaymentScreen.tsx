@@ -56,22 +56,24 @@ const PaymentScreen = () => {
             }
             <View className={`${mode == "development" ? "bg-green-500" : ""} flex px-4 flex-row justify-between`}>
                 <View className={`flex flex-col `}>
-                    <Text style={{ color: colours.dark.textPrimary }} className='mb-2 font-afa text-base'>Crew total</Text>
+                    <Text style={{ color: colours.dark.textSecondary }} className='mb-2 font-afa text-base'>Price per crew member</Text>
+                    <Text style={{ color: colours.dark.textSecondary }} className='mb-2 font-afa text-base'>Crew total</Text>
                     {(selection == "Select members" && selectedMembersChippingIn.length > 1) || selection == "Everyone" ?
-                        <Text style={{ color: colours.dark.textPrimary }} className='mb-2 font-afa text-base'>Splitting with {selectedMembersChippingIn.filter(member => member != userIDLoggedIn)?.length} other(s)</Text> : <></>
+                        <Text style={{ color: colours.dark.textSecondary }} className='mb-2 font-afa text-base'>Splitting with {selectedMembersChippingIn.filter(member => member != userIDLoggedIn)?.length} other(s)</Text> : <></>
                     }
                     <Text style={{ color: colours.dark.textPrimary }} className='font-afaB text-base'>To pay</Text>
                 </View>
                 <View className='flex flex-col items-end'>
-                    <Text style={{ color: colours.dark.textPrimary }} className='mb-2 font-afa text-end text-base'>£{(pricePerCrewMember * usersInThisCrew.usersInThisCrew.length).toFixed(2)}/mo</Text>
+                    <Text style={{ color: colours.dark.textSecondary }} className='mb-2 font-afa text-end text-base'>£{(pricePerCrewMember).toFixed(2)}/mo</Text>
+                    <Text style={{ color: colours.dark.textSecondary }} className='mb-2 font-afa text-end text-base'>£{(pricePerCrewMember * usersInThisCrew.usersInThisCrew.length).toFixed(2)}/mo</Text>
                     {(selection == "Select members" && selectedMembersChippingIn.length > 1) || selection == "Everyone" ?
-                        <Text style={{ color: colours.dark.textPrimary }} className='mb-2 font-afa text-end text-base'>£{((pricePerCrewMember * usersInThisCrew.usersInThisCrew.length) / selectedMembersChippingIn.length).toFixed(2)}/mo</Text> : <></>
+                        <Text style={{ color: colours.dark.textSecondary }} className='mb-2 font-afa text-end text-base'>£{((pricePerCrewMember * usersInThisCrew.usersInThisCrew.length) / selectedMembersChippingIn.length).toFixed(2)}/mo</Text> : <></>
                     }
                     <Text style={{ color: colours.dark.textPrimary }} className='font-afaB text-end text-base'>£{((pricePerCrewMember * usersInThisCrew.usersInThisCrew.length) / selectedMembersChippingIn.length).toFixed(2)}/mo</Text>
                 </View>
             </View>
             <View style={{ rowGap: spacing.gaps.separateElement }} className={`${mode == "development" ? "bg-green-500" : ""} flex flex-col`}>
-                <Button style={{ height: 60 }} backgroundColour='#4E9580' text="Continue" textColor='white' type='light' onPress={() => { }} />
+                <Button style={{ height: 60 }} backgroundColour='#4DB583' text="CONTINUE" textColor='white' type='light' onPress={() => { }} />
             </View>
         </Screen>
     )
