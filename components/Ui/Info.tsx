@@ -7,6 +7,7 @@ import tinycolor from 'tinycolor2';
 type InfoProps = {
     title?: string;
     style?: StyleProp<ViewStyle>;
+    customAlpha?: number;
     description?: string;
     className?: string;
     backgroundColour?: string;
@@ -16,9 +17,9 @@ type InfoProps = {
     customPadding?: { paddingX?: number, paddingY?: number }
 }
 const Info = (props: InfoProps) => {
-    const { centerAligned, style } = props;
+    const { centerAligned, style, customAlpha } = props;
     return (
-        <Pod style={[style, { backgroundColor: tinycolor(props.backgroundColour).lighten(40).toString() }]}
+        <Pod style={[style, { backgroundColor: tinycolor(props.backgroundColour).setAlpha(customAlpha ? customAlpha : 0.4).toString() }]}
             customPadding={props.customPadding}
             customBorder={{ width: -2 }}
 

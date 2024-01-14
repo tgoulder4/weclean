@@ -48,9 +48,12 @@ const PaymentScreen = () => {
                 <ChippingInSelection selectedMembers={selectedMembersChippingIn} setSelectedMembers={setSelectedMembersChippingIn} pricePerCrewMember={pricePerCrewMember} usersInThisCrew={usersInThisCrew.usersInThisCrew} onSelect={handleSetSelection} mainText='Select members' noStrokeOnSelection={true} selected={selection == 'Select members'} />
                 <ChippingInSelection selectedMembers={selectedMembersChippingIn} setSelectedMembers={setSelectedMembersChippingIn} last={true} pricePerCrewMember={pricePerCrewMember} usersInThisCrew={usersInThisCrew.usersInThisCrew} onSelect={handleSetSelection} mainText='Only me' selected={selection == 'Only me'} />
             </View>
-            <View style={{ rowGap: spacing.gaps.groupedElement }} className={`flex flex-col ${mode == "development" ? "bg-green-500" : ""}`}>
+            {/* <View style={{ rowGap: spacing.gaps.groupedElement }} className={`flex flex-col ${mode == "development" ? "bg-green-500" : ""}`}>
                 <Info backgroundColour='#4E9580' description="You're 1 step away from tripling your crew's performance. 🎯" />
-            </View>
+            </View> */}
+            {(selection == "Select members" && selectedMembersChippingIn.length > 1) || selection == "Everyone" ?
+                <Info customAlpha={1} backgroundColour='#7A95B4' description="✌ Your crew will be elevated once you and all selected members subscribe." /> : <></>
+            }
             <View className={`${mode == "development" ? "bg-green-500" : ""} flex px-4 flex-row justify-between`}>
                 <View className={`flex flex-col `}>
                     <Text style={{ color: colours.dark.textPrimary }} className='mb-2 font-afa text-base'>Crew total</Text>
@@ -68,9 +71,6 @@ const PaymentScreen = () => {
                 </View>
             </View>
             <View style={{ rowGap: spacing.gaps.separateElement }} className={`${mode == "development" ? "bg-green-500" : ""} flex flex-col`}>
-                {(selection == "Select members" && selectedMembersChippingIn.length > 1) || selection == "Everyone" ?
-                    <Info backgroundColour={'#7A95B4'} description="✌ Your crew will be elevated once you and all selected members subscribe." /> : <></>
-                }
                 <Button style={{ height: 60 }} backgroundColour='#4E9580' text="Continue" textColor='white' type='light' onPress={() => { }} />
             </View>
         </Screen>

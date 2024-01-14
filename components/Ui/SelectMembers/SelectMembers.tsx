@@ -28,7 +28,7 @@ const SelectMembers = (props: {
             <View className='flex flex-row'>
                 {
                     names.length > 0 ?
-                        <Text style={{ color: colours.dark.textPrimary }} className='font-afa text-base'>{action} {names?.join(", ")}</Text> : <Text className='font-afa text-gray-300 text-base'>No one else selected</Text>
+                        <Text style={{ color: colours.dark.textPrimary }} className='font-afa text-base'>{action} {names?.join(", ")}</Text> : <Text style={{ color: colours.dark.textSecondary }} className='font-afaB text-base'>No one else selected</Text>
                 }
             </View>
             <TextInput clearButtonMode='always'

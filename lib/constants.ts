@@ -19,7 +19,7 @@ export const colours = {
         }
     },
     light: {
-        background: '#f2f2f2',
+        background: '#fbfbfb',
         textPrimary: '#1d1d1d',
         textSecondary: '#636363',
         primary: '#f3f3f3',
