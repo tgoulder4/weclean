@@ -67,7 +67,7 @@ const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mai
 
                                 (mainText == "Select members" && selected) || mainText == "Everyone" || mainText == "Only me" && selected ?
 
-                                    <Text style={{ marginTop: spacing.gaps.groupedElement, color: colours.dark.textSecondary }} className='font-afaB text-base'>
+                                    <Text style={{ marginTop: spacing.gaps.groupedElement, color: selected ? colours.dark.textPrimary : colours.dark.textSecondary }} className='font-afaB text-base'>
                                         {`£${total}/mo ${mainText != "Only me" ? "for you" : ""}`}
                                         {total == null ?
                                             <View className='p-2 bg-red-500 rounded-lg h-min'>

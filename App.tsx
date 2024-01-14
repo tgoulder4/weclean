@@ -12,6 +12,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import PaymentScreen from './components/Screens/PaymentScreen';
 import type { StatusBarStyle } from 'react-native';
 import { setStatusBarBackgroundColor } from 'expo-status-bar';
+import LevellingUpScreen from './components/Screens/LevellingUpScreen';
 function ActivityScrn() {
   return <ActivityScreen />
 }
@@ -32,6 +33,9 @@ function GoProScrn() {
 }
 function PaymentScrn() {
   return <PaymentScreen />
+}
+function LevellingUpScrn() {
+  return <LevellingUpScreen />
 }
 const Tab = createBottomTabNavigator();
 
@@ -67,6 +71,17 @@ export default function App() {
           <Tab.Screen name="Leaderboard" component={LeaderboardScrn} />
           <Tab.Screen name="Profile" component={ProfileScrn} />
           <Tab.Screen name="Go Pro" component={GoProScrn}
+            options={() => ({
+              tabBarStyle: {
+                display: "none",
+              }
+              ,
+              tabBarItemStyle: {
+                display: "none"
+              }
+            })}
+          />
+          <Tab.Screen name="Levelling Up" component={LevellingUpScrn}
             options={() => ({
               tabBarStyle: {
                 display: "none",

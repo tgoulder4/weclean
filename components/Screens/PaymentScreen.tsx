@@ -19,19 +19,21 @@ const PaymentScreen = () => {
     const [usersInThisCrew, setUsersInThisCrew] = useState({ usersInThisCrew: [] as IUser[] });
     //fetch price pppm
     function handleSetSelection(newSelection: ISelection) {
-        switch (newSelection) {
-            case "Everyone":
-                setSelectedMembersChippingIn(usersInThisCrew.usersInThisCrew.map(user => user.id))
-                break;
-            case "Only me":
-                setSelectedMembersChippingIn([userIDLoggedIn])
-                break;
-            case "Select members":
-                setSelectedMembersChippingIn([userIDLoggedIn])
-                break;
+        if (newSelection !== selection) {
+            switch (newSelection) {
+                case "Everyone":
+                    setSelectedMembersChippingIn(usersInThisCrew.usersInThisCrew.map(user => user.id))
+                    break;
+                case "Only me":
+                    setSelectedMembersChippingIn([userIDLoggedIn])
+                    break;
+                case "Select members":
+                    setSelectedMembersChippingIn([userIDLoggedIn])
+                    break;
+            }
+            setSelection(newSelection)
         }
         if (newSelection !== selection && newSelection !== "Select members") performHaptic("selection");
-        setSelection(newSelection)
     }
     useEffect(() => {
         async function getUserCrewInfo() {

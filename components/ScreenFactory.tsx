@@ -48,7 +48,7 @@ export const Screen = (props: Props) => {
           : <></>
       }
       <ScrollView style={{ rowGap: spacing.gaps.separateElement }} className={`${mode == "development" ? "bg-red-500" : ""}  w-full px-2`} contentContainerStyle={{ justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <View style={{ marginBottom: spacing.gaps.separateElement }} className={`${mode == "development" ? "bg-blue-500" : ""} mt-8`}>
+        <View style={{ marginBottom: spacing.gaps.separateElement }} className={`${mode == "development" ? "bg-blue-500" : ""} ${props.crossTopLeft ? "mt-1" : "mt-8"}`}>
           {customTitle ?
             customTitle
             : props.title ?
