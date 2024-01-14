@@ -69,7 +69,7 @@ const PaymentScreen = () => {
             </View>
             <View style={{ rowGap: spacing.gaps.separateElement }} className={`${mode == "development" ? "bg-green-500" : ""} flex flex-col`}>
                 {(selection == "Select members" && selectedMembersChippingIn.length > 1) || selection == "Everyone" ?
-                    <Info backgroundColour={'#7A95B4'} description="Your crew will be elevated once you and all selected members subscribe." /> : <></>
+                    <Info backgroundColour={'#7A95B4'} description="✌ Your crew will be elevated once you and all selected members subscribe." /> : <></>
                 }
                 <Button style={{ height: 60 }} backgroundColour='#4E9580' text="Continue" textColor='white' type='light' onPress={() => { }} />
             </View>

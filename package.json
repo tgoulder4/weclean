@@ -20,6 +20,7 @@
     "deep-equal": "^2.2.3",
     "expo": "~49.0.15",
     "expo-haptics": "~12.4.0",
+    "expo-linear-gradient": "~12.3.0",
     "expo-router": "^2.0.14",
     "expo-splash-screen": "~0.20.5",
     "expo-status-bar": "~1.6.0",

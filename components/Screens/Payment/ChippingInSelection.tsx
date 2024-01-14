@@ -42,11 +42,12 @@ const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mai
     return (
         <Pressable style={{ backgroundColor: colours.dark.background }} onPress={() => { onSelect(mainText) }} className={`rounded-[20px] p-0 ${last ? "" : "mb-2"}`}>
             <Pod customPadding={{
-                paddingX: spacing.padding.normalX,
-                paddingY: spacing.padding.normalY,
+                paddingX: 20,
+                paddingY: 20,
             }} customBorder={
                 {
-                    width: selected ? 4 : 2,
+                    width: selected ?
+                        !noStrokeOnSelection ? 4 : 1 : 1,
                     colour: selected ?
                         !noStrokeOnSelection ?
                             colours.dark.textPrimary

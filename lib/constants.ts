@@ -7,13 +7,13 @@ export let brandName = "WeClean";
 export const colours = {
     accent: '#55a38c',
     dark: {
-        background: '#000',
+        background: '#080808',
         textPrimary: '#f6f6f6',
         textSecondary: '#848484',
         primary: '#1d1d1d',
         secondary: '#f3f3f3',
         input: {
-            background: '#2b2b2b',
+            background: '#1d1d1d',
             border: '#eaeaea',
             indicator: "#fff"
         }

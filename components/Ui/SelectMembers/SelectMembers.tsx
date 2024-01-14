@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Member from './Member'
 import { getProfileBackgroundColour, } from '../../../lib/backend/actions'
 import { IColour, IUser } from '../../../lib/types'
-import { spacing } from '../../../lib/constants'
+import { colours, spacing } from '../../../lib/constants'
 import { userIDLoggedIn } from '../../../lib/globals'
 //return the tsx and the count
 export type SetSelectedMembers = {
@@ -28,10 +28,10 @@ const SelectMembers = (props: {
             <View className='flex flex-row'>
                 {
                     names.length > 0 ?
-                        <Text className='font-afa text-base'>{action} {names?.join(", ")}</Text> : <Text className='font-afa text-gray-300 text-base'>No one else selected</Text>
+                        <Text style={{ color: colours.dark.textPrimary }} className='font-afa text-base'>{action} {names?.join(", ")}</Text> : <Text className='font-afa text-gray-300 text-base'>No one else selected</Text>
                 }
             </View>
-            <TextInput clearButtonMode='unless-editing'
+            <TextInput clearButtonMode='always'
                 onChangeText={(text) => {
                     if (text == "") {
                         setMembers(_members)
@@ -41,8 +41,8 @@ const SelectMembers = (props: {
                         setMembers(members.filter((member) => member.name.toLowerCase().includes(text.toLowerCase())))
                     }
                 }}
-                placeholder='Search' className='py-2 px-3 rounded-lg mb-2 font-afaB text-base' style={{ backgroundColor: '#f3f4f6' }}></TextInput>
-            <ScrollView horizontal={true} className='flex flex-row py-2 mt-[-1] w-full'>
+                placeholder='Search' className='py-2 px-3 rounded-lg mb-2 font-afaB text-base' style={{ backgroundColor: colours.dark.input.background, color: colours.dark.textPrimary }}></TextInput>
+            <ScrollView style={{ backgroundColor: colours.dark.background }} horizontal={true} className='flex flex-row py-2 mt-[-1] w-full'>
                 {
                     //if there are no passed to this component yet, show loading members
                     _members.length == 0 ?

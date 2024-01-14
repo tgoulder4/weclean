@@ -36,11 +36,11 @@ export const Screen = (props: Props) => {
     ]);
   }
   return (
-    <View style={{ backgroundColor: colourScheme == "dark" ? colours.dark.background : colours.light.background }} className={`${props.bottomStickyElement ? "flex flex-col" : ""} pt-6 h-full`}>
+    <View style={{ backgroundColor: colourScheme == 'dark' ? colours.dark.background : colours.light.background }} className={`${props.bottomStickyElement ? "flex flex-col" : ""} pt-6 h-full`}>
       <View className='mt-16'>
         <View className='w-full flex flex-row justify-end px-4 bg-green-500'>
           {
-            props.crossTopLeft ? <Pressable onPress={() => { navigation.goBack() }}>
+            props.crossTopLeft ? <Pressable onPress={() => { handleGoback() }}>
 
               <Ionicons name="close" size={24} color="black" />
             </Pressable> : <></>

@@ -58,8 +58,8 @@ const Member = (props: Props) => {
         console.log("Member ", props.user.name, "selected: ", selected, "isThemselves: ", isThemselves)
     }, [])
     return (
-        <Pressable className='flex flex-col items-center bg-white' onPress={setSelectedMembers ? toggleMemberPress : null}>
-            <View className={`mr-2 rounded-lg px-3 py-2 w-28 flex flex-col justify-center items-center gap-y-2 ${selected ? 'border-4 border-black' : `border-2 border-${colours.offWhite}`}`}>
+        <Pressable style={{ backgroundColor: colours.dark.background }} className='flex flex-col items-center ' onPress={setSelectedMembers ? toggleMemberPress : null}>
+            <View style={{ borderColor: selected ? 'white' : colours.dark.primary, borderWidth: selected ? 4 : 2 }} className={`mr-2 rounded-lg px-3 py-2 w-28 flex flex-col justify-center items-center gap-y-2 `}>
                 {props.loading ?
                     <>
                         <View className='bg-gray-200  animate-pulse w-8 h-8 rounded-full'></View>
@@ -67,8 +67,8 @@ const Member = (props: Props) => {
                     </> :
                     <>
                         <ProfilePic users={[user]} />
-                        {isThemselves ? <Text className={`text-base ${selected ? 'font-afaB' : 'font-afa'} text-black`}>Me</Text>
-                            : <Text numberOfLines={1} ellipsizeMode='tail' className={`text-base ${selected ? 'font-afaB' : 'font-afa'}`}>{user.name}</Text>}
+                        {isThemselves ? <Text style={{ color: colours.dark.textPrimary }} className={`text-base ${selected ? 'font-afaB' : 'font-afa'}`}>Me</Text>
+                            : <Text style={{ color: colours.dark.textPrimary }} numberOfLines={1} ellipsizeMode='tail' className={`text-base ${selected ? 'font-afaB' : 'font-afa'}`}>{user.name}</Text>}
                     </>
                 }
             </View>
