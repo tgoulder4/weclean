@@ -37,7 +37,7 @@ export const Screen = (props: Props) => {
     ]);
   }
   return (
-    <View style={{ backgroundColor: colourScheme == 'dark' ? colours.dark.background : colours.light.background }} className={`${props.bottomStickyElement ? "flex flex-col flex-1" : ""} h-full pt-16 `}>
+    <View style={{ backgroundColor: colourScheme == 'dark' ? colours.dark.background : colours.light.background }} className={`${props.bottomStickyElement ? "flex flex-col" : ""} h-full pt-16 `}>
       {
         props.crossTopLeft ?
           <View className='w-full flex flex-row justify-end px-4'>

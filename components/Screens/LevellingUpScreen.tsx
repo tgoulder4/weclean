@@ -9,13 +9,11 @@ const LevellingUpScreen = () => {
     const navigation = useNavigation()
     return (
         <Screen darkMode={true} bottomStickyElement={
-            <View className='w-full h-56 py-6 px-4 bg-[#080808] flex flex-col items-center'>
-                <Button style={{ height: 50, width: "100%", marginTop: spacing.gaps.groupedElement }} text="Let's go!" backgroundColour='white' textColor='black' type='light' onPress={() => { }} />
-                <Pressable className='mt-4'
-                    onPressOut={() => { navigation.navigate("Payment" as never) }}
-                >
-                    <Text className='font-afa text-base text-gray-400'>No thanks, go back</Text>
-                </Pressable>
+            <View style={{ rowGap: spacing.gaps.groupedElement }} className='w-full h-72 py-6 px-4 bg-[#080808] flex flex-col items-center'>
+                <Text className='text-white font-afaB text-center text-base'>
+                    You're 1 step away from doubling your team's performance! 🎯
+                </Text>
+                <Button style={{ height: 50, width: "100%", marginTop: spacing.gaps.groupedElement }} text="Let's go!" backgroundColour='white' textColor='black' type='light' onPress={() => { navigation.navigate("Payment" as never) }} />
             </View>
         } title='Levelling up...'>
             <Text>Test</Text>

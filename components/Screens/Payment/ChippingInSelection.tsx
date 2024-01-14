@@ -63,11 +63,11 @@ const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mai
                         <Text style={{ color: colours.dark.textPrimary }} className='font-afaB text-base text-[13px]'>{mainText}</Text>
                         {mainText == "Select members" && selected ? <SelectMembers action="Splitting with" alreadySelectedMembers={selectedMembers} _members={usersInThisCrew} setSelectedMembers={setSelectedMembers} /> : <></>}
                         {
-                            equal(props.usersInThisCrew, [] as IUser[]) ? <View className='bg-gray-200 animate-pulse w-36 h-8 rounded-lg'></View> :
+                            equal(props.usersInThisCrew, [] as IUser[]) ? <View style={{ backgroundColor: colours.dark.primary }} className=' animate-pulse w-36 h-8 rounded-lg'></View> :
 
                                 (mainText == "Select members" && selected) || mainText == "Everyone" || mainText == "Only me" && selected ?
 
-                                    <Text style={{ marginTop: spacing.gaps.groupedElement, color: selected ? colours.dark.textPrimary : colours.dark.textSecondary }} className='font-afaB text-base'>
+                                    <Text style={{ marginTop: spacing.gaps.groupedElement, color: selected ? colours.dark.textPrimary : colours.dark.textSecondary }} className='font-afa text-base'>
                                         {`£${total}/mo ${mainText != "Only me" ? "for you" : ""}`}
                                         {total == null ?
                                             <View className='p-2 bg-red-500 rounded-lg h-min'>
