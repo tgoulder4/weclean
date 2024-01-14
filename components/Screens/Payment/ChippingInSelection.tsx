@@ -40,18 +40,18 @@ const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mai
 
     }, [])
     return (
-        <Pressable onPress={() => { onSelect(mainText) }} className={`p-0 ${last ? "" : "mb-2"}`}>
+        <Pressable style={{ backgroundColor: colours.dark.background }} onPress={() => { onSelect(mainText) }} className={`rounded-[20px] p-0 ${last ? "" : "mb-2"}`}>
             <Pod customPadding={{
                 paddingX: spacing.padding.normalX,
                 paddingY: spacing.padding.normalY,
             }} customBorder={
                 {
-                    width: 2,
+                    width: selected ? 4 : 2,
                     colour: selected ?
                         !noStrokeOnSelection ?
-                            colours.pureBlack
-                            : colours.deselected
-                        : colours.deselected
+                            colours.dark.textPrimary
+                            : colours.dark.textSecondary
+                        : colours.dark.textSecondary
                 }
             }>
                 <View className='flex flex-row items-center'>
@@ -59,14 +59,14 @@ const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mai
                     <View
                         // style={{ rowGap: spacing.gaps.groupedElement, }} 
                         className='flex flex-1 flex-col justify-between'>
-                        <Text className='font-afaB text-base text-[13px]'>{mainText}</Text>
+                        <Text style={{ color: colours.dark.textPrimary }} className='font-afaB text-base text-[13px]'>{mainText}</Text>
                         {mainText == "Select members" && selected ? <SelectMembers action="Splitting with" alreadySelectedMembers={selectedMembers} _members={usersInThisCrew} setSelectedMembers={setSelectedMembers} /> : <></>}
                         {
                             equal(props.usersInThisCrew, [] as IUser[]) ? <View className='bg-gray-200 animate-pulse w-36 h-8 rounded-lg'></View> :
 
                                 (mainText == "Select members" && selected) || mainText == "Everyone" || mainText == "Only me" && selected ?
 
-                                    <Text style={{ marginTop: spacing.gaps.groupedElement }} className='font-afa text-base'>
+                                    <Text style={{ marginTop: spacing.gaps.groupedElement, color: colours.dark.textSecondary }} className='font-afaB text-base'>
                                         {`£${total}/mo ${mainText != "Only me" ? "for you" : ""}`}
                                         {total == null ?
                                             <View className='p-2 bg-red-500 rounded-lg h-min'>

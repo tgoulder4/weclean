@@ -16,7 +16,7 @@ const Benefits = () => {
         main();
     })
     return (
-        <Pod style={{ backgroundColor: colours.offBlack }} customBorder={{ width: -2 }} >
+        <Pod style={{ backgroundColor: colours.dark.primary }} customBorder={{ width: -2 }} >
             <View className='flex flex-col'>
                 {
                     perks.map((perk, index) => <ProPerk badge={perk.badge} doesntHaveBottomDivide={index == perks.length - 1} key={index} perkIcon={perk.icon} perkTitle={perk.title} perkText={perk.description} />)

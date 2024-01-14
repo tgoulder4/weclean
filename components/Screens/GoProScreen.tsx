@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Pressable } from 'react-native'
+import { View, Text, ScrollView, Pressable, useColorScheme, Appearance } from 'react-native'
 import React, { useEffect, useRef } from 'react'
 import AnimatedStairs from './GoPro/AnimatedStairs'
 import Pod from '../Ui/Pod';
@@ -14,6 +14,7 @@ const GoProScreen = ({ params }) => {
     // const { andText } = route.params;
     const navigation = useNavigation()
     const actionSheetRef = useRef<ActionSheetRef>(null);
+    let colourScheme = useColorScheme();
     function handleNoThanksGoBack() {
         //open modal
         actionSheetRef.current?.show();
@@ -25,8 +26,10 @@ const GoProScreen = ({ params }) => {
         actionSheetRef.current?.hide();
         navigation.goBack()
     }
+    Appearance.setColorScheme("dark")
     useEffect(() => {
         console.log("params object: ", params)
+        // console.log("colour scheme: ", useColorScheme())
     }, [])
     return (
         <>
