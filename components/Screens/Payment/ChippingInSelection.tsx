@@ -50,13 +50,13 @@ const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mai
                         !noStrokeOnSelection ? 4 : 1 : 1,
                     colour: selected ?
                         !noStrokeOnSelection ?
-                            colours.dark.textPrimary
-                            : colours.dark.textSecondary
-                        : colours.dark.textSecondary
+                            colours.dark.textSecondary
+                            : colours.dark.primary
+                        : colours.dark.primary
                 }
             }>
                 <View className='flex flex-row items-center'>
-                    <MultipleChoiceSelectionIndicator style={{ marginRight: spacing.gaps.separateElement - 10 }} selected={selected} />
+                    <MultipleChoiceSelectionIndicator style={{ marginRight: 20 }} selected={selected} />
                     <View
                         // style={{ rowGap: spacing.gaps.groupedElement, }} 
                         className='flex flex-1 flex-col justify-between'>
@@ -67,7 +67,7 @@ const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mai
 
                                 (mainText == "Select members" && selected) || mainText == "Everyone" || mainText == "Only me" && selected ?
 
-                                    <Text style={{ marginTop: spacing.gaps.groupedElement, color: selected ? colours.dark.textPrimary : colours.dark.textSecondary }} className='font-afa text-base'>
+                                    <Text style={{ marginTop: spacing.gaps.groupedElement, color: colours.dark.textSecondary }} className='font-afa text-base'>
                                         {`£${total}/mo ${mainText != "Only me" ? "for you" : ""}`}
                                         {total == null ?
                                             <View className='p-2 bg-red-500 rounded-lg h-min'>

@@ -45,7 +45,7 @@ const GoProScreen = ({ params }) => {
         }
             customTitle={
                 <View className='flex flex-row justify-between w-full'>
-                    <Text className='font-rubik text-2xl text-white flex-0 w-64' style={{ shadowColor: "#FFFFFF", shadowOffset: { height: 6, width: 0 }, shadowOpacity: 0.25, shadowRadius: 0.8 }}>Elevate Your Crew</Text>
+                    <Text className='font-rubik text-xl text-white flex-0 w-64' style={{ shadowColor: "#FFFFFF", shadowOffset: { height: 6, width: 0 }, shadowOpacity: 0.25, shadowRadius: 0.8 }}>Elevate Your Crew</Text>
                     <AnimatedStairs />
                 </View>
             }>

@@ -17,7 +17,7 @@ const ActivityScreen = () => {
         navigation.navigate({ name: 'Go Pro' as never, params: { andText: "can enter cash prize competitions." } } as never)
       }} />
       {/* activityEventsInLast24Hours.map */}
-      <View className='bg-indigo-500 flex flex-col' style={{ rowGap: spacing.gaps.groupedElement }}>
+      <View className='flex flex-col' style={{ rowGap: spacing.gaps.groupedElement }}>
 
         <ActivityEvent task={{ summary: "Moved their cutlery.aaaaaaaaaaaaaaaaaaaaaaaaaa", type: "Request", media: "https://cdn.discordapp.com/attachments/949458671115587687/1186479405845991424/image_3.png?ex=6593660e&is=6580f10e&hm=bd4d491f48830d2768615e3ae17c42eecca57a9ddbf35d7fd246afea99dc3e9f&", completionTime: "SLAYYY" }} usersWhoMadeRequest={[{ name: "Tye", profileBackgroundColour: "indigo-500" }]} user={{ name: "CAT" }} />
         <ActivityEvent task={{ summary: "Completed Tye's task: Clear the sink", type: "Courtesy", completionTime: "2m" }} usersWhoMadeRequest={[{ name: "Tye", profileBackgroundColour: "indigo-500" }]} user={{ name: "Mateusz" }} />
@@ -25,7 +25,7 @@ const ActivityScreen = () => {
           // olderEvents?.map
         }
       </View>
-      <View className='bg-yellow-500 flex flex-col' style={{ rowGap: spacing.gaps.groupedElement }}>
+      <View className='flex flex-col' style={{ rowGap: spacing.gaps.groupedElement }}>
 
         <Text className='font-rubik text-xl'>Older events</Text>
         <ActivityEvent task={{ summary: "Moved their cutlery.aaaaaaaaaaaaaaaaaaaaabaaaaa", type: "Request", completionTime: "wha" }} usersWhoMadeRequest={[{ name: "Tye", profileBackgroundColour: "indigo-500" }, { name: "Tye", profileBackgroundColour: "indigo-500" }, { name: "Tye", profileBackgroundColour: "indigo-500" }]} user={{ name: "Mateusz" }} />

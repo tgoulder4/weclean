@@ -34,7 +34,7 @@ export const colours = {
 export const spacing = {
     gaps: {
         groupedElement: 8,
-        separateElement: 30
+        separateElement: 16
     },
     padding: {
         normalX: 20,

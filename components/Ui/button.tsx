@@ -3,20 +3,21 @@ import { View, Text, StyleSheet, Pressable, AnimatableStringValue, StyleProp, Vi
 import { IColour } from '../../lib/types';
 import performHaptic from '../../lib/performHaptic';
 import tinycolor from 'tinycolor2';
-export type ImpactProps = "light" | "medium" | "heavy" | "error" | "warning" | "success";
+export type ImpactProps = "light" | "medium" | "heavy" | "error" | "warning" | "success" | "selection";
 type buttonProps = {
-    text: string;
+    text?: string;
 
     /**Like white or [#ABC] */
     backgroundColour: string;
 
     /**Like text-white or text-[#ABC] */
-    textColor: string;
+    textColor?: string;
     type: ImpactProps;
     style?: StyleProp<ViewStyle>;
-    onPress: () => void;
+    onPress?: () => void;
     fullWidth?: boolean;
     className?: string;
+    children?: React.ReactNode;
 
 }
 const Button = ({
@@ -27,6 +28,7 @@ const Button = ({
     onPress,
     className,
     style,
+    children,
     ...others
 }: buttonProps) => {
     const [shadow, setShadow] = useState(true);
@@ -35,7 +37,7 @@ const Button = ({
         setOffset(5);
         performHaptic(type);
         setShadow(false);
-        onPress();
+        if (onPress) onPress();
     }
     function handleOnPressOut() {
         setOffset(0);
@@ -43,7 +45,11 @@ const Button = ({
     }
     return (
         <Pressable {...others} style={[style, { transform: [{ translateY: offset }], backgroundColor: backgroundColour, shadowColor: tinycolor(backgroundColour).saturate(50).darken(20).toString(), shadowOpacity: shadow ? 0.5 : 0, shadowOffset: { width: 0, height: 4 }, shadowRadius: 0, paddingHorizontal: 12, paddingVertical: 8 }]} className={className + `flex justify-center items-center rounded-md`} onPressIn={handleOnPressIn} onPressOut={handleOnPressOut}>
-            <Text allowFontScaling={true} className={`font-afaB text-${textColor}`}>{text}</Text>
+            {
+                children ? children
+                    : <Text allowFontScaling={true} className={`font-afaB text-${textColor}`}>{text}</Text>
+            }
+
         </Pressable>
     )
 }
