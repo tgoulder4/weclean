@@ -1,5 +1,5 @@
 import { IColour } from "../types"
-import { ITask, IUser, ICrew, IPerk } from "../types"
+import { ITask, IUser, ICrew, IGoProPerk, ILevelUpPerk } from "../types"
 export const brandName: string = "CleenCrew"
 export const pricePerCrewMember: number = 3.49;
 const requests = [{
@@ -167,30 +167,62 @@ const crews: ICrew[] = [
 ];
 
 
-const perks: IPerk[] = [{
-    icon: "🧼",
-    title: "Monthly Cleaning Supplies",
-    description: "Get cleaning supplies straight to your doorstep",
-    badge: "Soon"
-}, {
-    icon: "📅",
-    title: "Automated Rota",
-    description: "Create a rota in seconds, instantly putting your team into action"
-}, {
-    icon: "💸",
-    title: "Entry into pro-only competitions",
-    description: "Win exclusive cash prizes in competitions of cleanliness"
-}, {
-    icon: "👥",
-    title: "Join multiple crews",
-    description: "Now you can help out your friends and families spaces too"
-},
-{
-    icon: "🚀",
-    title: "Support " + brandName + "'s mission",
-    description: "Help turn shared living spaces clean and tidy, one crew at a time"
-},
-]
+const perks: { goProScreen: IGoProPerk[], levellingUpScreen: ILevelUpPerk[] } = {
+    goProScreen: [{
+        icon: "🧼",
+        title: "Monthly Cleaning Supplies",
+        description: "Get cleaning supplies straight to your doorstep",
+        badge: "Soon"
+    }, {
+        icon: "📅",
+        title: "Automated Rota",
+        description: "Create a rota in seconds, instantly putting your team into action"
+    }, {
+        icon: "💸",
+        title: "Entry into pro-only competitions",
+        description: "Win exclusive cash prizes in competitions of cleanliness"
+    }, {
+        icon: "👥",
+        title: "Join multiple crews",
+        description: "Now you can help out your friends and families spaces too"
+    },
+    {
+        icon: "🚀",
+        title: "Support " + brandName + "'s mission",
+        description: "Help turn shared living spaces clean and tidy, one crew at a time"
+    },
+    ], levellingUpScreen: [{
+        description: "Clean spaces & happy faces",
+        tickedForFree: true,
+        tickedForPro: true,
+    },
+    {
+        description: "Basically-Free cleaning supplies",
+        tickedForFree: false,
+        tickedForPro: true,
+    },
+    {
+        description: "Automated rota",
+        tickedForFree: false,
+        tickedForPro: true,
+    },
+    {
+        description: "Entry into pro-only competitions",
+        tickedForFree: false,
+        tickedForPro: true,
+    },
+    {
+        description: "Join multiple crews",
+        tickedForFree: false,
+        tickedForPro: true,
+    },
+    {
+        description: "Support " + brandName + "'s mission",
+        tickedForFree: false,
+        tickedForPro: true,
+    },
+    ]
+}
 const users: IUser[] = [{
     id: "ABC123",
     crewID: ["abc"],
@@ -252,7 +284,9 @@ export async function getPricePerCrewMember(): Promise<number> {
     await sleep(1000);
     return pricePerCrewMember;
 }
-export async function getPerks(): Promise<IPerk[]> {
+
+//i want to call this function then save it in an area accessible by all screens somehow.
+export async function getPerks(): Promise<{ goProScreen: IGoProPerk[], levellingUpScreen: ILevelUpPerk[] }> {
     await sleep(1000);
     return perks;
 }

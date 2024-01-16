@@ -29,9 +29,14 @@ export type ICrew = {
     taskIDs: string[],
     members: IUser[]
 }
-export type IPerk = {
+export type IGoProPerk = {
     icon: string,
     title: string,
     description: string
     badge?: string
+}
+export type ILevelUpPerk = {
+    description: string,
+    tickedForFree: boolean,
+    tickedForPro: boolean
 }

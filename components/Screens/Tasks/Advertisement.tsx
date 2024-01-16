@@ -21,7 +21,7 @@ const Advertisement = (props: AdvertisementProps) => {
                     <Text className='font-afaB text-xl'>Advertisement</Text>
                     <Text className='font-afa text-base'>Ads help support {brandName}'s mission</Text>
                     <View className='flex flex-row justify-between items-end mt-1'>
-                        <Button style={{ marginTop: spacing.gaps.groupedElement }} type="medium" text='Hide' backgroundColour='[#55A38C]' textColor='white' onPress={() => { }} />
+                        <Button style={{ marginTop: spacing.gaps.groupedElement }} type="medium" text='Hide' backgroundColour='[#55A38C]' textColor='white' customOnPress={() => { }} />
                     </View>
                 </View>
             </View>

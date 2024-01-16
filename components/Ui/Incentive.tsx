@@ -29,7 +29,7 @@ const Incentive = (props: IncentiveProps) => {
           : <></>}
         <Text className={`font-rubik text-lg w-full ${blackText ? 'text-black' : 'text-white'}`}>{mainText}</Text>
         <Text className={`font-afa text-base w-full tracking-tighter leading-tight ${blackText ? 'text-black' : 'text-white'}`}>{description}</Text>
-        <Button style={{ marginTop: spacing.gaps.groupedElement }} type={ctaImpact} backgroundColour={props.buttonColor} textColor={`${blackText ? 'white' : 'black'}`} text={ctaButtonText} onPress={props.ctaAction} />
+        <Button style={{ marginTop: spacing.gaps.groupedElement }} type={ctaImpact} backgroundColour={props.buttonColor} textColor={`${blackText ? 'white' : 'black'}`} text={ctaButtonText} customOnPress={props.ctaAction} />
       </View>
     </Pod>
   )

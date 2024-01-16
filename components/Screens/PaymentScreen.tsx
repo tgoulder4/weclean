@@ -75,7 +75,7 @@ const PaymentScreen = () => {
                 </View>
             </View>
             <View style={{ rowGap: spacing.gaps.separateElement }} className={`${mode == "development" ? "bg-green-500" : ""} flex flex-col`}>
-                <Button style={{ height: 60 }} backgroundColour='#4DB583' text="CONTINUE" textColor='white' type='light' onPress={() => { }} />
+                <Button style={{ height: 60 }} backgroundColour='#4DB583' text="CONTINUE" textColor='white' type='light' customOnPress={() => { }} />
             </View>
         </Screen>
     )

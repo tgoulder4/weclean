@@ -87,10 +87,10 @@ export default function App() {
             },
             tabBarShowLabel: false,
           })} />
-          <Tab.Screen name="New Request" component={NewRequestScrn} options={() => ({
+          <Tab.Screen name="New Request" component={NewRequestScrn} options={({ navigation }) => ({
             tabBarIcon: ({ focused, color, size }) => {
               return (
-                <Button type='selection' backgroundColour='white' className='h-2/3 w-2/3'>
+                <Button customOnPress={() => { navigation.navigate("New Request") }} type='selection' backgroundColour='white' className='h-2/3 w-2/3'>
                   <Svg preserveAspectRatio="xMinYMin slice" enable-background="new 0 0 40 40" height="40" width="40" viewBox="0 0 25 25" fill={`${focused ? '#000' :
                     tinycolor("#000").setAlpha(0.8).toString()
                     }`}><G><Path d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5H6c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z" /></G></Svg>

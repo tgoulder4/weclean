@@ -14,7 +14,7 @@ type buttonProps = {
     textColor?: string;
     type: ImpactProps;
     style?: StyleProp<ViewStyle>;
-    onPress?: () => void;
+    customOnPress?: () => void;
     fullWidth?: boolean;
     className?: string;
     children?: React.ReactNode;
@@ -25,26 +25,32 @@ const Button = ({
     backgroundColour,
     textColor,
     type,
-    onPress,
+    customOnPress,
     className,
     style,
     children,
     ...others
 }: buttonProps) => {
-    const [shadow, setShadow] = useState(true);
-    const [offset, setOffset] = useState(0)
+    const [state, setState] = useState({
+        shadow: true,
+        offset: 0,
+    })
     function handleOnPressIn() {
-        setOffset(5);
+        setState({
+            offset: 5,
+            shadow: false,
+        })
         performHaptic(type);
-        setShadow(false);
-        if (onPress) onPress();
     }
-    function handleOnPressOut() {
-        setOffset(0);
-        setShadow(true);
+    function handlePress() {
+        setState({
+            offset: 0,
+            shadow: true,
+        })
+        if (customOnPress) customOnPress();
     }
     return (
-        <Pressable {...others} style={[style, { transform: [{ translateY: offset }], backgroundColor: backgroundColour, shadowColor: tinycolor(backgroundColour).saturate(50).darken(20).toString(), shadowOpacity: shadow ? 0.5 : 0, shadowOffset: { width: 0, height: 4 }, shadowRadius: 0, paddingHorizontal: 12, paddingVertical: 8 }]} className={className + `flex justify-center items-center rounded-md`} onPressIn={handleOnPressIn} onPressOut={handleOnPressOut}>
+        <Pressable {...others} style={[style, { transform: [{ translateY: state.offset }], backgroundColor: backgroundColour, shadowColor: tinycolor(backgroundColour).darken(10).toString(), shadowOpacity: state.shadow ? 0.5 : 0, shadowOffset: { width: 0, height: 4 }, shadowRadius: 0, paddingHorizontal: 12, paddingVertical: 8 }]} className={className + `flex justify-center items-center rounded-md`} onPressIn={handleOnPressIn} onPress={handlePress}>
             {
                 children ? children
                     : <Text allowFontScaling={true} className={`font-afaB text-${textColor}`}>{text}</Text>
