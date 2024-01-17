@@ -23,6 +23,7 @@ const Member = (props: Props) => {
     if (props.mustInclude?.includes(user.id)) {
         unableToUnselect = true;
     }
+    console.log("unableToUnselect: ", unableToUnselect, "user.id: ", user.id, "props.mustInclude: ", props.mustInclude)
 
     function toggleMemberPress(): void {
         if (!props.loading) {

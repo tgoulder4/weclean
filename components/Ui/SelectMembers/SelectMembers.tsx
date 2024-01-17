@@ -83,13 +83,13 @@ const SelectMembers = (props: {
                                 :
                                 //else, render the members
                                 members.map((member, index) =>
-                                    <Member darkMode={props.darkMode} setViewingMode={setViewingMode} alreadySelectedMembers={alreadySelectedMembers} setSelectedMembers={setSelectedMembers} key={member.id} user={{ name: member.name, profileBackgroundColour: member.profileBackgroundColour as IColour, id: member.id, crewID: ['0'], taskIDs: ['0'] }} />) :
+                                    <Member maxMembers={props.maxMemers} mustInclude={props.mustInclude} darkMode={props.darkMode} setViewingMode={setViewingMode} alreadySelectedMembers={alreadySelectedMembers} setSelectedMembers={setSelectedMembers} key={member.id} user={{ name: member.name, profileBackgroundColour: member.profileBackgroundColour as IColour, id: member.id, crewID: ['0'], taskIDs: ['0'] }} />) :
                         //else, render the selected members only
                         alreadySelectedMembers?.map((userID, index) => {
 
                             const member = OriginalMembers.find(_member => _member.id == userID);
                             if (member) {
-                                return <Member darkMode={props.darkMode} setViewingMode={setViewingMode} alreadySelectedMembers={alreadySelectedMembers} setSelectedMembers={setSelectedMembers} key={member.id} user={{ name: member.name, profileBackgroundColour: member.profileBackgroundColour as IColour, id: member.id, crewID: ['0'], taskIDs: ['0'] }} />
+                                return <Member maxMembers={props.maxMemers} mustInclude={props.mustInclude} darkMode={props.darkMode} setViewingMode={setViewingMode} alreadySelectedMembers={alreadySelectedMembers} setSelectedMembers={setSelectedMembers} key={member.id} user={{ name: member.name, profileBackgroundColour: member.profileBackgroundColour as IColour, id: member.id, crewID: ['0'], taskIDs: ['0'] }} />
                             }
                         })
                 }
