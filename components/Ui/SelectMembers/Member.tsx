@@ -9,22 +9,26 @@ type Props = {
     setSelectedMembers?: React.Dispatch<React.SetStateAction<string[]>>,
     user: IUser,
     loading?: boolean
-    alreadySelectedMembers?: string[]
+    alreadySelectedMembers?: string[],
+    maxMembers?: number,
+    setViewingMode?: React.Dispatch<React.SetStateAction<"edit" | "view">>
+    darkMode?: boolean
+    mustInclude?: string[]
 }
 const Member = (props: Props) => {
     const { user } = props;
     const { setSelectedMembers, alreadySelectedMembers } = props;
     const [selected, setSelected] = useState(false)
-    let isThemselves = false;
-    if (user.id == userIDLoggedIn) {
-        isThemselves = true;
+    let unableToUnselect = false;
+    if (props.mustInclude?.includes(user.id)) {
+        unableToUnselect = true;
     }
 
     function toggleMemberPress(): void {
         if (!props.loading) {
             if (!setSelectedMembers) throw new Error('setSelectedMembers is undefined');
             if (selected) {
-                if (!isThemselves) {
+                if (!unableToUnselect) {
                     setSelectedMembers((prevState) => (prevState.filter((userID) => userID !== user.id)
                     ))
                     performHaptic("selection");
@@ -40,9 +44,13 @@ const Member = (props: Props) => {
                 setSelected(true)
             }
         }
+        console.log("alreadySelectedMembers: ", alreadySelectedMembers?.length, "maxMembers: ", props.maxMembers)
+        if (props.maxMembers == Number(alreadySelectedMembers?.length) + 1) {
+            if (props.setViewingMode) props.setViewingMode("view")
+        }
     }
     useEffect(() => {
-        if (isThemselves) {
+        if (unableToUnselect) {
             console.log(props.user.name + " is set to selected as they are apparently the logged in user")
             setSelected(true)
         } else {
@@ -55,11 +63,10 @@ const Member = (props: Props) => {
                 })
             }
         }
-        console.log("Member ", props.user.name, "selected: ", selected, "isThemselves: ", isThemselves)
     }, [])
     return (
-        <Pressable style={{ backgroundColor: colours.dark.background }} className='flex flex-col items-center ' onPress={setSelectedMembers ? toggleMemberPress : null}>
-            <View style={{ borderColor: selected ? 'white' : colours.dark.primary, borderWidth: selected ? 4 : 2 }} className={`mr-2 rounded-lg px-3 py-2 w-28 flex flex-col justify-center items-center gap-y-2 `}>
+        <Pressable style={{ backgroundColor: props.darkMode ? colours.dark.background : colours.light.background }} className='flex flex-col items-center ' onPress={setSelectedMembers ? toggleMemberPress : null}>
+            <View style={{ borderColor: selected ? props.darkMode ? 'white' : "black" : props.darkMode ? colours.dark.primary : colours.light.primary, borderWidth: selected ? 4 : 2 }} className={`mr-2 rounded-lg px-3 py-2 w-28 flex flex-col justify-center items-center gap-y-2 `}>
                 {props.loading ?
                     <>
                         <View className='bg-gray-200  animate-pulse w-8 h-8 rounded-full'></View>
@@ -67,8 +74,7 @@ const Member = (props: Props) => {
                     </> :
                     <>
                         <ProfilePic users={[user]} />
-                        {isThemselves ? <Text style={{ color: colours.dark.textPrimary }} className={`text-base ${selected ? 'font-afaB' : 'font-afa'}`}>Me</Text>
-                            : <Text style={{ color: colours.dark.textPrimary }} numberOfLines={1} ellipsizeMode='tail' className={`text-base ${selected ? 'font-afaB' : 'font-afa'}`}>{user.name}</Text>}
+                        <Text style={{ color: props.darkMode ? colours.dark.textPrimary : colours.light.textPrimary }} numberOfLines={1} ellipsizeMode='tail' className={`text-base ${selected ? 'font-afaB' : 'font-afa'}`}>{user.name}</Text>
                     </>
                 }
             </View>

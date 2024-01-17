@@ -11,10 +11,17 @@ export type ITask = {
     userID: string,
     summary: string,
     type: string,
-    status: string,
+    status: "open" | "completed", //only the user who requested the task can change the status to completed
     assignedAt: string | null,
-    userIDWhoMadeTheRequest: string | null,
-    completedAt: string
+    requestID: string | null,
+    markedAsCompletedAt: string
+}
+export type IRequest = {
+    id: string,
+    status: string,
+    assignedAt: string,
+    userIDWhoMadeTheRequest: string,
+    taskID: string
 }
 export type IUser = {
     id: string,

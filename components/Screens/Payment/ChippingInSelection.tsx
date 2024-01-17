@@ -2,12 +2,13 @@ import { View, Text } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Pod from '../../Ui/Pod'
 import { colours, spacing } from '../../../lib/constants'
-import { getUsersInCrew, pricePerCrewMember } from '../../../lib/backend/actions'
+import { getUsersInCrew } from '../../../lib/backend/actions'
 import { IUser } from '../../../lib/types'
 import { Pressable } from 'react-native';
 import SelectMembers from '../../Ui/SelectMembers/SelectMembers'
 import MultipleChoiceSelectionIndicator from '../../Ui/MultipleChoiceSelectionIndicator'
 import { userIDLoggedIn } from '../../../lib/globals'
+import { pricePerCrewMember } from '../../../lib/backend/mockData'
 var equal = require('deep-equal')
 
 const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mainText: string, subText?: string, pricePerCrewMember: number, usersInThisCrew: IUser[], noStrokeOnSelection?: boolean, last?: boolean, selectedMembers: string[], setSelectedMembers: React.Dispatch<React.SetStateAction<string[]>> }) => {
@@ -61,7 +62,7 @@ const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mai
                         // style={{ rowGap: spacing.gaps.groupedElement, }} 
                         className='flex flex-1 flex-col justify-between'>
                         <Text style={{ color: colours.dark.textPrimary }} className='font-afaB text-base text-[13px]'>{mainText}</Text>
-                        {mainText == "Select members" && selected ? <SelectMembers action="Splitting with" alreadySelectedMembers={selectedMembers} _members={usersInThisCrew} setSelectedMembers={setSelectedMembers} /> : <></>}
+                        {mainText == "Select members" && selected ? <SelectMembers darkMode={true} mustInclude={["GHI789"]} _viewingMode='edit' action="Splitting with" alreadySelectedMembers={selectedMembers} _members={usersInThisCrew} setSelectedMembers={setSelectedMembers} /> : <></>}
                         {
                             equal(props.usersInThisCrew, [] as IUser[]) ? <View style={{ backgroundColor: colours.dark.primary }} className=' animate-pulse w-36 h-8 rounded-lg'></View> :
 

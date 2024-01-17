@@ -15,6 +15,7 @@ import LevellingUpScreen from './components/Screens/LevellingUpScreen';
 import Svg, { G, Path } from 'react-native-svg';
 import tinycolor from 'tinycolor2';
 import Button from './components/Ui/button';
+import NewRequestScreen from './components/Screens/NewRequestScreen';
 function ActivityScrn() {
   return <ActivityScreen />
 }
@@ -25,7 +26,7 @@ function LeaderboardScrn() {
   return <LeaderboardScreen />
 }
 function NewRequestScrn() {
-  return <Text>New Request</Text>
+  return <NewRequestScreen />
 }
 function ProfileScrn() {
   return <Text>Profile</Text>

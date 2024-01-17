@@ -4,6 +4,7 @@ import { Screen } from '../ScreenFactory'
 import Button from '../Ui/button'
 import { colours, spacing } from '../../lib/constants'
 import { useNavigation } from '@react-navigation/native'
+import PerkListing from './LevelUp/perkListing'
 
 const LevellingUpScreen = () => {
     const navigation = useNavigation();
@@ -16,8 +17,17 @@ const LevellingUpScreen = () => {
                 <Button style={{ height: 50, width: "100%", marginTop: spacing.gaps.groupedElement }} text="Let's go!" backgroundColour='white' textColor='black' type='light' customOnPress={() => { navigation.navigate("Payment" as never) }} />
             </View>
         } title='Levelling up...'>
-            <View className='relative grid gri'>
-                <View style={{ backgroundColor: colours.dark.primary }} className='absolute top-0 origin-top-right right-0 w-64 h-full'></View>
+            <View className='relative flex flex-col'>
+                {/* the free pro header */}
+                <View className=' grid grid-cols-levelUpPerk'>
+                    <View className='hidden'></View>
+                    <Text className='text-white  font-afa text-base'>Free</Text>
+                    <Text className='text-white font-rubik text-base'>PRO</Text>
+                </View>
+                {/* the pro background highlight */}
+                <View style={{ backgroundColor: colours.dark.primary }} className='absolute top-0 origin-top-right right-0 w-24 h-full'></View>
+                {/* for each perk.levelupscreen, map */}
+                <PerkListing />
             </View>
         </Screen>
     )

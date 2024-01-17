@@ -2,14 +2,14 @@ import { View, Text } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { Screen } from '../ScreenFactory'
 import { colours, mode, spacing } from '../../lib/constants'
-import { getUsersInCrew, pricePerCrewMember } from '../../lib/backend/actions'
+import { getUsersInCrew } from '../../lib/backend/actions'
 import { IUser } from '../../lib/types'
 import ChippingInSelection from './Payment/ChippingInSelection'
 import performHaptic from '../../lib/performHaptic'
 import Info from '../Ui/Info'
 import Button from '../Ui/button'
 import { userIDLoggedIn } from '../../lib/globals'
-import Summary from './Payment/Summary'
+import { pricePerCrewMember } from '../../lib/backend/mockData'
 const PaymentScreen = () => {
     //this crew ID should be passed into screen as props, as if it were a URL.
     const thisCrewID = "C1";
