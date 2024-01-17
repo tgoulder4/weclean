@@ -10,10 +10,15 @@ export type ITask = {
     id: string,
     userID: string,
     summary: string,
-    type: string,
     status: "open" | "completed", //only the user who requested the task can change the status to completed
-    assignedAt: string | null,
+    assignedAt: string,
     requestID: string | null,
+    crewID: string,
+    type: "Request" | "Rota",
+    reactions: {
+        reaction: string,
+        userIDs: string[]
+    }[],
     markedAsCompletedAt: string
 }
 export type IRequest = {

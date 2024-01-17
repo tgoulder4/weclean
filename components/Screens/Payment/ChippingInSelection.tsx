@@ -18,15 +18,12 @@ const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mai
     switch (mainText) {
         case "Everyone":
             total = pricePerCrewMember;
-            console.log("total for everyone: ", total)
             break;
         case "Only me":
             total = pricePerCrewMember * usersInThisCrew.length;
-            console.log("total for only me: ", total)
             break;
         case "Select members":
             total = (pricePerCrewMember * usersInThisCrew.length) / selectedMembers.length;
-            console.log("total for select members: ", total)
             break;
     }
     if (total < pricePerCrewMember) {
@@ -51,9 +48,9 @@ const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mai
                         !noStrokeOnSelection ? 4 : 1 : 1,
                     colour: selected ?
                         !noStrokeOnSelection ?
-                            colours.dark.textSecondary
-                            : colours.dark.primary
-                        : colours.dark.primary
+                            colours.dark.secondary
+                            : colours.dark.textSecondary
+                        : colours.dark.textSecondary
                 }
             }>
                 <View className='flex flex-row items-center'>
@@ -64,7 +61,7 @@ const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mai
                         <Text style={{ color: colours.dark.textPrimary }} className='font-afaB text-base text-[13px]'>{mainText}</Text>
                         {mainText == "Select members" && selected ? <SelectMembers darkMode={true} mustInclude={["GHI789"]} _viewingMode='edit' action="Splitting with" alreadySelectedMembers={selectedMembers} _members={usersInThisCrew} setSelectedMembers={setSelectedMembers} /> : <></>}
                         {
-                            equal(props.usersInThisCrew, [] as IUser[]) ? <View style={{ backgroundColor: colours.dark.primary }} className=' animate-pulse w-36 h-8 rounded-lg'></View> :
+                            equal(props.usersInThisCrew, [] as IUser[]) ? <View style={{ backgroundColor: colours.dark.primary }} className=' animate-pulse w-36 h-7 rounded-lg'></View> :
 
                                 (mainText == "Select members" && selected) || mainText == "Everyone" || mainText == "Only me" && selected ?
 

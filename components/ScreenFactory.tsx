@@ -16,32 +16,18 @@ type Props = {
   titleStyle?: StyleProp<TextStyle>;
   customTitle?: React.ReactNode;
   darkMode?: boolean;
+  customGoBackSequence?: () => void;
 }
 export const Screen = (props: Props) => {
-  const { titleStyle, customTitle } = props;
+  const { titleStyle, customTitle, customGoBackSequence } = props;
   const navigation = useNavigation();
   const colourScheme = props.darkMode ? 'dark' : useColorScheme();
-  function handleGoback() {
-    Alert.alert("Exit elevation?", "Are you sure you want to exit elevating your crew?", [
-      {
-        text: "Cancel",
-        onPress: () => { },
-        style: "cancel"
-      },
-      {
-        text: "Exit",
-        onPress: () => { navigation.goBack() },
-        style: "destructive"
-      }
-
-    ]);
-  }
   return (
     <View style={{ backgroundColor: colourScheme == 'dark' ? colours.dark.background : colours.light.background }} className={`${props.bottomStickyElement ? "flex flex-col" : ""} h-full pt-16 `}>
       {
         props.crossTopLeft ?
           <View className='w-full flex flex-row justify-end px-4'>
-            <Pressable onPress={() => { handleGoback() }}>
+            <Pressable onPress={customGoBackSequence}>
               <Ionicons name="close" size={28} color="#ebebeb" />
             </Pressable>
           </View>

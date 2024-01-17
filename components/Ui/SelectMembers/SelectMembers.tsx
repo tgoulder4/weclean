@@ -1,7 +1,7 @@
 import { View, Text, TextInput, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Member from './Member'
-import { getProfileBackgroundColour, } from '../../../lib/backend/actions'
+import { getProfileBackgroundColour, getUsersInCrew, } from '../../../lib/backend/actions'
 import { IColour, IUser } from '../../../lib/types'
 import { colours, spacing } from '../../../lib/constants'
 import { userIDLoggedIn } from '../../../lib/globals'
@@ -10,20 +10,42 @@ export type SetSelectedMembers = {
     userIDs: string[]
 }
 
+/**
+ * 
+ * @param props _members is the passed members. members is the members that are rendered.
+ * @returns 
+ */
 const SelectMembers = (props: {
     setSelectedMembers: React.Dispatch<React.SetStateAction<string[]
-    >>, action: string, _members: Array<IUser>, alreadySelectedMembers?: string[], _viewingMode: "edit" | "view", maxMemers?: number, darkMode?: boolean, mustInclude?: string[]
+    >>, action: string, _members?: Array<IUser>, alreadySelectedMembers?: string[], _viewingMode: "edit" | "view", maxMemers?: number, darkMode?: boolean, mustInclude?: string[]
 }) => {
     const { action, setSelectedMembers, _members, alreadySelectedMembers, _viewingMode } = props;
-    const [members, setMembers] = useState<Array<IUser>>(_members)
-    const [viewingMode, setViewingMode] = useState(_viewingMode)
+    const [OriginalMembers, setOriginalMembers] = useState<Array<IUser>>(_members ? _members : [] as IUser[]);
+    console.log("OriginalMembers: ", OriginalMembers);
+    const [members, setMembers] = useState<Array<IUser>>(OriginalMembers);
+    const [viewingMode, setViewingMode] = useState(_viewingMode);
+
+    //this should be passed into the screen as a prop, as if it were a URL.
+    const userIDLoggedIn = "GHI789";
+
+    console.log("viewingMode: ", viewingMode);
+    console.log("_members: ", _members);
     const names: string[] = alreadySelectedMembers?.map(userID => {
         if (userID == userIDLoggedIn) return ""
-        const _name = _members.find(_member => _member.id == userID)?.name;
+        const _name = _members?.find(_member => _member.id == userID)?.name;
         if (_name) return _name;
         else return ""
     }).filter(name => name != "") as string[];
-    console.log("names: ", names, "_members: ", _members, "alreadySelectedMembers: ", alreadySelectedMembers)
+    async function main() {
+        const mem = await getUsersInCrew("C1", userIDLoggedIn);
+        setOriginalMembers(mem)
+        setMembers(mem);
+    }
+    //if the members aren't passed, get users in crew from backend
+    useEffect(() => {
+        if (!props._members) main();
+    }, []
+    )
     return (
         <View style={{ rowGap: spacing.gaps.groupedElement }} className='flex flex-col flex-1'>
             <View className='flex flex-row'>
@@ -37,7 +59,7 @@ const SelectMembers = (props: {
                 <TextInput clearButtonMode='always'
                     onChangeText={(text) => {
                         if (text == "") {
-                            setMembers(_members)
+                            setMembers(OriginalMembers)
                         }
                         else {
                             console.log("performing search...")
@@ -50,7 +72,7 @@ const SelectMembers = (props: {
                 {
                     viewingMode == "edit" ?
                         //if there are no passed to this component yet, show loading members
-                        _members.length == 0 ?
+                        OriginalMembers.length == 0 ?
                             <>
                                 <Member loading={true} user={{ name: "a", profileBackgroundColour: "b" as IColour, id: '0', crewID: ['0'], taskIDs: ['0'] }} />
                                 <Member loading={true} user={{ name: "a", profileBackgroundColour: "b" as IColour, id: '0', crewID: ['0'], taskIDs: ['0'] }} />
@@ -65,7 +87,7 @@ const SelectMembers = (props: {
                         //else, render the selected members only
                         alreadySelectedMembers?.map((userID, index) => {
 
-                            const member = _members.find(_member => _member.id == userID);
+                            const member = OriginalMembers.find(_member => _member.id == userID);
                             if (member) {
                                 return <Member darkMode={props.darkMode} setViewingMode={setViewingMode} alreadySelectedMembers={alreadySelectedMembers} setSelectedMembers={setSelectedMembers} key={member.id} user={{ name: member.name, profileBackgroundColour: member.profileBackgroundColour as IColour, id: member.id, crewID: ['0'], taskIDs: ['0'] }} />
                             }

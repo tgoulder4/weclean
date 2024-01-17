@@ -10,7 +10,7 @@ import Info from '../Ui/Info'
 import Button from '../Ui/button'
 import { userIDLoggedIn } from '../../lib/globals'
 import { pricePerCrewMember } from '../../lib/backend/mockData'
-const PaymentScreen = () => {
+const PaymentScreen = (props: { paymentScreenGoBack: () => void }) => {
     //this crew ID should be passed into screen as props, as if it were a URL.
     const thisCrewID = "C1";
     type ISelection = "Everyone" | "Select members" | "Only me"
@@ -44,15 +44,14 @@ const PaymentScreen = () => {
         getUserCrewInfo()
     }, [])
     return (
-        <Screen darkMode={true} titleStyle={{ fontSize: 19 }} crossTopLeft={true} title="Who's chipping in?" >
+        <Screen customGoBackSequence={
+            props.paymentScreenGoBack
+        } darkMode={true} titleStyle={{ fontSize: 19 }} crossTopLeft={true} title="Who's chipping in?" >
             <View className={mode == "development" ? "bg-green-500" : ""}>
                 <ChippingInSelection selectedMembers={selectedMembersChippingIn} setSelectedMembers={setSelectedMembersChippingIn} pricePerCrewMember={pricePerCrewMember} usersInThisCrew={usersInThisCrew.usersInThisCrew} onSelect={handleSetSelection} mainText='Everyone' selected={selection == 'Everyone'} />
                 <ChippingInSelection selectedMembers={selectedMembersChippingIn} setSelectedMembers={setSelectedMembersChippingIn} pricePerCrewMember={pricePerCrewMember} usersInThisCrew={usersInThisCrew.usersInThisCrew} onSelect={handleSetSelection} mainText='Select members' noStrokeOnSelection={true} selected={selection == 'Select members'} />
                 <ChippingInSelection selectedMembers={selectedMembersChippingIn} setSelectedMembers={setSelectedMembersChippingIn} last={true} pricePerCrewMember={pricePerCrewMember} usersInThisCrew={usersInThisCrew.usersInThisCrew} onSelect={handleSetSelection} mainText='Only me' selected={selection == 'Only me'} />
             </View>
-            {/* <View style={{ rowGap: spacing.gaps.groupedElement }} className={`flex flex-col ${mode == "development" ? "bg-green-500" : ""}`}>
-                <Info backgroundColour='#4E9580' description="You're 1 step away from tripling your crew's performance. 🎯" />
-            </View> */}
             {(selection == "Select members" && selectedMembersChippingIn.length > 1) || selection == "Everyone" ?
                 <Info customAlpha={1} backgroundColour='#7A95B4' description="✌ Your crew will be elevated once you and all selected members subscribe." /> : <></>
             }

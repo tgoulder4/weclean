@@ -15,8 +15,12 @@ export const tasks: ITask[] = [
         type: "Request",
         requestID: "R1",
         status: "open",
-        markedAsCompletedAt: "1h ago",
-        assignedAt: "2 days ago"
+        markedAsCompletedAt: "2023-16-04 11:00:00",
+        reactions: [{
+            reaction: "👍",
+            userIDs: ["ABC123", "DEF456"]
+        }],
+        assignedAt: "2023-16-04 11:00:00"
     },
     {
         id: "T2",
@@ -25,8 +29,12 @@ export const tasks: ITask[] = [
         type: "Request",
         requestID: "R1",
         status: "open",
-        markedAsCompletedAt: "1h ago",
-        assignedAt: "2 days ago"
+        markedAsCompletedAt: "2023-16-04 11:00:00",
+        reactions: [{
+            reaction: "😻",
+            userIDs: ["ABC123", "DEF456"]
+        }],
+        assignedAt: "2023-16-04 11:00:00"
     },
 ];
 export const crews: ICrew[] = [

@@ -16,7 +16,7 @@ module.exports = {
       gridTemplateColumns: {
 
         // Complex site-specific column configuration
-        'levelUpPerk': '100% 50px 50px',
+        'levelUpPerk': '100% 10px 10px',
       }
       // boxShadow:{
       //   incentiveInset: 'inset_0px_8px_6px_0px_rgba(255,255,255,1)'

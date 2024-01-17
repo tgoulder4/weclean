@@ -7,15 +7,13 @@ import LeaderboardScreen from './components/Screens/LeaderboardScreen';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image, Text } from 'react-native';
-import GoProScreen from './components/Screens/GoProScreen';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import PaymentScreen from './components/Screens/PaymentScreen';
 import type { StatusBarStyle } from 'react-native';
-import LevellingUpScreen from './components/Screens/LevellingUpScreen';
 import Svg, { G, Path } from 'react-native-svg';
 import tinycolor from 'tinycolor2';
 import Button from './components/Ui/button';
 import NewRequestScreen from './components/Screens/NewRequestScreen';
+import ProOnboarding from './components/Screens/ProOnboarding';
 function ActivityScrn() {
   return <ActivityScreen />
 }
@@ -31,14 +29,8 @@ function NewRequestScrn() {
 function ProfileScrn() {
   return <Text>Profile</Text>
 }
-function GoProScrn() {
-  return <GoProScreen />
-}
-function PaymentScrn() {
-  return <PaymentScreen />
-}
-function LevellingUpScrn() {
-  return <LevellingUpScreen />
+function ProOnboardingScrn() {
+  return <ProOnboarding />
 }
 const Tab = createBottomTabNavigator();
 
@@ -120,7 +112,7 @@ export default function App() {
             },
             tabBarShowLabel: false,
           })} />
-          <Tab.Screen name="Go Pro" component={GoProScrn}
+          <Tab.Screen name="Go Pro" component={ProOnboardingScrn}
             options={() => ({
               tabBarStyle: {
                 display: "none",
@@ -130,28 +122,6 @@ export default function App() {
                 display: "none"
               },
 
-            })}
-          />
-          <Tab.Screen name="Levelling Up" component={LevellingUpScrn}
-            options={() => ({
-              tabBarStyle: {
-                display: "none",
-              }
-              ,
-              tabBarItemStyle: {
-                display: "none"
-              }
-            })}
-          />
-          <Tab.Screen name="Payment" component={PaymentScrn}
-            options={() => ({
-              tabBarStyle: {
-                display: "none",
-              }
-              ,
-              tabBarItemStyle: {
-                display: "none"
-              }
             })}
           />
         </Tab.Navigator>

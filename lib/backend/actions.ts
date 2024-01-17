@@ -1,6 +1,7 @@
 import { IColour } from "../types"
 import { ITask, IUser, ICrew, IGoProPerk, ILevelUpPerk } from "../types"
 import { tasks, users, crews, pricePerCrewMember, perks } from "./mockData";
+import { subHours } from 'date-fns';
 
 const sleep = (ms: number) => new Promise<void>(r => setTimeout(r, ms));
 
@@ -8,10 +9,12 @@ async function getTaskByID(taskID: string) {
     await sleep(1000);
     return tasks.find(task => task.id === taskID);
 }
-async function getLast24hrCrewTasks(crewID: string) {
+export async function getLast24hrCrewTasks(crewID: string) {
     await sleep(1000);
-    //compare time now to time stored and return if their difference isn't more than one day
-
+    const currentDate = new Date();
+    const twentyFourHoursAgo = subHours(currentDate, 24);
+    const crewTasks: ITask[] = tasks.filter(task => task.crewID === crewID && new Date(task.assignedAt) > twentyFourHoursAgo);
+    return crewTasks;
 }
 export async function getProfileBackgroundColour(userID: string): Promise<IColour> {
     await sleep(1000);

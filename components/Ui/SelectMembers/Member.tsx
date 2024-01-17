@@ -51,13 +51,13 @@ const Member = (props: Props) => {
     }
     useEffect(() => {
         if (unableToUnselect) {
-            console.log(props.user.name + " is set to selected as they are apparently the logged in user")
+            // console.log(props.user.name + " is set to selected as they are apparently the logged in user")
             setSelected(true)
         } else {
             if (alreadySelectedMembers) {
                 alreadySelectedMembers.forEach((userID) => {
                     if (userID === user.id) {
-                        console.log(props.user.name + " is set to selected as they are apparently already selected")
+                        // console.log(props.user.name + " is set to selected as they are apparently already selected")
                         setSelected(true)
                     }
                 })
