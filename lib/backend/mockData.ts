@@ -131,6 +131,7 @@ export const users: IUser[] = [{
     email: "a@b.com",
     username: "mateusz01",
     password: "123",
+    checkCode: "2bab2b4b6k23u1h2",
     crewID: ["abc"],
     taskIDs: ["T1", "T2"],
     name: "Mateusz",
@@ -141,6 +142,7 @@ export const users: IUser[] = [{
     username: "tye01",
     email: "c@d.com",
     password: "123",
+    checkCode: "9shavejdsayyatjt838d",
     crewID: ["abc"],
     name: "Tye",
     taskIDs: ["T1", "T2"],
@@ -152,6 +154,7 @@ export const users: IUser[] = [{
     username: "kate01",
     email: "e@f.com",
     password: "123",
+    checkCode: "39fdhdj387x6sujhs",
     name: "Kate",
     taskIDs: ["T1", "T2"],
     profileBackgroundColour: "pink-500"

@@ -6,7 +6,7 @@ import TasksScreen from './components/Screens/TasksScreen';
 import LeaderboardScreen from './components/Screens/LeaderboardScreen';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Image, Text } from 'react-native';
+import { Alert, Image, Text } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import type { StatusBarStyle } from 'react-native';
 import Svg, { G, Path } from 'react-native-svg';
@@ -16,6 +16,7 @@ import NewRequestScreen from './components/Screens/NewRequestScreen';
 import ProOnboarding from './components/Screens/ProOnboarding';
 import Login from './components/Screens/Login';
 import ProfileScreen from './components/Screens/ProfileScreen';
+import { checkUserIsInCrewToAvoidHacks } from './lib/backend/actions';
 function ActivityScrn() {
   return <ActivityScreen />
 }
@@ -59,6 +60,10 @@ export default function App() {
   }
   const loggedIn = true;
   if (!loggedIn) return <Login />
+  if (!checkUnmodifiedLocalUser()) {
+    Alert.alert("You're not in the crew(s) stored on your device.", "Please log out and log back in again.")
+    return (<Login />)
+  }
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <NavigationContainer onReady={onLayoutRootView}>

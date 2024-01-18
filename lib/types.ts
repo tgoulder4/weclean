@@ -36,6 +36,7 @@ export type IUser = {
     crewID: string[],
     taskIDs: string[],
     name: string,
+    checkCode: string,
     profileBackgroundColour: IColour
 }
 export type ICrew = {

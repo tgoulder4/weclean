@@ -5,6 +5,7 @@ import { getProfileBackgroundColour, getUsersInCrew, } from '../../../lib/backen
 import { IColour, IUser } from '../../../lib/types'
 import { colours, spacing } from '../../../lib/constants'
 import { userIDLoggedIn } from '../../../lib/globals'
+import { PulseComponent } from '../../../lib/animations'
 //return the tsx and the count
 export type SetSelectedMembers = {
     userIDs: string[]
@@ -73,10 +74,10 @@ const SelectMembers = (props: {
                     viewingMode == "edit" ?
                         //if there are no passed to this component yet, show loading members
                         OriginalMembers.length == 0 ?
-                            <>
+                            <PulseComponent>
                                 <Member loading={true} user={{ name: "a", profileBackgroundColour: "b" as IColour, id: '0', crewID: ['0'], taskIDs: ['0'] }} />
                                 <Member loading={true} user={{ name: "a", profileBackgroundColour: "b" as IColour, id: '0', crewID: ['0'], taskIDs: ['0'] }} />
-                            </>
+                            </PulseComponent>
                             :
                             //if the rendered members length is 0, no search results were found
                             members.length == 0 ? <Text className='font-afa flex-1 w-48 text-base text-gray-400 h-24'>No members match this search criteria.</Text>

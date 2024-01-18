@@ -9,6 +9,7 @@ import SelectMembers from '../../Ui/SelectMembers/SelectMembers'
 import MultipleChoiceSelectionIndicator from '../../Ui/MultipleChoiceSelectionIndicator'
 import { userIDLoggedIn } from '../../../lib/globals'
 import { pricePerCrewMember } from '../../../lib/backend/mockData'
+import { PulseComponent } from '../../../lib/animations'
 var equal = require('deep-equal')
 
 const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mainText: string, subText?: string, pricePerCrewMember: number, usersInThisCrew: IUser[], noStrokeOnSelection?: boolean, last?: boolean, selectedMembers: string[], setSelectedMembers: React.Dispatch<React.SetStateAction<string[]>> }) => {
@@ -61,7 +62,7 @@ const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mai
                         <Text style={{ color: colours.dark.textPrimary }} className='font-afaB text-base text-[13px]'>{mainText}</Text>
                         {mainText == "Select members" && selected ? <SelectMembers darkMode={true} mustInclude={["GHI789"]} _viewingMode='edit' action="Splitting with" alreadySelectedMembers={selectedMembers} _members={usersInThisCrew} setSelectedMembers={setSelectedMembers} /> : <></>}
                         {
-                            equal(props.usersInThisCrew, [] as IUser[]) ? <View style={{ backgroundColor: colours.dark.primary }} className=' animate-pulse w-36 h-7 rounded-lg'></View> :
+                            equal(props.usersInThisCrew, [] as IUser[]) ? <PulseComponent><View style={{ backgroundColor: colours.dark.primary }} className=' w-36 h-7 rounded-lg'></View></PulseComponent> :
 
                                 (mainText == "Select members" && selected) || mainText == "Everyone" || mainText == "Only me" && selected ?
 

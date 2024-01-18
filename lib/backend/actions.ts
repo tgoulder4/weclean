@@ -59,10 +59,28 @@ export async function getCrewInfo(crewID: string): Promise<ICrew | undefined> {
     await sleep(1000);
     return crews.find(crew => crew.id === crewID);
 }
-export async function checkLoginSuccessAndReturnUserObject(username: string, _password: string): Promise<IUser | boolean> {
+export async function checkLoginSuccessAndReturnUserObject(props: { username?: string, _password?: string, userID?: string, checkCode?: string }): Promise<IUser | boolean> {
     await sleep(1000);
-    const result = users.find(user => user.username === username && user.password === _password);
+    const result = users.find(user => user.username === props.username && user.password === props._password);
     if (result === undefined) return false;
     const { password, ...userWithoutPassword } = result;
     return userWithoutPassword as IUser;
+}
+export async function checkUnmodifiedLocalUser(userID: string, crewID: string): Promise<boolean> {
+    await sleep(1000);
+    const crew = crews.find(crew => crew.id === crewID);
+    if (crew === undefined) return false;
+    return crew.members.includes(userID);
+}
+export async function setUserCheckCode(userID: string): Promise<void> {
+    await sleep(1000);
+    const user = users.find(user => user.id === userID);
+    if (user === undefined) return;
+
+}
+export async function getUserCheckCode(userID: string): Promise<string | undefined> {
+    await sleep(1000);
+    const user = users.find(user => user.id === userID);
+    if (user === undefined) return;
+    return user.checkCode;
 }
