@@ -104,7 +104,6 @@ const ProOnboarding = () => {
                             </View>
                             <View className='flex flex-col'>
                                 <Button style={{ height: 50, width: "100%", marginTop: spacing.gaps.groupedElement }} text="Sounds good!" backgroundColour='#1D1D1D' textColor='white' type='light' customOnPress={() => {
-                                    performHaptic("success")
                                     setStage("levellingUpScreen")
                                 }} />
                                 <Pressable

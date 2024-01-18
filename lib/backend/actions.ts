@@ -30,16 +30,20 @@ export async function getProfileBackgroundColour(userID: string): Promise<IColou
  */
 export async function getUsersInCrew(crewID: string, inPerspectiveOfUserID: string): Promise<IUser[]> {
     await sleep(1000);
-    const result = crews.find(crew => crew.id === crewID)?.members;
-    if (result === undefined) return [];
+    const crew = crews.find(crew => crew.id === crewID);
+    if (crew === undefined) return [];
+    const usersInCrew: IUser[] = [];
+    for (const userID of crew.members) {
+        const user = users.find(user => user.id === userID);
+        if (user === undefined) continue;
+        if (user.id === inPerspectiveOfUserID) {
+            usersInCrew.unshift(user);
+        } else {
+            usersInCrew.push(user);
+        }
+    }
+    return usersInCrew;
 
-    const sortedMembers = result.sort((a, b) => {
-        if (a.id === inPerspectiveOfUserID) return -1;
-        if (b.id === inPerspectiveOfUserID) return 1;
-        return 0;
-    });
-
-    return sortedMembers;
 }
 export async function getPricePerCrewMember(): Promise<number> {
     await sleep(1000);
@@ -50,4 +54,15 @@ export async function getPricePerCrewMember(): Promise<number> {
 export async function getPerks(): Promise<{ goProScreen: IGoProPerk[], levellingUpScreen: ILevelUpPerk[] }> {
     await sleep(1000);
     return perks;
+}
+export async function getCrewInfo(crewID: string): Promise<ICrew | undefined> {
+    await sleep(1000);
+    return crews.find(crew => crew.id === crewID);
+}
+export async function checkLoginSuccessAndReturnUserObject(username: string, _password: string): Promise<IUser | boolean> {
+    await sleep(1000);
+    const result = users.find(user => user.username === username && user.password === _password);
+    if (result === undefined) return false;
+    const { password, ...userWithoutPassword } = result;
+    return userWithoutPassword as IUser;
 }

@@ -31,9 +31,9 @@ const PaymentScreen = (props: { paymentScreenGoBack: () => void }) => {
                     setSelectedMembersChippingIn([userIDLoggedIn])
                     break;
             }
+            performHaptic("medium");
             setSelection(newSelection)
         }
-        if (newSelection !== selection && newSelection !== "Select members") performHaptic("selection");
     }
     useEffect(() => {
         async function getUserCrewInfo() {

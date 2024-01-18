@@ -30,6 +30,9 @@ export type IRequest = {
 }
 export type IUser = {
     id: string,
+    username: string,
+    email: string,
+    password: string,
     crewID: string[],
     taskIDs: string[],
     name: string,
@@ -39,7 +42,8 @@ export type ICrew = {
     id: string,
     name: string,
     taskIDs: string[],
-    members: IUser[]
+    members: string[],
+    isPro: boolean,
 }
 export type IGoProPerk = {
     icon: string,

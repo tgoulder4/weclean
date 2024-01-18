@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useFonts, RubikMonoOne_400Regular } from "@expo-google-fonts/rubik-mono-one";
 import * as SplashScreen from 'expo-splash-screen';
 import ActivityScreen from './components/Screens/ActivityScreen';
@@ -14,6 +14,8 @@ import tinycolor from 'tinycolor2';
 import Button from './components/Ui/button';
 import NewRequestScreen from './components/Screens/NewRequestScreen';
 import ProOnboarding from './components/Screens/ProOnboarding';
+import Login from './components/Screens/Login';
+import ProfileScreen from './components/Screens/ProfileScreen';
 function ActivityScrn() {
   return <ActivityScreen />
 }
@@ -27,13 +29,12 @@ function NewRequestScrn() {
   return <NewRequestScreen />
 }
 function ProfileScrn() {
-  return <Text>Profile</Text>
+  return <ProfileScreen />
 }
 function ProOnboardingScrn() {
   return <ProOnboarding />
 }
 const Tab = createBottomTabNavigator();
-
 SplashScreen.preventAutoHideAsync();
 // using this file as the layout as if in nextjs
 const sleep = (ms: number) => new Promise<void>(r => setTimeout(r, ms));
@@ -56,6 +57,8 @@ export default function App() {
   if (!fontsLoaded) {
     return null;
   }
+  const loggedIn = true;
+  if (!loggedIn) return <Login />
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <NavigationContainer onReady={onLayoutRootView}>

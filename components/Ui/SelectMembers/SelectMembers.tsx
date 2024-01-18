@@ -17,7 +17,7 @@ export type SetSelectedMembers = {
  */
 const SelectMembers = (props: {
     setSelectedMembers: React.Dispatch<React.SetStateAction<string[]
-    >>, action: string, _members?: Array<IUser>, alreadySelectedMembers?: string[], _viewingMode: "edit" | "view", maxMemers?: number, darkMode?: boolean, mustInclude?: string[]
+    >>, action: string, _members?: Array<IUser>, alreadySelectedMembers?: string[], _viewingMode: "edit" | "view", maxMemers?: number, darkMode?: boolean, mustInclude?: string[], dontShow?: string[]
 }) => {
     const { action, setSelectedMembers, _members, alreadySelectedMembers, _viewingMode } = props;
     const [OriginalMembers, setOriginalMembers] = useState<Array<IUser>>(_members ? _members : [] as IUser[]);
@@ -32,7 +32,7 @@ const SelectMembers = (props: {
     console.log("_members: ", _members);
     const names: string[] = alreadySelectedMembers?.map(userID => {
         if (userID == userIDLoggedIn) return ""
-        const _name = _members?.find(_member => _member.id == userID)?.name;
+        const _name = OriginalMembers.find(_member => _member.id == userID)?.name;
         if (_name) return _name;
         else return ""
     }).filter(name => name != "") as string[];
@@ -51,7 +51,7 @@ const SelectMembers = (props: {
             <View className='flex flex-row'>
                 {
                     names.length > 0 ?
-                        <Text style={{ color: colours.dark.textPrimary }} className='font-afa text-base'>{action} {names?.join(", ")}</Text> : <Text style={{ color: colours.dark.textSecondary }} className='font-afaB text-base'>No one else selected</Text>
+                        <Text style={{ color: props.darkMode ? colours.dark.textPrimary : colours.light.textPrimary }} className='font-afa text-base'>{action} {names?.join(", ")}</Text> : <Text style={{ color: colours.dark.textSecondary }} className='font-afaB text-base'>No one else selected</Text>
                 }
             </View>
             {viewingMode == "edit" ?

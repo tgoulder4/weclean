@@ -54,7 +54,7 @@ const ActivityEvent = (props: ActivityEventProps) => {
                     </View>
                     {type == "Rota" ? <Text className='bg-indigo-500 font-bold'>📅</Text> : type == "Courtesy" ? (images['kindness'] ? <Image className='w-12 h-12 object-contain' source={images['kindness']} /> : null) : <ProfilePic isRequest={true} users={usersWhoMadeRequest!} />}
                 </View>
-                {!media ? <Text className='bg-blue-500 font-afa text-base text-gray-500'>{getAfterText(completionTime + " ago", props.task.type)}</Text> : <></>}
+                {!media ? <Text className='font-afa text-base text-gray-500'>{getAfterText(completionTime + " ago", props.task.type)}</Text> : <></>}
             </View>
         </Pod >
     )
