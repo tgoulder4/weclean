@@ -9,12 +9,12 @@ import performHaptic from '../../lib/performHaptic';
 import ActionSheet, { ActionSheetRef } from "react-native-actions-sheet";
 import { useNavigation } from '@react-navigation/native';
 import { pricePerCrewMember } from '../../lib/backend/mockData';
-import { getPerks } from '../../lib/backend/actions';
 import { IGoProPerk, ILevelUpPerk } from '../../lib/types';
 import { Screen } from '../ScreenFactory';
 import PerkListing from './LevelUp/PerkListing';
 import PaymentScreen from './PaymentScreen';
 import { Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const ProOnboarding = () => {
     // const { andText } = route.params;
     const navigation = useNavigation()
@@ -54,7 +54,9 @@ const ProOnboarding = () => {
     // Appearance.setColorScheme("dark")
     useEffect(() => {
         async function main() {
-            const perks = await getPerks();
+            const perks = await AsyncStorage.getItem("perks").then((perks) => {
+                return perks ? JSON.parse(perks) : null
+            });
             setPerks(perks);
         }
         main();

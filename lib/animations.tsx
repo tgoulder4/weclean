@@ -1,6 +1,7 @@
 import * as Animatable from 'react-native-animatable';
-import { View, Text } from 'react-native'
+import { View, Text, ViewStyle, StyleProp } from 'react-native'
 import React from 'react'
+import { colours } from './constants';
 export const pulse = {
     0: {
         opacity: 0.5,
@@ -24,9 +25,10 @@ export const spin = {
     },
 };
 
-export const PulseComponent = (props: { children: React.ReactNode }) => {
+export const PulseComponent = (props: { style?: StyleProp<ViewStyle>, children?: React.ReactNode }) => {
+    const { style } = props;
     return (
-        <Animatable.View animation={pulse} iterationCount="infinite">
+        <Animatable.View style={[style, { borderRadius: 5, backgroundColor: colours.light.input.border }]} animation={pulse} iterationCount="infinite">
             {props.children}
         </Animatable.View>
     )

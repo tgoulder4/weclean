@@ -17,16 +17,15 @@ export type ITask = {
     id: string,
     userID: string,
     summary: string,
-    status: "open" | "completed", //only the user who requested the task can change the status to completed
     assignedAt: string,
-    requestID: string | null,
-    crewID: string,
-    type: "Request" | "Rota",
+    idOfUserWhoRequested: string[] | null,
+    type: "Request" | "Rota" | "Courtesy",
+    media?: string,
     reactions: {
         reaction: string,
         userIDs: string[]
     }[],
-    markedAsCompletedAt: string
+    markedAsCompletedAt: string | null //only the user who requested the task can change the status to completed
 }
 export type IRequest = {
     id: string,
@@ -49,7 +48,7 @@ export type IUser = {
 export type ICrew = {
     id: string,
     name: string,
-    taskIDs: string[],
+    tasks: ITask[],
     members: string[],
     isPro: boolean,
 }

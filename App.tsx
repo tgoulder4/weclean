@@ -16,6 +16,8 @@ import NewRequestScreen from './components/Screens/NewRequestScreen';
 import ProOnboarding from './components/Screens/ProOnboarding';
 import Login from './components/Screens/Login';
 import ProfileScreen from './components/Screens/ProfileScreen';
+import { getPerks } from './lib/backend/actions';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 function ActivityScrn() {
   return <ActivityScreen />
 }
@@ -47,9 +49,15 @@ export default function App() {
     "AfacadBold": require('./assets/fonts/AfacadBold.ttf'),
     "rubik": RubikMonoOne_400Regular
   });
+  async function refreshLocalStorage() {
+    await getPerks().then((perks) => {
+      AsyncStorage.setItem("perks", JSON.stringify(perks))
+    })
+  }
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
       // await sleep(2000);
+      await refreshLocalStorage();
       await SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);

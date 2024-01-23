@@ -28,7 +28,7 @@ export async function getProfileBackgroundColour(userID: string): Promise<IColou
  * @param inPerspectiveOfUserID The userID which will always show first in the list returned.
  * @returns 
  */
-export async function getUsersInCrew(crewID: string, inPerspectiveOfUserID: string): Promise<IUser[]> {
+export async function getUsersInCrew(crewID: string, inPerspectiveOfUserID?: string): Promise<IUser[]> {
     await sleep(1000);
     const crew = crews.find(crew => crew.id === crewID);
     if (crew === undefined) return [];
@@ -56,9 +56,11 @@ export async function getPerks(): Promise<{ goProScreen: IGoProPerk[], levelling
     return perks;
 }
 //store in local storage
-export async function getCrewInfo(crewID: string): Promise<ICrew | undefined> {
+export async function getCrewInfo(crewID: string): Promise<ICrew | null> {
     await sleep(1000);
-    return crews.find(crew => crew.id === crewID);
+    const _crews = crews.find(crew => crew.id === crewID);
+    if (_crews === undefined) return null;
+    return _crews;
 }
 export async function checkLoginSuccessAndReturnUserObject(props: { username?: string, _password?: string, userID?: string, checkCode?: string }): Promise<IUser | boolean> {
     await sleep(1000);
@@ -94,4 +96,20 @@ export async function getTasksFromTaskIDs(taskIDs: string[]): Promise<ITask[]> {
         tasksToReturn.push(task);
     }
     return tasksToReturn;
+}
+export async function getUserFromUserID(userID: string): Promise<IUser | null> {
+    await sleep(1000);
+    const user = users.find(user => user.id === userID);
+    return user ? user : null;
+}
+export async function fetchCompletedTasksInRange(crewID: string, startIndex: number, endIndex: number) {
+    await sleep(1000);
+    const crew = crews.find(crew => crew.id === crewID);
+    if (crew === undefined) return [];
+    const completedTasks = crew.tasks.filter(task => {
+        return task.markedAsCompletedAt !== null
+    }
+    )
+
+
 }

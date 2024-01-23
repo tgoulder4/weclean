@@ -9,7 +9,7 @@ type PodProps = {
   variant?: 'pod' | 'pod-media' | 'pod-media-pod';
   children: React.ReactNode;
   bottomPodContent?: React.ReactNode;
-  media?: string;
+  media?: string | React.ReactNode;
   style?: StyleProp<ViewStyle>;
   customPadding?: { paddingX?: number, paddingY?: number };
   customBorder?: { colour?: string, width?: number };
@@ -42,12 +42,14 @@ const Pod = (podProps: PodProps) => {
       </View>
       {podProps.variant == "pod-media" || podProps.variant == "pod-media-pod" ?
         <View className={`relative flex items-center justify-center ${getMediaRoundedCorners(variant)}`}>
-          <Image className={`w-full max-h-52 aspect-video object-cover ${getMediaRoundedCorners(variant)}`} source={{ uri: media }} onLoadEnd={
-            () => {
-              setMediaLoading(false)
-              console.log("media loading false")
-            }
-          } />
+          <Image className={`w-full max-h-52 aspect-video object-cover ${getMediaRoundedCorners(variant)}`}
+            source={{ uri: typeof media === 'string' ? media : undefined }}
+            onLoadEnd={
+              () => {
+                setMediaLoading(false)
+                console.log("media loading false")
+              }
+            } />
           {
             mediaLoading ?
               <View className="absolute bg-gray-300 w-full h-full flex items-center justify-center aspect-video object-cover">
