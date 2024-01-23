@@ -4,7 +4,6 @@ import { Screen } from '../ScreenFactory'
 import Pod from '../Ui/Pod'
 import { colours } from '../../lib/constants'
 import SelectMembers from '../Ui/SelectMembers/SelectMembers'
-import { userIDLoggedIn } from '../../lib/globals'
 import { getUsersInCrew } from '../../lib/backend/actions'
 import { IUser } from '../../lib/types'
 const NewRequestScreen = () => {
@@ -14,6 +13,7 @@ const NewRequestScreen = () => {
     console.log("usersInThisCrew: ", usersInThisCrew)
     //this crew ID should be passed into screen as props, as if it were a URL.
     const thisCrewID = "C1";
+    const userIDLoggedIn = "GHI789";
     useEffect(() => {
         async function getUserCrewInfo() {
             await getUsersInCrew(thisCrewID, userIDLoggedIn).then((users) => {

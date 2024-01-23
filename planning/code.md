@@ -1,0 +1,5 @@
+## MIGRATE FROM HARDCODED TO MOCKDATA DATA
+- activityActions
+- leaderboardMonthlyEvent
+
+## ON PROFILE DESIGN COMPLETION

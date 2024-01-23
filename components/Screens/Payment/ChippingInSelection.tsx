@@ -7,14 +7,13 @@ import { IUser } from '../../../lib/types'
 import { Pressable } from 'react-native';
 import SelectMembers from '../../Ui/SelectMembers/SelectMembers'
 import MultipleChoiceSelectionIndicator from '../../Ui/MultipleChoiceSelectionIndicator'
-import { userIDLoggedIn } from '../../../lib/globals'
 import { pricePerCrewMember } from '../../../lib/backend/mockData'
 import { PulseComponent } from '../../../lib/animations'
 var equal = require('deep-equal')
 
 const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mainText: string, subText?: string, pricePerCrewMember: number, usersInThisCrew: IUser[], noStrokeOnSelection?: boolean, last?: boolean, selectedMembers: string[], setSelectedMembers: React.Dispatch<React.SetStateAction<string[]>> }) => {
     const { onSelect, selected, mainText, subText, noStrokeOnSelection, usersInThisCrew, last, selectedMembers, setSelectedMembers } = props;
-
+    const userIDLoggedIn = "GHI789";
     let total: string | number | null = 0;
     switch (mainText) {
         case "Everyone":

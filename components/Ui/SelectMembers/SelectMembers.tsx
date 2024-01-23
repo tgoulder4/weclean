@@ -4,7 +4,6 @@ import Member from './Member'
 import { getProfileBackgroundColour, getUsersInCrew, } from '../../../lib/backend/actions'
 import { IColour, IUser } from '../../../lib/types'
 import { colours, spacing } from '../../../lib/constants'
-import { userIDLoggedIn } from '../../../lib/globals'
 import { PulseComponent } from '../../../lib/animations'
 //return the tsx and the count
 export type SetSelectedMembers = {
@@ -25,6 +24,7 @@ const SelectMembers = (props: {
     console.log("OriginalMembers: ", OriginalMembers);
     const [members, setMembers] = useState<Array<IUser>>(OriginalMembers);
     const [viewingMode, setViewingMode] = useState(_viewingMode);
+
 
     //this should be passed into the screen as a prop, as if it were a URL.
     const userIDLoggedIn = "GHI789";

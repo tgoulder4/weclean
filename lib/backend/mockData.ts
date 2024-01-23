@@ -1,4 +1,4 @@
-import { ICrew, IGoProPerk, ILevelUpPerk, ITask, IUser } from "../types";
+import { ICrew, IGoProPerk, ILevelUpPerk, ITask, IUser, IAction } from "../types";
 export const brandName: string = "CleenCrew"
 export const pricePerCrewMember: number = 3.49;
 export const requests = [{
@@ -131,7 +131,6 @@ export const users: IUser[] = [{
     email: "a@b.com",
     username: "mateusz01",
     password: "123",
-    checkCode: "2bab2b4b6k23u1h2",
     crewID: ["abc"],
     taskIDs: ["T1", "T2"],
     name: "Mateusz",
@@ -159,3 +158,60 @@ export const users: IUser[] = [{
     taskIDs: ["T1", "T2"],
     profileBackgroundColour: "pink-500"
 }]
+export const monthlyCompetition: IAction = {
+    mainText: "Monthly Competition",
+    description: "Win exciting prizes by participating in our monthly cleaning competitions!",
+    ctaButtonText: "ENTER →",
+    backgroundColour: "#310973",
+    requiresPro: true,
+}
+export const activityActions: IAction[] = [{
+    mainText: "Messy Housemates?",
+    description: "We get it, it's a pain. Create a rota in seconds, boosting your crew's productivity.",
+    ctaButtonText: "CREATE →",
+    backgroundColour: "#1D1D1D",
+    requiresPro: true,
+},
+{
+    mainText: "Clean and Win",
+    description: "Participate in cleaning challenges and get a chance to win exciting prizes!",
+    ctaButtonText: "ENTER →",
+    backgroundColour: '#310973',
+    requiresPro: true,
+},
+{
+    mainText: "Track Your Progress",
+    description: "Monitor your cleaning progress and see how you're contributing to a cleaner environment.",
+    ctaButtonText: "TRACK →",
+    backgroundColour: '#0D3A5C', // Darker blue color
+    requiresPro: false,
+},
+{
+    mainText: "Organize Your Space",
+    description: "Learn how to declutter and organize your living space for a more productive and peaceful environment.",
+    ctaButtonText: "GET TIPS →",
+    backgroundColour: '#A65F00', // Darker orange color
+    requiresPro: false,
+},
+{
+    mainText: "Green Cleaning",
+    description: "Discover how our eco-friendly supplies reduce your environmental impact.",
+    ctaButtonText: "EXPLORE →",
+    backgroundColour: '#4F7E2B', // Darker green color
+    requiresPro: false,
+},
+{
+    mainText: "Cleaning Hacks",
+    description: "Find clever cleaning hacks and shortcuts to make your cleaning tasks easier and more efficient.",
+    ctaButtonText: "LEARN →",
+    backgroundColour: '#8B2C0F', // Darker red color
+    requiresPro: false,
+},
+{
+    mainText: "Deep Cleaning Guide",
+    description: "Get a step-by-step guide on how to deep clean your home and achieve a spotless living space.",
+    ctaButtonText: "DOWNLOAD →",
+    backgroundColour: '#5C145B', // Darker purple color
+    requiresPro: true,
+}]
+

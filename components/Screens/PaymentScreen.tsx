@@ -8,11 +8,11 @@ import ChippingInSelection from './Payment/ChippingInSelection'
 import performHaptic from '../../lib/performHaptic'
 import Info from '../Ui/Info'
 import Button from '../Ui/button'
-import { userIDLoggedIn } from '../../lib/globals'
 import { pricePerCrewMember } from '../../lib/backend/mockData'
 const PaymentScreen = (props: { paymentScreenGoBack: () => void }) => {
     //this crew ID should be passed into screen as props, as if it were a URL.
     const thisCrewID = "C1";
+    const userIDLoggedIn = "GHI789";
     type ISelection = "Everyone" | "Select members" | "Only me"
     const [selection, setSelection] = useState("Everyone" as ISelection);
     const [selectedMembersChippingIn, setSelectedMembersChippingIn] = useState([userIDLoggedIn] as string[]);

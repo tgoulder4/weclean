@@ -55,6 +55,7 @@ export async function getPerks(): Promise<{ goProScreen: IGoProPerk[], levelling
     await sleep(1000);
     return perks;
 }
+//store in local storage
 export async function getCrewInfo(crewID: string): Promise<ICrew | undefined> {
     await sleep(1000);
     return crews.find(crew => crew.id === crewID);
@@ -83,4 +84,14 @@ export async function getUserCheckCode(userID: string): Promise<string | undefin
     const user = users.find(user => user.id === userID);
     if (user === undefined) return;
     return user.checkCode;
+}
+export async function getTasksFromTaskIDs(taskIDs: string[]): Promise<ITask[]> {
+    await sleep(1000);
+    const tasksToReturn: ITask[] = [];
+    for (const taskID of taskIDs) {
+        const task = tasks.find(task => task.id === taskID);
+        if (task === undefined) continue;
+        tasksToReturn.push(task);
+    }
+    return tasksToReturn;
 }

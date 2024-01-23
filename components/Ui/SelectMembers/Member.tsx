@@ -4,7 +4,6 @@ import ProfilePic from '../../User/ProfilePicFactory'
 import { IColour, IUser } from '../../../lib/types'
 import { colours } from '../../../lib/constants'
 import performHaptic from '../../../lib/performHaptic'
-import { userIDLoggedIn } from '../../../lib/globals'
 import { PulseComponent } from '../../../lib/animations'
 type Props = {
     setSelectedMembers?: React.Dispatch<React.SetStateAction<string[]>>,
@@ -20,6 +19,7 @@ const Member = (props: Props) => {
     const { user } = props;
     const { setSelectedMembers, alreadySelectedMembers } = props;
     const [selected, setSelected] = useState(false)
+    const userIDLoggedIn = "GHI789";
     let unableToUnselect = false;
     if (props.mustInclude?.includes(user.id)) {
         unableToUnselect = true;

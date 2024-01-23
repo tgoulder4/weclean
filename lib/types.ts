@@ -6,6 +6,13 @@ export type RootStackParamList = {
     GoPro: { andText: string };
     Leaderboard: { myCrewId: string };
 };
+export type IAction = {
+    mainText: string,
+    description: string,
+    ctaButtonText: string,
+    backgroundColour: string,
+    requiresPro?: boolean
+}
 export type ITask = {
     id: string,
     userID: string,
@@ -36,8 +43,8 @@ export type IUser = {
     crewID: string[],
     taskIDs: string[],
     name: string,
-    checkCode: string,
-    profileBackgroundColour: IColour
+    checkCode?: string,
+    profileBackgroundColour: string
 }
 export type ICrew = {
     id: string,

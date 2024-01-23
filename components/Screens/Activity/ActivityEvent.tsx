@@ -5,7 +5,7 @@ import Button from '../../Ui/button';
 import images from '../../../lib/images';
 import ProfilePic from '../../User/ProfilePicFactory';
 import { IUser } from '../../../lib/types';
-import { spacing } from '../../../lib/constants';
+import { colours, spacing } from '../../../lib/constants';
 
 export type ActivityEventProps = {
     user: {
@@ -36,7 +36,11 @@ function getAfterText(dateAgo: string, taskType: string): React.ReactNode {
     return (
         <View className='flex flex-col justify-between items-start '>
             <Text className='font-afa text-base text-gray-700'>{dateAgo}, {getPrecedingText(taskType)}</Text>
-            <Button style={{ marginTop: spacing.gaps.groupedElement }} type="light" text='😻' backgroundColour="gray-200" customOnPress={() => { }} textColor='text-black' />
+            <View className='flex flex-row gap-x-2'>
+                {/* //map reactions then */}
+                <Button style={{ marginTop: spacing.gaps.groupedElement }} type="light" text='😻 1' backgroundColour={colours.light.input.background} customOnPress={() => { }} textColor='text-black' />
+                <Button style={{ marginTop: spacing.gaps.groupedElement }} type="light" text='+' backgroundColour={colours.light.input.background} customOnPress={() => { }} textColor='text-black' />
+            </View>
         </View>
     )
 }
@@ -48,13 +52,13 @@ const ActivityEvent = (props: ActivityEventProps) => {
         <Pod style={{ backgroundColor: 'white' }} variant={media ? 'pod-media-pod' : 'pod'} media={media} bottomPodContent={getAfterText(completionTime + " ago", props.task.type)}>
             <View className='flex flex-col'>
                 <View className=' flex flex-row justify-between'>
-                    <View className=' flex-1 flex flex-col gap-y-1'>
+                    <View style={{ rowGap: spacing.gaps.groupedElement }} className='flex-1 flex flex-col'>
                         <Text className='font-afaB text-lg uppercase text-black'>{name}</Text>
-                        <Text className='font-afa text-base'>{summary}</Text>
+                        <Text style={{ marginBottom: media ? 0 : spacing.gaps.groupedElement }} className='font-afa text-base'>{summary}</Text>
                     </View>
                     {type == "Rota" ? <Text className='bg-indigo-500 font-bold'>📅</Text> : type == "Courtesy" ? (images['kindness'] ? <Image className='w-12 h-12 object-contain' source={images['kindness']} /> : null) : <ProfilePic isRequest={true} users={usersWhoMadeRequest!} />}
                 </View>
-                {!media ? <Text className='font-afa text-base text-gray-500'>{getAfterText(completionTime + " ago", props.task.type)}</Text> : <></>}
+                {!media ? <Text className='font-afa text-base text-gray-400'>{getAfterText(completionTime + " ago", props.task.type)}</Text> : <></>}
             </View>
         </Pod >
     )
