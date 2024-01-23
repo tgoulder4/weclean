@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { IColour } from '../../lib/types';
 import Svg, { G, Path } from 'react-native-svg';
 import * as Animatable from 'react-native-animatable';
-import { PulseComponent, SpinComponent, pulse } from '../../lib/animations';
+import { PulseComponent, SpinComponent, pulse } from './animations';
 import { spacing } from '../../lib/constants';
 type PodProps = {
   variant?: 'pod' | 'pod-media' | 'pod-media-pod';
@@ -52,7 +52,7 @@ const Pod = (podProps: PodProps) => {
             } />
           {
             mediaLoading ?
-              <View className="absolute bg-gray-300 w-full h-full flex items-center justify-center aspect-video object-cover">
+              <View style={{ borderBottomRightRadius: variant == 'pod-media' ? 17 : variant == 'pod-media-pod' ? 0 : 0, borderBottomLeftRadius: variant == 'pod-media' ? 17 : variant == 'pod-media-pod' ? 0 : 0 }} className="absolute bg-gray-300 rounded-b-[17px] w-full h-full flex items-center justify-center aspect-video object-cover">
                 <SpinComponent>
                   <Svg viewBox="0 -960 960 960" height="24" width="24"><Path d="M480-46q-90 0-168.969-34.076-78.968-34.075-137.924-93.031T80.076-311.031Q46-390 46-480q0-90.142 34.064-168.881t93-137.929Q232-846 311-880t169-34q26 0 44.5 18.5T543-851q0 26-18.5 44.5T480-788q-128.013 0-218.006 89.991Q172-608.018 172-480.009 172-352 261.991-262t218 90Q608-172 698-261.994 788-351.987 788-480q0-26 18.5-44.5T851-543q26 0 44.5 18.5T914-480q0 90-34.064 169.012t-93 138Q728-114 649.14-80 570.281-46 480-46Z" /></Svg>
                 </SpinComponent>

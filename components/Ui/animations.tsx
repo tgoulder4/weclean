@@ -1,7 +1,7 @@
 import * as Animatable from 'react-native-animatable';
 import { View, Text, ViewStyle, StyleProp } from 'react-native'
 import React from 'react'
-import { colours } from './constants';
+import { colours } from '../../lib/constants';
 export const pulse = {
     0: {
         opacity: 0.5,

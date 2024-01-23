@@ -9,7 +9,7 @@ import { getCrewInfo, getTasksFromTaskIDs, getUserFromUserID } from '../../lib/b
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { ICrew, ITask } from '../../lib/types'
 import Pod from '../Ui/Pod'
-import { PulseComponent } from '../../lib/animations'
+import { PulseComponent } from '../Ui/animations'
 import PlaceholderActivityEvent from './Activity/PlaceholderActivityEvent'
 var equal = require('deep-equal')
 
@@ -70,19 +70,20 @@ const ActivityScreen = () => {
         navigation.navigate({ name: 'Go Pro' as never, params: { andText: "can enter cash prize competitions." } } as never)
       }} />
       <View className='flex flex-col' style={{ rowGap: spacing.gaps.groupedElement }}>
-        <Text className='font-rubik text-xl'>Older events</Text>
         {
           events == null ? <>
+            {/* <PlaceholderActivityEvent />
             <PlaceholderActivityEvent />
-            <PlaceholderActivityEvent />
-            <PlaceholderActivityEvent />
+            <PlaceholderActivityEvent /> */}
           </> :
             equal([] as ITask[], events.older) ? <Text className='text-base text-gray-400'>No older crew activity</Text> :
-              <>{
-                events.older.map((event) => {
-                  return <ActivityEvent key={event.id} event={event} name="need to get name!" />
-                })
-              }
+              <>
+                <Text className='font-rubik text-xl'>Older events</Text>
+                {
+                  events.older.map((event) => {
+                    return <ActivityEvent key={event.id} event={event} name="need to get name!" />
+                  })
+                }
               </>
         }
       </View>

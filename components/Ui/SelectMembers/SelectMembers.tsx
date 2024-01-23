@@ -4,7 +4,7 @@ import Member from './Member'
 import { getProfileBackgroundColour, getUsersInCrew, } from '../../../lib/backend/actions'
 import { IColour, IUser } from '../../../lib/types'
 import { colours, spacing } from '../../../lib/constants'
-import { PulseComponent } from '../../../lib/animations'
+import { PulseComponent } from '../animations'
 //return the tsx and the count
 export type SetSelectedMembers = {
     userIDs: string[]

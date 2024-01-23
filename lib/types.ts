@@ -22,6 +22,7 @@ export type ITask = {
     type: "Request" | "Rota" | "Courtesy",
     media?: string,
     reactions: {
+        id: string,
         reaction: string,
         userIDs: string[]
     }[],

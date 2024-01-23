@@ -4,7 +4,7 @@ import ProfilePic from '../../User/ProfilePicFactory'
 import { IColour, IUser } from '../../../lib/types'
 import { colours } from '../../../lib/constants'
 import performHaptic from '../../../lib/performHaptic'
-import { PulseComponent } from '../../../lib/animations'
+import { PulseComponent } from '../animations'
 type Props = {
     setSelectedMembers?: React.Dispatch<React.SetStateAction<string[]>>,
     user: IUser,

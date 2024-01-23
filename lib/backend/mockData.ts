@@ -11,12 +11,12 @@ export const tasks: ITask[] = [
     {
         id: "T3",
         userID: "VWX234",
-        crewID: "C2",
         summary: "Dusted furniture",
         type: "Request",
         idOfUserWhoRequested: ["R1"],
         markedAsCompletedAt: "2023-16-04 11:00:00",
         reactions: [{
+            id: "R1",
             reaction: "👍",
             userIDs: ["ABC123", "DEF456"]
         }],
@@ -31,6 +31,7 @@ export const tasks: ITask[] = [
         idOfUserWhoRequested: ["R1"],
         markedAsCompletedAt: "2023-16-04 11:00:00",
         reactions: [{
+            id: "R2",
             reaction: "😄",
             userIDs: ["ABC123", "DEF456"]
         }],
@@ -45,6 +46,7 @@ export const tasks: ITask[] = [
         idOfUserWhoRequested: ["R1"],
         markedAsCompletedAt: "2023-16-04 11:00:00",
         reactions: [{
+            id: "R3",
             reaction: "👍",
             userIDs: ["ABC123", "DEF456"]
         }],
@@ -59,6 +61,7 @@ export const tasks: ITask[] = [
         idOfUserWhoRequested: ["R1"],
         markedAsCompletedAt: "2023-16-04 11:00:00",
         reactions: [{
+            id: "R4",
             reaction: "👍",
             userIDs: ["ABC123", "DEF456"]
         }],
@@ -73,6 +76,7 @@ export const tasks: ITask[] = [
         idOfUserWhoRequested: ["R1"],
         markedAsCompletedAt: "2023-16-04 11:00:00",
         reactions: [{
+            id: "R5",
             reaction: "👍",
             userIDs: ["ABC123", "DEF456"]
         }],
@@ -87,6 +91,7 @@ export const tasks: ITask[] = [
         idOfUserWhoRequested: ["R1"],
         markedAsCompletedAt: "2023-16-04 11:00:00",
         reactions: [{
+            id: "R6",
             reaction: "�",
             userIDs: ["ABC123", "DEF456"]
         }],
@@ -100,7 +105,7 @@ export const crews: ICrew[] = [
             {
                 id: "T1",
                 userID: "ABC123",
-                summary: "Cleaned kitchen",
+                summary: "Cleaned kitchenA",
                 type: "Request",
                 media: "https://as2.ftcdn.net/v2/jpg/01/26/79/47/1000_F_126794739_t17jiRH9vsT6T9sbrgfWXF2O9E6esg9c.jpg",
                 idOfUserWhoRequested: ["R1"],

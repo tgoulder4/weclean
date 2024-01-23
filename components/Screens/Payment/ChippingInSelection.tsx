@@ -8,7 +8,7 @@ import { Pressable } from 'react-native';
 import SelectMembers from '../../Ui/SelectMembers/SelectMembers'
 import MultipleChoiceSelectionIndicator from '../../Ui/MultipleChoiceSelectionIndicator'
 import { pricePerCrewMember } from '../../../lib/backend/mockData'
-import { PulseComponent } from '../../../lib/animations'
+import { PulseComponent } from '../../Ui/animations'
 var equal = require('deep-equal')
 
 const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mainText: string, subText?: string, pricePerCrewMember: number, usersInThisCrew: IUser[], noStrokeOnSelection?: boolean, last?: boolean, selectedMembers: string[], setSelectedMembers: React.Dispatch<React.SetStateAction<string[]>> }) => {
