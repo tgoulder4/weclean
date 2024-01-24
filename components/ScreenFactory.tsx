@@ -19,9 +19,8 @@ type Props = {
   customGoBackSequence?: () => void;
 }
 export const Screen = (props: Props) => {
-  const { titleStyle, customTitle, customGoBackSequence } = props;
-  const navigation = useNavigation();
-  const colourScheme = props.darkMode ? 'dark' : useColorScheme();
+  const { titleStyle, customTitle, customGoBackSequence, darkMode } = props;
+  const colourScheme = darkMode ? 'dark' : useColorScheme();
   return (
     <View style={{
       backgroundColor:
@@ -31,7 +30,7 @@ export const Screen = (props: Props) => {
         props.crossTopLeft ?
           <View className='w-full flex flex-row justify-end px-4'>
             <Pressable onPress={customGoBackSequence}>
-              <Ionicons name="close" size={28} color="#ebebeb" />
+              <Ionicons name="close" size={34} color={darkMode ? colours.dark.input.indicator : colours.light.input.indicator} />
             </Pressable>
           </View>
           : <></>

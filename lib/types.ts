@@ -16,6 +16,7 @@ export type IAction = {
 export type ITask = {
     id: string,
     userID: string,
+    name: string,
     summary: string,
     assignedAt: string,
     idOfUserWhoRequested: string[] | null,
@@ -40,9 +41,14 @@ export type IUser = {
     username: string,
     email: string,
     password: string,
-    crewID: string[],
     taskIDs: string[],
+    crews: {
+        crewID: string,
+        crewMemberSince: string,
+        current: boolean
+    }[],
     name: string,
+    icon: string,
     checkCode?: string,
     profileBackgroundColour: string
 }
@@ -52,6 +58,7 @@ export type ICrew = {
     tasks: ITask[],
     members: string[],
     isPro: boolean,
+    profilePicture: string,
 }
 export type IGoProPerk = {
     icon: string,

@@ -1,5 +1,5 @@
 import { View, Text, Image } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Pod from '../../Ui/Pod';
 import Button from '../../Ui/button';
 import images from '../../../lib/images';
@@ -7,6 +7,8 @@ import ProfilePic from '../../User/ProfilePicFactory';
 import { ITask, IUser } from '../../../lib/types';
 import { colours, spacing } from '../../../lib/constants';
 import { formatDistance, subDays } from 'date-fns';
+import ReactionSet from './ReactionSet';
+import * as SecureStore from 'expo-secure-store';
 
 export type ActivityEventProps = {
     event: ITask,
@@ -19,7 +21,6 @@ export type ActivityEventProps = {
  * @returns 
  */
 function findDistance(date: string): string {
-    console.log("date is " + date)
     return formatDistance(new Date(date), new Date(), { addSuffix: true })
 }
 function getPrecedingText(taskType: string): string {
@@ -35,28 +36,21 @@ function getPrecedingText(taskType: string): string {
     }
 }
 
-
 const ActivityEvent = (props: ActivityEventProps) => {
-    const { name } = props;
+    const { name, event, userID } = props;
     const { summary, type, media, markedAsCompletedAt, reactions } = props.event;
+    //get user id from secure store
     if (!markedAsCompletedAt) return <></>;
     return (
         <Pod style={{ backgroundColor: 'white' }} variant={media ? 'pod-media-pod' : 'pod'} media={media} bottomPodContent={
             <View className='flex flex-col'>
                 <Text className='font-afa text-base text-gray-700'>{findDistance(markedAsCompletedAt)}, {getPrecedingText(type)}</Text>
-                <View className='flex flex-row gap-x-2'>
-                    {
-                        reactions ? reactions.map((reaction) => {
-                            return <Button style={{ marginTop: spacing.gaps.groupedElement }} type="light" text={reaction.reaction + " " + reaction.userIDs.length} backgroundColour={colours.light.input.background} customOnPress={() => { }} textColor='text-black' />
-                        }) : <></>
-                    }
-                    <Button style={{ marginTop: spacing.gaps.groupedElement }} type="light" text='+' backgroundColour={colours.light.input.background} customOnPress={() => { }} textColor='text-black' />
-                </View>
+                <ReactionSet userID={userID} taskID={event.id} _reactions={reactions} />
             </View>
         }>
             <View className='flex flex-col'>
                 <View className=' flex flex-row justify-between'>
-                    <View style={{ rowGap: spacing.gaps.groupedElement }} className='flex-1 flex flex-col'>
+                    <View className='flex-1 flex flex-col'>
                         <Text className='font-afaB text-lg uppercase text-black'>{name}</Text>
                         <Text style={{ marginBottom: media ? 0 : spacing.gaps.groupedElement }} className='font-afa text-base'>{summary}</Text>
                     </View>
@@ -67,15 +61,8 @@ const ActivityEvent = (props: ActivityEventProps) => {
                 </View>
                 {!media ? <Text className='font-afa text-base text-gray-400'>
                     <View className='flex flex-col justify-between items-start '>
-                        <Text className='font-afa text-base text-gray-700'>{findDistance(markedAsCompletedAt)}, {getPrecedingText(type)}</Text>
-                        <View className='flex flex-row gap-x-2'>
-                            {
-                                reactions ? reactions.map((reaction) => {
-                                    return <Button key={reaction.id} style={{ marginTop: spacing.gaps.groupedElement }} type="light" text={reaction.reaction + " " + reaction.userIDs.length} backgroundColour={colours.light.input.background} customOnPress={() => { }} textColor='text-black' />
-                                }) : <></>
-                            }
-                            <Button style={{ marginTop: spacing.gaps.groupedElement }} type="light" text='+' backgroundColour={colours.light.input.background} customOnPress={() => { }} textColor='text-black' />
-                        </View>
+                        <Text style={{ marginTop: spacing.gaps.groupedElement }} className='font-afa text-base text-gray-700'>{findDistance(markedAsCompletedAt)}, {getPrecedingText(type)}</Text>
+                        <ReactionSet taskID={event.id} reactions={reactions} />
                     </View></Text> : <></>}
             </View>
         </Pod >

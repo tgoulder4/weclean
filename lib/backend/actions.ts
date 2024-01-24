@@ -1,22 +1,20 @@
-import { IColour } from "../types"
+import { UserAndCrewContext } from "../../components/Context/Context";
+import { IReaction } from "../../components/Screens/Activity/ReactionSet";
 import { ITask, IUser, ICrew, IGoProPerk, ILevelUpPerk } from "../types"
-import { tasks, users, crews, pricePerCrewMember, perks } from "./mockData";
-import { subHours } from 'date-fns';
+import { users, crews, pricePerCrewMember, perks } from "./mockData";
+var equal = require('deep-equal');
 
 const sleep = (ms: number) => new Promise<void>(r => setTimeout(r, ms));
 
-async function getTaskByID(taskID: string) {
+export async function getTaskByID(crewID: string, taskID: string) {
     await sleep(1000);
-    return tasks.find(task => task.id === taskID);
+    const crew = await getCrewInfo(crewID);
+    if (crew === null) return null;
+    const task = crew.tasks.find(task => task.id === taskID);
+    if (task === undefined) return null;
+    return task;
 }
-export async function getLast24hrCrewTasks(crewID: string) {
-    await sleep(1000);
-    const currentDate = new Date();
-    const twentyFourHoursAgo = subHours(currentDate, 24);
-    const crewTasks: ITask[] = tasks.filter(task => task.crewID === crewID && new Date(task.assignedAt) > twentyFourHoursAgo);
-    return crewTasks;
-}
-export async function getProfileBackgroundColour(userID: string): Promise<IColour> {
+export async function getProfileBackgroundColour(userID: string): Promise<string> {
     await sleep(1000);
     const result = users.find(user => user.id === userID)?.profileBackgroundColour;
     if (result === undefined) return "gray-500";
@@ -87,16 +85,6 @@ export async function getUserCheckCode(userID: string): Promise<string | undefin
     if (user === undefined) return;
     return user.checkCode;
 }
-export async function getTasksFromTaskIDs(taskIDs: string[]): Promise<ITask[]> {
-    await sleep(1000);
-    const tasksToReturn: ITask[] = [];
-    for (const taskID of taskIDs) {
-        const task = tasks.find(task => task.id === taskID);
-        if (task === undefined) continue;
-        tasksToReturn.push(task);
-    }
-    return tasksToReturn;
-}
 export async function getUserFromUserID(userID: string): Promise<IUser | null> {
     await sleep(1000);
     const user = users.find(user => user.id === userID);
@@ -108,8 +96,78 @@ export async function fetchCompletedTasksInRange(crewID: string, startIndex: num
     if (crew === undefined) return [];
     const completedTasks = crew.tasks.filter(task => {
         return task.markedAsCompletedAt !== null
+    })
+    return completedTasks.slice(startIndex, endIndex);
+}
+export async function addReactionToTask(userID: string, crewID: string, taskID: string, _reaction: string): Promise<void> {
+    await sleep(1000);
+    const crew = await getCrewInfo(crewID);
+    if (crew === null) return;
+    //if that reaction already exists, add the user to the userIDs array
+    const reactions = crew.tasks.find(task => task.id === taskID)?.reactions;
+    if (reactions == undefined) {
+        console.error("reactions is undefined: the entered taskID is doesn't correspond to any of this crew's tasks. (taskID " + taskID + ")");
+        return;
     }
-    )
+    if (equal(reactions, []) || !reactions.find(reaction => reaction.reaction === _reaction)) {
+        reactions.push({
+            id:
+                Math.random().toString(36).substring(2, 15),
+            reaction: _reaction,
+            userIDs: [userID]
+        })
+        return;
+    }
+    const reactionIndex = reactions.findIndex(reaction => reaction.reaction === _reaction);
+    if (reactionIndex !== undefined) {
+        reactions[reactionIndex].userIDs.push(userID);
+        return;
+    }
+}
 
+export async function removeReactionFromTask(crewID: string, taskID: string, userID: string, reactionID: string): Promise<void> {
+    await sleep(1000);
+    const crew = await getCrewInfo(crewID);
+    if (crew === null) return;
+    //use reactionIndex to find the reaction, then remove the user from the userIDs array
+    //if the userIDs array is empty after removing the user, remove the reaction from the reactions array
+    const reactions = crew.tasks.find(task => task.id === taskID)?.reactions;
+    if (reactions == undefined) {
+        console.error("reactions is undefined: the entered taskID is doesn't correspond to any of this crew's tasks. (taskID " + taskID + ")");
+        return;
+    }
+    const reaction = reactions.find(reaction => reaction.id === reactionID);
+    if (reaction === undefined) {
+        console.error("reaction is undefined: the entered reactionIndex is doesn't correspond to any of this task's reactions. (actions function removeReactionFromTask)");
+        return;
+    }
+    const reactionIndex = reactions.findIndex(reaction => reaction.id === reactionID);
+    if (reaction.userIDs.length === 1) {
+        reactions.splice(reactionIndex, 1);
+        return;
+    } else {
+        //remove the user from the userIDs array
+        const userIndex = reaction.userIDs.findIndex(_userID => _userID === userID);
+        if (userIndex === undefined) {
+            console.error("userIndex is undefined: the entered userID is doesn't correspond to any of this reaction's users. (userID " + userID + ")");
+            return;
+        } else {
+            reaction.userIDs.splice(userIndex, 1);
+        }
+    }
 
+}
+export async function getReactionsFromTask(crewID: string, taskID: string): Promise<IReaction[]> {
+    await sleep(1000);
+    const crew = await getCrewInfo(crewID);
+    if (crew === null) {
+        console.error("crew was null - couldn't return reactions from this");
+        return [];
+    };
+    const task = crew.tasks.find(task => task.id === taskID);
+    if (task === undefined) {
+        console.error("task was undefined - couldn't return reactions from this");
+        return [];
+    };
+    return task.reactions;
 }

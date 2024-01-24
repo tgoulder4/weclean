@@ -46,7 +46,6 @@ const Member = (props: Props) => {
                 setSelected(true)
             }
         }
-        console.log("alreadySelectedMembers: ", alreadySelectedMembers?.length, "maxMembers: ", props.maxMembers)
         if (props.maxMembers == Number(alreadySelectedMembers?.length) + 1) {
             if (props.setViewingMode) props.setViewingMode("view")
         } else {

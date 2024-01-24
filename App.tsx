@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useFonts, RubikMonoOne_400Regular } from "@expo-google-fonts/rubik-mono-one";
 import * as SplashScreen from 'expo-splash-screen';
 import ActivityScreen from './components/Screens/ActivityScreen';
@@ -6,7 +6,6 @@ import TasksScreen from './components/Screens/TasksScreen';
 import LeaderboardScreen from './components/Screens/LeaderboardScreen';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Alert, Image, Text } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import type { StatusBarStyle } from 'react-native';
 import Svg, { G, Path } from 'react-native-svg';
@@ -18,23 +17,49 @@ import Login from './components/Screens/Login';
 import ProfileScreen from './components/Screens/ProfileScreen';
 import { getPerks } from './lib/backend/actions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import UserAndCrewContextProvider from './components/Context/Context';
 function ActivityScrn() {
-  return <ActivityScreen />
+  console.log("activity screen called")
+  return (
+    <UserAndCrewContextProvider>
+      <ActivityScreen />
+    </UserAndCrewContextProvider>
+  );
 }
 function TasksScrn() {
-  return <TasksScreen />
+  return (
+    <UserAndCrewContextProvider>
+      <TasksScreen />
+    </UserAndCrewContextProvider>
+  );
 }
 function LeaderboardScrn() {
-  return <LeaderboardScreen />
+  return (
+    <UserAndCrewContextProvider>
+      <LeaderboardScreen />
+    </UserAndCrewContextProvider>
+  );
 }
 function NewRequestScrn() {
-  return <NewRequestScreen />
+  return (
+    <UserAndCrewContextProvider>
+      <NewRequestScreen />
+    </UserAndCrewContextProvider>
+  );
 }
 function ProfileScrn() {
-  return <ProfileScreen />
+  return (
+    <UserAndCrewContextProvider>
+      <ProfileScreen />
+    </UserAndCrewContextProvider>
+  );
 }
 function ProOnboardingScrn() {
-  return <ProOnboarding />
+  return (
+    <UserAndCrewContextProvider>
+      <ProOnboarding />
+    </UserAndCrewContextProvider>
+  );
 }
 const Tab = createBottomTabNavigator();
 SplashScreen.preventAutoHideAsync();

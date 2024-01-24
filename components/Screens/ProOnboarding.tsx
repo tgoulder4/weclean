@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, Pressable, useColorScheme, Appearance } from 'react-native'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import AnimatedStairs from './GoPro/AnimatedStairs'
 import Pod from '../Ui/Pod';
 import { colours, spacing } from '../../lib/constants';
@@ -19,7 +19,6 @@ const ProOnboarding = () => {
     // const { andText } = route.params;
     const navigation = useNavigation()
     const actionSheetRef = useRef<ActionSheetRef>(null);
-    let colourScheme = useColorScheme();
     const [perks, setPerks] = React.useState({} as { goProScreen: IGoProPerk[], levellingUpScreen: ILevelUpPerk[] });
     const [stage, setStage] = React.useState("goProScreen"); //can be goProScreen or levellingUpScreen
     function handleNoThanksGoBack() {
@@ -51,6 +50,7 @@ const ProOnboarding = () => {
 
         ]);
     }
+    const darkModeRestOfOnboarding = false;
     // Appearance.setColorScheme("dark")
     useEffect(() => {
         async function main() {
@@ -75,7 +75,7 @@ const ProOnboarding = () => {
                     </View>
                 }
                     customTitle={
-                        <View className='flex flex-row justify-between w-full'>
+                        <View className='mt-8 flex flex-row justify-between w-full'>
                             <Text className='font-rubik text-xl text-white flex-0 w-64' style={{ shadowColor: "#FFFFFF", shadowOffset: { height: 6, width: 0 }, shadowOpacity: 0.25, shadowRadius: 0.8 }}>Elevate Your Crew</Text>
                             <AnimatedStairs />
                         </View>
@@ -118,30 +118,30 @@ const ProOnboarding = () => {
                     {/* MODAL CONTENT: */}
                 </Screen>
                 : stage == "levellingUpScreen" ?
-                    <Screen darkMode={true} bottomStickyElement={
-                        <View style={{ rowGap: spacing.gaps.groupedElement }} className='w-full h-72 py-6 px-4 bg-[#080808] flex flex-col items-center'>
-                            <Text className='text-white font-afaB text-center text-base'>
+                    <Screen darkMode={darkModeRestOfOnboarding} bottomStickyElement={
+                        <View style={{ rowGap: spacing.gaps.groupedElement, backgroundColor: darkModeRestOfOnboarding ? colours.dark.background : colours.light.background }} className='w-full h-72 py-6 px-4 flex flex-col items-center'>
+                            <Text style={{ color: darkModeRestOfOnboarding ? colours.dark.textPrimary : colours.light.textPrimary }} className='text-white font-afaB text-center text-base'>
                                 You're 1 step away from doubling your team's performance! 🎯
                             </Text>
-                            <Button style={{ height: 50, width: "100%", marginTop: spacing.gaps.groupedElement }} text="Let's go!" backgroundColour='white' textColor='black' type='light' customOnPress={() => { setStage("paymentScreen") }} />
+                            <Button style={{ height: 50, width: "100%", marginTop: spacing.gaps.groupedElement }} text="Let's go!" backgroundColour={darkModeRestOfOnboarding ? colours.light.primary : colours.dark.primary} textColor={darkModeRestOfOnboarding ? 'black' : 'white'} type='light' customOnPress={() => { setStage("paymentScreen") }} />
                         </View>
                     } title='Levelling up...'>
-                        <View className='bg-yellow-500 relative flex flex-col'>
+                        <View className='relative flex flex-col'>
                             {/* the free pro header */}
-                            <View className='bg-green-500 grid grid-cols-levelUpPerk grid-rows-[1fr]'>
+                            <View className='grid grid-cols-levelUpPerk grid-rows-[1fr]'>
                                 <View className='hidden'></View>
-                                <Text className='bg-red-500 text-white  font-afa text-base'>Free</Text>
-                                <Text className='text-white font-rubik text-base'>PRO</Text>
+                                <Text style={{ color: darkModeRestOfOnboarding ? colours.dark.textPrimary : colours.light.textPrimary }} className='  font-afa text-base'>Free</Text>
+                                <Text style={{ color: darkModeRestOfOnboarding ? colours.dark.textPrimary : colours.light.textPrimary }} className='font-rubik text-base'>PRO</Text>
                             </View>
                             {/* the pro background highlight */}
-                            <View style={{ backgroundColor: colours.dark.primary, zIndex: -1 }} className='rounded-xl absolute top-0 origin-top-right right-0 w-24 h-full'></View>
+                            <View style={{ backgroundColor: darkModeRestOfOnboarding ? colours.dark.primary : colours.light.primary, zIndex: -1 }} className='rounded-xl absolute top-0 origin-top-right right-0 w-24 h-full'></View>
                             {/* for each perk.levelupscreen, map */}
                             {
-                                perks.levellingUpScreen ? perks.levellingUpScreen.map((perk, index) => <PerkListing key={index} tickedForFree={perk.tickedForFree} tickedForPro={perk.tickedForPro} doesntHaveBottomDivide={index == perks.levellingUpScreen.length - 1} text={perk.description} />) : <></>
+                                perks.levellingUpScreen ? perks.levellingUpScreen.map((perk, index) => <PerkListing darkMode={darkModeRestOfOnboarding} key={index} tickedForFree={perk.tickedForFree} tickedForPro={perk.tickedForPro} doesntHaveBottomDivide={index == perks.levellingUpScreen.length - 1} text={perk.description} />) : <></>
                             }
                         </View>
                     </Screen>
-                    : stage == "paymentScreen" ? <PaymentScreen paymentScreenGoBack={paymentScrnGoback} /> : <Text>There was an error.</Text>
+                    : stage == "paymentScreen" ? <PaymentScreen darkMode={darkModeRestOfOnboarding} paymentScreenGoBack={paymentScrnGoback} /> : <Text>There was an error.</Text>
         }</>
     )
 }

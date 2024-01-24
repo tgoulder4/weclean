@@ -11,8 +11,8 @@ import { pricePerCrewMember } from '../../../lib/backend/mockData'
 import { PulseComponent } from '../../Ui/animations'
 var equal = require('deep-equal')
 
-const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mainText: string, subText?: string, pricePerCrewMember: number, usersInThisCrew: IUser[], noStrokeOnSelection?: boolean, last?: boolean, selectedMembers: string[], setSelectedMembers: React.Dispatch<React.SetStateAction<string[]>> }) => {
-    const { onSelect, selected, mainText, subText, noStrokeOnSelection, usersInThisCrew, last, selectedMembers, setSelectedMembers } = props;
+const ChippingInSelection = (props: { darkMode?: boolean, onSelect: Function, selected: boolean, mainText: string, subText?: string, pricePerCrewMember: number, usersInThisCrew: IUser[], noStrokeOnSelection?: boolean, last?: boolean, selectedMembers: string[], setSelectedMembers: React.Dispatch<React.SetStateAction<string[]>> }) => {
+    const { onSelect, selected, mainText, darkMode, noStrokeOnSelection, usersInThisCrew, last, selectedMembers, setSelectedMembers } = props;
     const userIDLoggedIn = "GHI789";
     let total: string | number | null = 0;
     switch (mainText) {
@@ -33,12 +33,11 @@ const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mai
         total = total.toFixed(2);
     };
     useEffect(() => {
-        console.log("selectedMembers: ", selectedMembers)
         if (mainText == "Everyone") setSelectedMembers(usersInThisCrew.map(user => user.id))
 
     }, [])
     return (
-        <Pressable style={{ backgroundColor: colours.dark.background }} onPress={() => { onSelect(mainText) }} className={`rounded-[20px] p-0 ${last ? "" : "mb-2"}`}>
+        <Pressable style={{ backgroundColor: darkMode ? colours.dark.primary : colours.light.primary }} onPress={() => { onSelect(mainText) }} className={`rounded-[20px] p-0 ${last ? "" : "mb-2"}`}>
             <Pod customPadding={{
                 paddingX: 20,
                 paddingY: 20,
@@ -48,28 +47,30 @@ const ChippingInSelection = (props: { onSelect: Function, selected: boolean, mai
                         !noStrokeOnSelection ? 4 : 1 : 1,
                     colour: selected ?
                         !noStrokeOnSelection ?
-                            colours.dark.secondary
-                            : colours.dark.textSecondary
+                            darkMode ?
+                                colours.dark.secondary : colours.light.secondary
+                            : darkMode ?
+                                colours.dark.textSecondary : colours.light.textSecondary
                         : colours.dark.textSecondary
                 }
             }>
                 <View className='flex flex-row items-center'>
-                    <MultipleChoiceSelectionIndicator style={{ marginRight: 20 }} selected={selected} />
+                    <MultipleChoiceSelectionIndicator darkMode={darkMode} style={{ marginRight: 20 }} selected={selected} />
                     <View
                         // style={{ rowGap: spacing.gaps.groupedElement, }} 
                         className='flex flex-1 flex-col justify-between'>
-                        <Text style={{ color: colours.dark.textPrimary }} className='font-afaB text-base text-[13px]'>{mainText}</Text>
+                        <Text style={{ color: darkMode ? colours.dark.textPrimary : colours.light.textPrimary }} className='font-afaB text-base text-[13px]'>{mainText}</Text>
                         {mainText == "Select members" && selected ? <SelectMembers darkMode={true} mustInclude={["GHI789"]} _viewingMode='edit' action="Splitting with" alreadySelectedMembers={selectedMembers} _members={usersInThisCrew} setSelectedMembers={setSelectedMembers} /> : <></>}
                         {
-                            equal(props.usersInThisCrew, [] as IUser[]) ? <PulseComponent><View style={{ backgroundColor: colours.dark.primary }} className=' w-36 h-7 rounded-lg'></View></PulseComponent> :
+                            equal(props.usersInThisCrew, [] as IUser[]) ? <PulseComponent><View style={{ backgroundColor: darkMode ? colours.dark.primary : colours.light.primary }} className=' w-36 h-7 rounded-lg'></View></PulseComponent> :
 
                                 (mainText == "Select members" && selected) || mainText == "Everyone" || mainText == "Only me" && selected ?
 
-                                    <Text style={{ marginTop: spacing.gaps.groupedElement, color: colours.dark.textSecondary }} className='font-afa text-base'>
+                                    <Text style={{ marginTop: spacing.gaps.groupedElement, color: darkMode ? colours.dark.textPrimary : colours.light.textPrimary }} className='font-afa text-base'>
                                         {`£${total}/mo ${mainText != "Only me" ? "for you" : ""}`}
                                         {total == null ?
                                             <View className='p-2 bg-red-500 rounded-lg h-min'>
-                                                <Text className='font-afaB text-white text-base'>Couldn't load price. Please try again later.</Text>
+                                                <Text style={{ color: darkMode ? colours.dark.textPrimary : colours.light.textPrimary }} className='font-afaB text-base'>Couldn't load price. Please try again later.</Text>
                                             </View>
                                             : <></>}
                                     </Text>

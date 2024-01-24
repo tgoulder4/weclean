@@ -7,122 +7,37 @@ export const requests = [{
     assignedAt: "2023-01-01 11:00:00",
     userIDWhoMadeTheRequest: "ABC123",
 }]
-export const tasks: ITask[] = [
-    {
-        id: "T3",
-        userID: "VWX234",
-        summary: "Dusted furniture",
-        type: "Request",
-        idOfUserWhoRequested: ["R1"],
-        markedAsCompletedAt: "2023-16-04 11:00:00",
-        reactions: [{
-            id: "R1",
-            reaction: "👍",
-            userIDs: ["ABC123", "DEF456"]
-        }],
-        assignedAt: "2023-16-04 11:00:00"
-    },
-    {
-        id: "T4",
-        userID: "YZA567",
-        crewID: "C2",
-        summary: "Vacuumed carpets",
-        type: "Request",
-        idOfUserWhoRequested: ["R1"],
-        markedAsCompletedAt: "2023-16-04 11:00:00",
-        reactions: [{
-            id: "R2",
-            reaction: "😄",
-            userIDs: ["ABC123", "DEF456"]
-        }],
-        assignedAt: "2023-16-04 11:00:00"
-    },
-    {
-        id: "T5",
-        userID: "EFG123",
-        crewID: "C3",
-        summary: "Cleaned windows",
-        type: "Request",
-        idOfUserWhoRequested: ["R1"],
-        markedAsCompletedAt: "2023-16-04 11:00:00",
-        reactions: [{
-            id: "R3",
-            reaction: "👍",
-            userIDs: ["ABC123", "DEF456"]
-        }],
-        assignedAt: "2023-16-04 11:00:00"
-    },
-    {
-        id: "T6",
-        userID: "HIJ456",
-        crewID: "C3",
-        summary: "Organized shelves",
-        type: "Request",
-        idOfUserWhoRequested: ["R1"],
-        markedAsCompletedAt: "2023-16-04 11:00:00",
-        reactions: [{
-            id: "R4",
-            reaction: "👍",
-            userIDs: ["ABC123", "DEF456"]
-        }],
-        assignedAt: "2023-16-04 11:00:00"
-    },
-    {
-        id: "T7",
-        userID: "NOP012",
-        crewID: "C4",
-        summary: "Scrubbed bathroom",
-        type: "Request",
-        idOfUserWhoRequested: ["R1"],
-        markedAsCompletedAt: "2023-16-04 11:00:00",
-        reactions: [{
-            id: "R5",
-            reaction: "👍",
-            userIDs: ["ABC123", "DEF456"]
-        }],
-        assignedAt: "2023-16-04 11:00:00"
-    },
-    {
-        id: "T8",
-        userID: "QRS345",
-        crewID: "C4",
-        summary: "Dusted blinds",
-        type: "Request",
-        idOfUserWhoRequested: ["R1"],
-        markedAsCompletedAt: "2023-16-04 11:00:00",
-        reactions: [{
-            id: "R6",
-            reaction: "�",
-            userIDs: ["ABC123", "DEF456"]
-        }],
-        assignedAt: "2023-16-04 11:00:00"
-    },
-];
 export const crews: ICrew[] = [
     {
         id: "C1",
+        profilePicture: "https://as2.ftcdn.net/v2/jpg/01/26/79/47/1000_F_126794739_t17jiRH9vsT6T9sbrgfWXF2O9E6esg9c.jpg",
         tasks: [
             {
                 id: "T1",
                 userID: "ABC123",
+                name: "Mateusz",
                 summary: "Cleaned kitchenA",
                 type: "Request",
                 media: "https://as2.ftcdn.net/v2/jpg/01/26/79/47/1000_F_126794739_t17jiRH9vsT6T9sbrgfWXF2O9E6esg9c.jpg",
                 idOfUserWhoRequested: ["R1"],
                 markedAsCompletedAt: "2024-01-23T09:30:00Z",
                 reactions: [{
+                    id: "R7",
                     reaction: "👍",
                     userIDs: ["ABC123", "DEF456"]
                 }],
                 assignedAt: "2024-01-23T09:00:00Z"
-            }, {
+            },
+            {
                 id: "T2",
                 userID: "DEF456",
+                name: "Kate",
                 summary: "Cleaned bathroom",
                 type: "Request",
                 idOfUserWhoRequested: ["R1"],
                 markedAsCompletedAt: "2024-01-23T10:15:00Z",
                 reactions: [{
+                    id: "R8",
                     reaction: "👍",
                     userIDs: ["ABC123", "DEF456"]
                 }],
@@ -131,11 +46,13 @@ export const crews: ICrew[] = [
             {
                 id: "T3",
                 userID: "GHI789",
+                name: "Tye",
                 summary: "Mopped floors",
                 type: "Request",
                 idOfUserWhoRequested: ["R1"],
                 markedAsCompletedAt: "2024-01-23T11:45:00Z",
                 reactions: [{
+                    id: "R9",
                     reaction: "👍",
                     userIDs: ["ABC123", "DEF456"]
                 }],
@@ -144,12 +61,14 @@ export const crews: ICrew[] = [
             {
                 id: "T4",
                 userID: "JKL012",
+                name: "John",
                 summary: "Dusted furniture",
                 media: 'https://as1.ftcdn.net/v2/jpg/02/78/49/72/1000_F_278497210_GZEJISO40aKRImwGMtcXHVhJqG96CKRJ.jpg',
                 type: "Request",
                 idOfUserWhoRequested: ["R1"],
                 markedAsCompletedAt: "2024-01-23T12:30:00Z",
                 reactions: [{
+                    id: "R10",
                     reaction: "👍",
                     userIDs: ["ABC123", "DEF456"]
                 }],
@@ -158,11 +77,13 @@ export const crews: ICrew[] = [
             {
                 id: "T5",
                 userID: "MNO345",
+                name: "Emma",
                 summary: "Washed dishes",
                 type: "Request",
                 idOfUserWhoRequested: ["R1"],
                 markedAsCompletedAt: "2024-01-23T13:00:00Z",
                 reactions: [{
+                    id: "R11",
                     reaction: "👍",
                     userIDs: ["ABC123", "DEF456"]
                 }],
@@ -171,7 +92,7 @@ export const crews: ICrew[] = [
         ],
         name: "Crew 1",
         members: ["ABC123", "DEF456"],
-        isPro: false,
+        isPro: true,
     },
 ];
 export const perks: { goProScreen: IGoProPerk[], levellingUpScreen: ILevelUpPerk[] } = {
@@ -236,9 +157,26 @@ export const users: IUser[] = [
         email: "a@b.com",
         username: "mateusz01",
         password: "123",
-        crewID: ["abc"],
+        crews: [
+            {
+                crewID: "C1",
+                crewMemberSince: "2022-09-15T10:30:00Z",
+                current: true
+            },
+            {
+                crewID: "C2",
+                crewMemberSince: "2022-09-15T10:30:00Z",
+                current: false
+            },
+            {
+                crewID: "C3",
+                crewMemberSince: "2022-09-15T10:30:00Z",
+                current: false
+            }
+        ],
         taskIDs: ["T1", "T2"],
-        name: "Mateusz😻",
+        name: "Mateusz",
+        icon: "👨‍💻",
         profileBackgroundColour: "indigo-500"
     },
     {
@@ -246,32 +184,83 @@ export const users: IUser[] = [
         username: "tye01",
         email: "c@d.com",
         password: "123",
+        crews: [
+            {
+                crewID: "C1",
+                crewMemberSince: "2022-08-20T09:45:00Z",
+                current: false
+            },
+            {
+                crewID: "C2",
+                crewMemberSince: "2022-08-20T09:45:00Z",
+                current: true
+            },
+            {
+                crewID: "C3",
+                crewMemberSince: "2022-08-20T09:45:00Z",
+                current: false
+            }
+        ],
         checkCode: "9shavejdsayyatjt838d",
-        crewID: ["abc"],
-        name: "Tye🌻",
+        name: "Tye",
+        icon: "👨‍🔧",
         taskIDs: ["T1", "T2"],
         profileBackgroundColour: "[#55A38C]"
     },
     {
         id: "DEF456",
-        crewID: ["C1"],
         username: "kate01",
         email: "e@f.com",
         password: "123",
         checkCode: "39fdhdj387x6sujhs",
         name: "Kate",
+        icon: "👩‍🍳",
         taskIDs: ["T1", "T2"],
-        profileBackgroundColour: "pink-500"
+        profileBackgroundColour: "pink-500",
+        crews: [
+            {
+                crewID: "C1",
+                crewMemberSince: "2022-08-20T09:45:00Z",
+                current: true
+            },
+            {
+                crewID: "C2",
+                crewMemberSince: "2022-08-20T09:45:00Z",
+                current: false
+            },
+            {
+                crewID: "C3",
+                crewMemberSince: "2022-08-20T09:45:00Z",
+                current: false
+            }
+        ]
     },
     {
         id: "JKL012",
         email: "g@h.com",
         username: "john01",
         password: "123",
-        crewID: ["C2"],
         taskIDs: ["T3", "T4"],
-        name: "John👨‍💼",
-        profileBackgroundColour: "blue-500"
+        name: "John",
+        icon: "👨‍💼",
+        profileBackgroundColour: "blue-500",
+        crews: [
+            {
+                crewID: "C1",
+                crewMemberSince: "2022-07-10T14:20:00Z",
+                current: false
+            },
+            {
+                crewID: "C2",
+                crewMemberSince: "2022-07-10T14:20:00Z",
+                current: true
+            },
+            {
+                crewID: "C3",
+                crewMemberSince: "2022-07-10T14:20:00Z",
+                current: false
+            }
+        ]
     },
     {
         id: "MNO345",
@@ -279,21 +268,55 @@ export const users: IUser[] = [
         email: "i@j.com",
         password: "123",
         checkCode: "8d7fj3h4j5k6s7d8f",
-        crewID: ["C2"],
-        name: "Emma👩‍💼",
+        name: "Emma",
+        icon: "👩‍💼",
         taskIDs: ["T3", "T4"],
-        profileBackgroundColour: "purple-500"
+        profileBackgroundColour: "purple-500",
+        crews: [
+            {
+                crewID: "C1",
+                crewMemberSince: "2022-06-05T16:50:00Z",
+                current: false
+            },
+            {
+                crewID: "C2",
+                crewMemberSince: "2022-06-05T16:50:00Z",
+                current: true
+            },
+            {
+                crewID: "C3",
+                crewMemberSince: "2022-06-05T16:50:00Z",
+                current: false
+            }
+        ]
     },
     {
         id: "PQR678",
-        crewID: ["C3"],
         username: "alex01",
         email: "k@l.com",
         password: "123",
         checkCode: "9s8d7f6g5h4j3k2l",
         name: "Alex",
+        icon: "👨‍🔧",
         taskIDs: ["T5", "T6"],
-        profileBackgroundColour: "green-500"
+        profileBackgroundColour: "green-500",
+        crews: [
+            {
+                crewID: "C1",
+                crewMemberSince: "2022-05-01T08:15:00Z",
+                current: false
+            },
+            {
+                crewID: "C2",
+                crewMemberSince: "2022-05-01T08:15:00Z",
+                current: false
+            },
+            {
+                crewID: "C3",
+                crewMemberSince: "2022-05-01T08:15:00Z",
+                current: true
+            }
+        ]
     }
 ]
 export const monthlyCompetition: IAction = {

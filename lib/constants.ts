@@ -22,11 +22,11 @@ export const colours = {
         background: '#fbfbfb',
         textPrimary: '#1d1d1d',
         textSecondary: '#636363',
-        primary: '#f3f3f3',
+        primary: '#E6E6E6',
         secondary: '#1d1d1d',
         input: {
             background: '#f3f3f3',
-            border: '#d9d9d9',
+            border: '#1d1d1d',
             indicator: "#1d1d1d"
         }
     },

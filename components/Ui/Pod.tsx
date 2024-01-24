@@ -47,7 +47,6 @@ const Pod = (podProps: PodProps) => {
             onLoadEnd={
               () => {
                 setMediaLoading(false)
-                console.log("media loading false")
               }
             } />
           {
