@@ -20,7 +20,7 @@ export type ActivityEventProps = {
  * @param date date in format YYYY-MM-DDTHH:MM:SSZ  from db
  * @returns 
  */
-function findDistance(date: string): string {
+export function findDistance(date: string): string {
     return formatDistance(new Date(date), new Date(), { addSuffix: true })
 }
 function getPrecedingText(taskType: string): string {

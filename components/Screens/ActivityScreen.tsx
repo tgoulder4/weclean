@@ -36,6 +36,7 @@ const ActivityScreen = () => {
         return isBefore(task.markedAsCompletedAt!, 24)
       })
       if (tasks) {
+        console.log("tasks", tasks)
         setEvents(
           {
             recent: recentTasks || [],

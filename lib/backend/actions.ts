@@ -171,3 +171,12 @@ export async function getReactionsFromTask(crewID: string, taskID: string): Prom
     };
     return task.reactions;
 }
+export async function getCrewTasks(crewID: string) {
+    await sleep(1000);
+    const crew = await getCrewInfo(crewID);
+    if (crew === null) {
+        console.error("crew was null - couldn't return tasks from this");
+        return [];
+    };
+    return crew.tasks;
+}

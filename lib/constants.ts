@@ -1,6 +1,6 @@
 
 import { IColour } from "./types";
-export let mode = "prod";
+export let mode = "dev";
 export let brandName = "WeClean";
 
 /**must mirror the colours in hidden <View> in activity screen. This is so tailwind recognises these colours when they're dynamically created as classes.*/
