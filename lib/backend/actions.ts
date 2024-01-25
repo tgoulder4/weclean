@@ -93,40 +93,39 @@ export async function getUserFromUserID(userID: string): Promise<IUser | null> {
 export async function fetchCompletedTasksInRange(crewID: string, startIndex: number, endIndex: number) {
     await sleep(1000);
     const crew = crews.find(crew => crew.id === crewID);
-    if (crew === undefined) return [];
+    if (crew === undefined) {
+        console.error("this crew ID is not in the database: " + crewID);
+        return []
+    };
     const completedTasks = crew.tasks.filter(task => {
         return task.markedAsCompletedAt !== null
     })
-    return completedTasks.slice(startIndex, endIndex);
+    console.log("completedTasks", completedTasks);
+    return completedTasks;
 }
 export async function addReactionToTask(userID: string, crewID: string, taskID: string, _reaction: string): Promise<void> {
-    await sleep(1000);
     const crew = await getCrewInfo(crewID);
     if (crew === null) return;
-    //if that reaction already exists, add the user to the userIDs array
-    const reactions = crew.tasks.find(task => task.id === taskID)?.reactions;
-    if (reactions == undefined) {
-        console.error("reactions is undefined: the entered taskID is doesn't correspond to any of this crew's tasks. (taskID " + taskID + ")");
+
+    const task = crew.tasks.find(task => task.id === taskID);
+    if (task === undefined) {
+        console.error("Task not found: the entered taskID doesn't correspond to any of this crew's tasks. (taskID " + taskID + ")");
         return;
     }
-    if (equal(reactions, []) || !reactions.find(reaction => reaction.reaction === _reaction)) {
-        reactions.push({
-            id:
-                Math.random().toString(36).substring(2, 15),
+
+    let reaction = task.reactions.find(reaction => reaction.reaction === _reaction);
+    if (reaction === undefined) {
+        reaction = {
+            id: Math.random().toString(36).substring(2, 15),
             reaction: _reaction,
             userIDs: [userID]
-        })
-        return;
-    }
-    const reactionIndex = reactions.findIndex(reaction => reaction.reaction === _reaction);
-    if (reactionIndex !== undefined) {
-        reactions[reactionIndex].userIDs.push(userID);
-        return;
+        };
+        task.reactions.push(reaction);
+    } else {
+        reaction.userIDs.push(userID);
     }
 }
-
 export async function removeReactionFromTask(crewID: string, taskID: string, userID: string, reactionID: string): Promise<void> {
-    await sleep(1000);
     const crew = await getCrewInfo(crewID);
     if (crew === null) return;
     //use reactionIndex to find the reaction, then remove the user from the userIDs array
@@ -158,7 +157,6 @@ export async function removeReactionFromTask(crewID: string, taskID: string, use
 
 }
 export async function getReactionsFromTask(crewID: string, taskID: string): Promise<IReaction[]> {
-    await sleep(1000);
     const crew = await getCrewInfo(crewID);
     if (crew === null) {
         console.error("crew was null - couldn't return reactions from this");

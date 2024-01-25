@@ -7,45 +7,49 @@ import { useNavigation, NavigationProp, ParamListBase } from '@react-navigation/
 import { spacing } from '../../lib/constants'
 import { fetchCompletedTasksInRange } from '../../lib/backend/actions'
 import { ITask } from '../../lib/types'
-import PlaceholderActivityEvent from './Activity/PlaceholderActivityEvent'
 import { UserAndCrewContext } from '../Context/Context'
 import { isAfter, isBefore } from 'date-fns'
+import PlaceholderPod from '../Ui/PlaceholderPod'
 var equal = require('deep-equal')
 
 const subtitle = <Text className='text-xs text-black font-bold'>Chun lee baddies Crew Score: <Text className='text-red-700'>2.9★</Text></Text>
 const ActivityScreen = () => {
   //get crew info from local storage then use the task ids to get the tasks from the server
-  const [events, setEvents] = useState(null as null | { recent: ITask[], older: ITask[] });
+  const [events, setEvents] = useState({ recent: [{} as ITask], older: [{} as ITask] } as null | { recent: ITask[], older: ITask[] });
   const userAndCrewContext = useContext(UserAndCrewContext);
   const crewID = userAndCrewContext.currentCrewID;
+  console.log("crewID from context: ", crewID)
   useEffect(() => {
     async function main() {
       // get taskIDs from db, these are trimmed to contain only the last week each day
-      const tasks = await fetchCompletedTasksInRange(crewID, 0, 7).then((tasks: ITask[] | null) => {
+      await fetchCompletedTasksInRange(crewID, 0, 7).then((tasks: ITask[] | null) => {
         if (!tasks) return null;
+        console.log("tasks: ", tasks)
         tasks.sort((a, b) => {
           return isBefore(a.markedAsCompletedAt!, b.markedAsCompletedAt!) ? 1 : -1
         })
-        return tasks
-      })
-      //split tasks into recent and older, where recent is last 24hrs. use date-fns to do this
-      const recentTasks = tasks?.filter((task) => {
-        return isAfter(task.markedAsCompletedAt!, 24)
-      })
-      const olderTasks = tasks?.filter((task) => {
-        return isBefore(task.markedAsCompletedAt!, 24)
-      })
-      if (tasks) {
-        console.log("tasks", tasks)
+        const recentTasks = tasks.filter((task) => {
+          return isAfter(task.markedAsCompletedAt!, 24)
+        })
+        const olderTasks = tasks.filter((task) => {
+          return isBefore(task.markedAsCompletedAt!, 24)
+        })
+        console.log("setting events to: ",
+          {
+            recent: recentTasks || [],
+            older: olderTasks || []
+          }
+        )
         setEvents(
           {
             recent: recentTasks || [],
             older: olderTasks || []
           }
         )
-      } else {
-        console.error("taskIDs is null - does the crew ID exist?")
-      }
+      })
+      //split tasks into recent and older, where recent is last 24hrs. use date-fns to do this
+
+
     }
     main()
   }, [])
@@ -61,13 +65,14 @@ const ActivityScreen = () => {
       <View className='flex flex-col' style={{ rowGap: spacing.gaps.groupedElement }}>
         {
           events == null ? <>
-            <PlaceholderActivityEvent />
-            <PlaceholderActivityEvent />
-            <PlaceholderActivityEvent />
+            <PlaceholderPod />
+            <PlaceholderPod />
+            <PlaceholderPod />
           </> :
-            equal([] as ITask[], events) ? <Text>No recent crew activity</Text> :
+            equal([{} as ITask], events.recent) ? <Text>No recent crew activity</Text> :
               <>{
                 events.recent.map((event) => {
+                  console.log("key: ", event.id)
                   return <ActivityEvent key={event.id} event={event} name={event.name} />
                 })
               }
@@ -80,11 +85,12 @@ const ActivityScreen = () => {
       <View className='flex flex-col' style={{ rowGap: spacing.gaps.groupedElement }}>
         {
           events == null ? <></> :
-            equal([] as ITask[], events.older) ? <Text className='text-base text-gray-400'>No older crew activity</Text> :
+            equal([{} as ITask], events.older) ? <Text className='text-base text-gray-400'>No older crew activity</Text> :
               <>
                 <Text className='font-rubik text-xl'>Older events</Text>
                 {
                   events.older.map((event) => {
+                    console.log("key: ", event.id)
                     return <ActivityEvent key={event.id} event={event} name={event.name} />
                   })
                 }

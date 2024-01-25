@@ -64,12 +64,11 @@ const UserAndCrewContextProvider = (props: { children: React.ReactNode }) => {
                 userObj = JSON.parse(user) as IUser;
             }
 
-            const currentCrewID = userObj.crews.find(crew => crew.current)?.crewID;
+            const currentCrewID = userObj.crews?.find(crew => crew.current == true)?.crewID;
             if (!currentCrewID) {
                 console.error("No current crew was found, context cannot be set")
                 return;
             }
-            console.log("setting user and crew context to", userObj, currentCrewID)
             setState({
                 user: userObj,
                 currentCrewID,

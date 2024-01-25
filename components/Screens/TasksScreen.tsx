@@ -12,6 +12,7 @@ import { PulseComponent } from '../Ui/animations'
 import { getCrewTasks } from '../../lib/backend/actions'
 import { isBefore } from 'date-fns'
 import PlaceholderTaskEvent from './Tasks/PlaceholderTaskEvent'
+import PlaceholderPod from '../Ui/PlaceholderPod'
 
 var equal = require('deep-equal')
 
@@ -29,14 +30,14 @@ const TasksScreen = () => {
                 tasks.sort((a, b) => {
                     return isBefore(a.assignedAt, b.assignedAt) ? 1 : -1
                 })
-                setTasks({
-                    myTasks: tasks.filter((task) => {
-                        return task.userID == userID;
-                    }),
-                    crewTasks: tasks.filter((task) => {
-                        return task.userID != userID;
-                    })
-                })
+                // setTasks({
+                //     myTasks: tasks.filter((task) => {
+                //         return task.userID == userID;
+                //     }),
+                //     crewTasks: tasks.filter((task) => {
+                //         return task.userID != userID;
+                //     })
+                // })
             })
         }
         main()
@@ -44,15 +45,15 @@ const TasksScreen = () => {
     return (
         <Screen title='Tasks'>
             <Info backgroundColour='#4E9580' description="Thanks for completing your tasks - you're contributing to a cleaner and healthier area for all crew members!"></Info>
-            <View>
+            <View className='flex flex-col' style={{ rowGap: spacing.gaps.groupedElement }}>
                 {
                     equal(tasks.myTasks, []) ?
                         <>
-                            <PlaceholderTaskEvent />
-                            <PlaceholderTaskEvent />
+                            <PlaceholderPod _variant='pod-media' />
+                            <PlaceholderPod _variant='pod-media' />
                         </>
                         : tasks.myTasks.map((task) => {
-                            return <Task task={task} />
+                            return <Task key={task.id} task={task} />
                         })
                 }
             </View>
@@ -61,14 +62,14 @@ const TasksScreen = () => {
                 {
                     equal(tasks.crewTasks, []) ?
                         <>
-                            <PlaceholderTaskEvent />
-                            <PlaceholderTaskEvent />
+                            <PlaceholderPod _variant='pod-media' />
+                            <PlaceholderPod _variant='pod-media' />
                         </>
                         : <>
                             <Text className='font-rubik text-xl'>Crew tasks</Text>
                             {
                                 tasks.crewTasks.map((task) => {
-                                    return <Task task={task} />
+                                    return <Task key={task.id} task={task} />
                                 })}</>
                 }
                 {/* <Task task={{ summary: "Clear kitchen sink", type: "Request", promiseTime: "23:01", media: "https://cdn.discordapp.com/attachments/949458671115587687/1186479405845991424/image_3.png?ex=6593660e&is=6580f10e&hm=bd4d491f48830d2768615e3ae17c42eecca57a9ddbf35d7fd246afea99dc3e9f&" }} /> */}

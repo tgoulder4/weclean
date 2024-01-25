@@ -19,7 +19,6 @@ const Member = (props: Props) => {
     const { user } = props;
     const { setSelectedMembers, alreadySelectedMembers } = props;
     const [selected, setSelected] = useState(false)
-    const userIDLoggedIn = "GHI789";
     let unableToUnselect = false;
     if (props.mustInclude?.includes(user.id)) {
         unableToUnselect = true;

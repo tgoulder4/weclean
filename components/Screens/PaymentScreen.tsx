@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Screen } from '../ScreenFactory'
 import { colours, mode, spacing } from '../../lib/constants'
 import { getUsersInCrew } from '../../lib/backend/actions'
@@ -9,10 +9,13 @@ import performHaptic from '../../lib/performHaptic'
 import Info from '../Ui/Info'
 import Button from '../Ui/button'
 import { pricePerCrewMember } from '../../lib/backend/mockData'
+import { UserAndCrewContext } from '../Context/Context'
 const PaymentScreen = (props: { paymentScreenGoBack: () => void, darkMode?: boolean }) => {
     //this crew ID should be passed into screen as props, as if it were a URL.
-    const thisCrewID = "C1";
-    const userIDLoggedIn = "GHI789";
+
+    const userCrewContext = useContext(UserAndCrewContext);
+    const thisCrewID = userCrewContext.currentCrewID;
+    const userIDLoggedIn = userCrewContext.user.id;
     type ISelection = "Everyone" | "Select members" | "Only me"
     const [selection, setSelection] = useState("Everyone" as ISelection);
     const [selectedMembersChippingIn, setSelectedMembersChippingIn] = useState([userIDLoggedIn] as string[]);
@@ -47,7 +50,7 @@ const PaymentScreen = (props: { paymentScreenGoBack: () => void, darkMode?: bool
     return (
         <Screen customGoBackSequence={
             props.paymentScreenGoBack
-        } darkMode={darkMode ? darkMode : false} titleStyle={{ fontSize: 19 }} crossTopLeft={true} title="Who's chipping in?" >
+        } darkMode={darkMode ? darkMode : false} style={{ backgroundColor: colours.light.offBackground }} titleStyle={{ fontSize: 19 }} crossTopLeft={true} title="Who's chipping in?" >
             <View className={mode == "development" ? "bg-green-500" : ""}>
                 <ChippingInSelection darkMode={darkMode} selectedMembers={selectedMembersChippingIn} setSelectedMembers={setSelectedMembersChippingIn} pricePerCrewMember={pricePerCrewMember} usersInThisCrew={usersInThisCrew.usersInThisCrew} onSelect={handleSetSelection} mainText='Everyone' selected={selection == 'Everyone'} />
                 <ChippingInSelection darkMode={darkMode} selectedMembers={selectedMembersChippingIn} setSelectedMembers={setSelectedMembersChippingIn} pricePerCrewMember={pricePerCrewMember} usersInThisCrew={usersInThisCrew.usersInThisCrew} onSelect={handleSetSelection} mainText='Select members' noStrokeOnSelection={true} selected={selection == 'Select members'} />

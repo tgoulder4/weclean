@@ -1,5 +1,5 @@
 import { View, Text, Image } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import Pod from '../../Ui/Pod';
 import Button from '../../Ui/button';
 import images from '../../../lib/images';
@@ -9,6 +9,7 @@ import { colours, spacing } from '../../../lib/constants';
 import { formatDistance, subDays } from 'date-fns';
 import ReactionSet from './ReactionSet';
 import * as SecureStore from 'expo-secure-store';
+import { UserAndCrewContext } from '../../Context/Context';
 
 export type ActivityEventProps = {
     event: ITask,
@@ -37,15 +38,16 @@ function getPrecedingText(taskType: string): string {
 }
 
 const ActivityEvent = (props: ActivityEventProps) => {
-    const { name, event, userID } = props;
+    const { name, event } = props;
     const { summary, type, media, markedAsCompletedAt, reactions } = props.event;
-    //get user id from secure store
+    // const userContext = useContext(UserAndCrewContext);
+    // const userID = userContext.user.id;
     if (!markedAsCompletedAt) return <></>;
     return (
         <Pod style={{ backgroundColor: 'white' }} variant={media ? 'pod-media-pod' : 'pod'} media={media} bottomPodContent={
             <View className='flex flex-col'>
                 <Text className='font-afa text-base text-gray-700'>{findDistance(markedAsCompletedAt)}, {getPrecedingText(type)}</Text>
-                <ReactionSet userID={userID} taskID={event.id} _reactions={reactions} />
+                <ReactionSet taskID={event.id} _reactions={reactions} />
             </View>
         }>
             <View className='flex flex-col'>
@@ -62,7 +64,7 @@ const ActivityEvent = (props: ActivityEventProps) => {
                 {!media ? <Text className='font-afa text-base text-gray-400'>
                     <View className='flex flex-col justify-between items-start '>
                         <Text style={{ marginTop: spacing.gaps.groupedElement }} className='font-afa text-base text-gray-700'>{findDistance(markedAsCompletedAt)}, {getPrecedingText(type)}</Text>
-                        <ReactionSet taskID={event.id} reactions={reactions} />
+                        <ReactionSet taskID={event.id} _reactions={reactions} />
                     </View></Text> : <></>}
             </View>
         </Pod >

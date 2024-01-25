@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Pod from '../../Ui/Pod'
 import { colours, spacing } from '../../../lib/constants'
 import { getUsersInCrew } from '../../../lib/backend/actions'
@@ -9,12 +9,14 @@ import SelectMembers from '../../Ui/SelectMembers/SelectMembers'
 import MultipleChoiceSelectionIndicator from '../../Ui/MultipleChoiceSelectionIndicator'
 import { pricePerCrewMember } from '../../../lib/backend/mockData'
 import { PulseComponent } from '../../Ui/animations'
+import { UserAndCrewContext } from '../../Context/Context'
 var equal = require('deep-equal')
 
 const ChippingInSelection = (props: { darkMode?: boolean, onSelect: Function, selected: boolean, mainText: string, subText?: string, pricePerCrewMember: number, usersInThisCrew: IUser[], noStrokeOnSelection?: boolean, last?: boolean, selectedMembers: string[], setSelectedMembers: React.Dispatch<React.SetStateAction<string[]>> }) => {
     const { onSelect, selected, mainText, darkMode, noStrokeOnSelection, usersInThisCrew, last, selectedMembers, setSelectedMembers } = props;
-    const userIDLoggedIn = "GHI789";
     let total: string | number | null = 0;
+    const context = useContext(UserAndCrewContext)
+    const userID = context.user.id;
     switch (mainText) {
         case "Everyone":
             total = pricePerCrewMember;
@@ -37,7 +39,7 @@ const ChippingInSelection = (props: { darkMode?: boolean, onSelect: Function, se
 
     }, [])
     return (
-        <Pressable style={{ backgroundColor: darkMode ? colours.dark.primary : colours.light.primary }} onPress={() => { onSelect(mainText) }} className={`rounded-[20px] p-0 ${last ? "" : "mb-2"}`}>
+        <Pressable style={{ backgroundColor: darkMode ? colours.dark.background : colours.light.background }} onPress={() => { onSelect(mainText) }} className={`rounded-[20px] p-0 ${last ? "" : "mb-2"}`}>
             <Pod customPadding={{
                 paddingX: 20,
                 paddingY: 20,
@@ -60,7 +62,7 @@ const ChippingInSelection = (props: { darkMode?: boolean, onSelect: Function, se
                         // style={{ rowGap: spacing.gaps.groupedElement, }} 
                         className='flex flex-1 flex-col justify-between'>
                         <Text style={{ color: darkMode ? colours.dark.textPrimary : colours.light.textPrimary }} className='font-afaB text-base text-[13px]'>{mainText}</Text>
-                        {mainText == "Select members" && selected ? <SelectMembers darkMode={true} mustInclude={["GHI789"]} _viewingMode='edit' action="Splitting with" alreadySelectedMembers={selectedMembers} _members={usersInThisCrew} setSelectedMembers={setSelectedMembers} /> : <></>}
+                        {mainText == "Select members" && selected ? <SelectMembers darkMode={darkMode} mustInclude={[userID]} _viewingMode='edit' action="Splitting with" alreadySelectedMembers={selectedMembers} _members={usersInThisCrew} setSelectedMembers={setSelectedMembers} /> : <></>}
                         {
                             equal(props.usersInThisCrew, [] as IUser[]) ? <PulseComponent><View style={{ backgroundColor: darkMode ? colours.dark.primary : colours.light.primary }} className=' w-36 h-7 rounded-lg'></View></PulseComponent> :
 

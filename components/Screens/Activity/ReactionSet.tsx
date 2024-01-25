@@ -19,6 +19,7 @@ const ReactionSet = (props: { taskID: string, _reactions: IReaction[] }) => {
     const crewID = context.currentCrewID;
     const { _reactions, taskID } = props;
     const [pickingEmoji, setPickingEmoji] = useState(false);
+    console.log("passed reactions: ", _reactions)
     const [reactions, setReactions] = useState(_reactions);
     async function handleAddReactionToTask(reaction: string) {
         await addReactionToTask(userID, crewID, taskID, reaction);

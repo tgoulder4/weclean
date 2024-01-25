@@ -41,9 +41,9 @@ export type IRequest = {
 }
 export type IUser = {
     id: string,
-    username: string,
-    email: string,
-    password: string,
+    username?: string,
+    email?: string,
+    password?: string,
     taskIDs: string[],
     crews: {
         crewID: string,
@@ -51,7 +51,7 @@ export type IUser = {
         current: boolean
     }[],
     name: string,
-    icon: string,
+    icon?: string,
     checkCode?: string,
     profileBackgroundColour: string
 }

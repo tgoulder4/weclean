@@ -83,7 +83,7 @@ const ProOnboarding = () => {
                     <View style={{ rowGap: spacing.gaps.separateElement }} className='flex flex-col'>
 
                         <Text className='font-afa text-base text-white'>
-                            Pro Crews are 3x more likely to complete their tasks on time.
+                            Pro crew members are 3x more likely to complete their tasks on time.
                             {/* {andText} */}
                         </Text>
                         <Pod style={{ backgroundColor: colours.dark.primary }} customBorder={{ width: -2 }} >

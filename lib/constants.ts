@@ -20,6 +20,7 @@ export const colours = {
     },
     light: {
         background: '#fbfbfb',
+        offBackground: '#f3f3f3',
         textPrimary: '#1d1d1d',
         textSecondary: '#636363',
         primary: '#E6E6E6',

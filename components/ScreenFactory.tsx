@@ -4,6 +4,8 @@ import { colours, mode, spacing } from '../lib/constants'
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { Animated } from 'react-native';
+import { FadeIn } from 'react-native-reanimated';
 
 type Props = {
   title?: string;
@@ -15,17 +17,18 @@ type Props = {
   crossTopLeft?: boolean;
   titleStyle?: StyleProp<TextStyle>;
   customTitle?: React.ReactNode;
+  style?: StyleProp<ViewStyle>;
   darkMode?: boolean;
   customGoBackSequence?: () => void;
 }
 export const Screen = (props: Props) => {
-  const { titleStyle, customTitle, customGoBackSequence, darkMode } = props;
+  const { titleStyle, customTitle, customGoBackSequence, darkMode, style } = props;
   const colourScheme = darkMode ? 'dark' : useColorScheme();
   return (
-    <View style={{
+    <Animated.View style={[style, {
       backgroundColor:
         colourScheme == 'dark' ? colours.dark.background : colours.light.background
-    }} className={`${props.bottomStickyElement ? "flex flex-col" : ""} h-full pt-16 `}>
+    }]} className={`${props.bottomStickyElement ? "flex flex-col" : ""} h-full pt-16 `}>
       {
         props.crossTopLeft ?
           <View className='w-full flex flex-row justify-end px-4'>
@@ -53,6 +56,6 @@ export const Screen = (props: Props) => {
       {
         props.bottomStickyElement ? <View className='w-full bg-green-500'>{props.bottomStickyElement}</View> : <></>
       }
-    </View>
+    </Animated.View>
   )
 }

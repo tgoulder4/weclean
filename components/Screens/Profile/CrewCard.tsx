@@ -3,9 +3,11 @@ import React from 'react'
 import { colours, spacing } from '../../../lib/constants'
 import { ICrew } from '../../../lib/types'
 
-const CrewCard = (props: { darkMode?: boolean, crew: ICrew, crewMemberSince: string, hasChevron?: boolean }) => {
-    const { hasChevron, darkMode } = props;
-    const { isPro, name, profilePicture } = props.crew;
+const CrewCard = (props: {
+    darkMode?: boolean, crewMemberSince: string,
+    isPro: boolean, name: string, profilePicture: string, hasChevron?: boolean
+}) => {
+    const { hasChevron, darkMode, isPro, name, profilePicture } = props;
     return (
         <View className='h-48 rounded-[20px] flex flex-col items-center justify-center' style={{ backgroundColor: !isPro ? colours.light.primary : colours.dark.primary, padding: spacing.padding.normalX }}>
             <View style={{ borderColor: darkMode ? 'white' : 'black' }} className='w-12 h-12 rounded-full border-2'>

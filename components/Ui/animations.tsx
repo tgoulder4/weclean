@@ -28,7 +28,7 @@ export const spin = {
 export const PulseComponent = (props: { style?: StyleProp<ViewStyle>, children?: React.ReactNode }) => {
     const { style } = props;
     return (
-        <Animatable.View style={[style, { borderRadius: 5, backgroundColor: colours.light.input.border }]} animation={pulse} iterationCount="infinite">
+        <Animatable.View style={[style, { borderRadius: 5, backgroundColor: colours.light.primary }]} className='flex flex-row' animation={pulse} iterationCount="infinite">
             {props.children}
         </Animatable.View>
     )
