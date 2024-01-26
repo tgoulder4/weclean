@@ -30,14 +30,14 @@ const TasksScreen = () => {
                 tasks.sort((a, b) => {
                     return isBefore(a.assignedAt, b.assignedAt) ? 1 : -1
                 })
-                // setTasks({
-                //     myTasks: tasks.filter((task) => {
-                //         return task.userID == userID;
-                //     }),
-                //     crewTasks: tasks.filter((task) => {
-                //         return task.userID != userID;
-                //     })
-                // })
+                setTasks({
+                    myTasks: tasks.filter((task) => {
+                        return task.userID == userID;
+                    }),
+                    crewTasks: tasks.filter((task) => {
+                        return task.userID != userID;
+                    })
+                })
             })
         }
         main()
