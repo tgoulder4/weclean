@@ -7,7 +7,7 @@ import Button from '../Ui/button'
 import ProfilePic from '../User/ProfilePicFactory'
 import DividedMenuItem from '../Settings/DividedMenuItem'
 import CrewCard from './Profile/CrewCard'
-import { getCrewInfo } from '../../lib/backend/actions'
+import { getCrewInfo } from '../../app/backend/actions'
 import { ICrew } from '../../lib/types'
 import { UserAndCrewContext } from '../Context/Context'
 var equal = require('deep-equal')
@@ -31,7 +31,7 @@ const ProfileScreen = () => {
         const ICrewCardProp: ICrewCardProps = {
             crew: crew,
             crewMemberSince: crewIDAndMemberSince.crewMemberSince,
-            isPro: false,
+            isPro: crew.isPro,
             name: crew.name,
             profilePicture: crew.profilePicture,
         }

@@ -1,7 +1,7 @@
 import { IUser } from './../../lib/types';
 import * as SecureStore from 'expo-secure-store';
-import { checkLoginSuccessAndReturnUserObject, checkUnmodifiedLocalUser } from '../../lib/backend/actions';
-import { setUserCheckCode } from '../../lib/backend/actions';
+import { checkLoginSuccessAndReturnUserObject, checkUnmodifiedLocalUser } from '../../app/backend/actions';
+import { setUserCheckCode } from '../../app/backend/actions';
 
 async function onLoad(enteredUsername: string, enteredPassword: string) {
     //return the user object if successful, false if not

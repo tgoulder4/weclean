@@ -32,7 +32,7 @@ const Task = (props: TaskProps) => {
             <View className='flex flex-col'>
                 <View className='flex flex-col'>
                     {!props.task.markedAsCompletedAt ? <Image className='w-8 h-8' source={images['timer']}></Image> : <></>}
-                    <Text className='font-afaB text-xl'>{getTitle()}</Text>
+                    <Text className={`font-afaB ${!markedAsCompletedAt ? "text-xl" : "text-base"}`}>{getTitle().toUpperCase()}</Text>
                     <Text className='font-afa text-base'>{props.task.summary}</Text>
                     <View className='flex flex-row justify-between items-end mt-1'>
                         <Button style={{ marginTop: spacing.gaps.groupedElement }} type="medium" text='Mark as done' backgroundColour='#55A38C' textColor='white' customOnPress={() => { }} />

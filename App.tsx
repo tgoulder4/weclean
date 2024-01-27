@@ -15,7 +15,7 @@ import NewRequestScreen from './components/Screens/NewRequestScreen';
 import ProOnboarding from './components/Screens/ProOnboarding';
 import Login from './components/Screens/Login';
 import ProfileScreen from './components/Screens/ProfileScreen';
-import { getPerks } from './lib/backend/actions';
+import { getPerks } from './app/backend/actions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import UserAndCrewContextProvider from './components/Context/Context';
 function ActivityScrn() {
@@ -56,7 +56,9 @@ const sleep = (ms: number) => new Promise<void>(r => setTimeout(r, ms));
 
 export default function App() {
   const [statusBarStyle, setStatusBarStyle] = useState<StatusBarStyle>("light-content");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState({
+    UserAndCrewContextProvider: true,
+  });
   const [fontsLoaded] = useFonts({
     "AfacadRegular": require('./assets/fonts/AfacadRegular.ttf'),
     "AfacadItalic": require('./assets/fonts/AfacadItalic.ttf'),
@@ -70,7 +72,8 @@ export default function App() {
       await refreshLocalStorage();
       await SplashScreen.hideAsync();
     }
-    if (fontsLoaded && loading == false) {
+    console.log("loading: ", loading, "fontsLoaded: ", fontsLoaded)
+    if (fontsLoaded && Object.values(loading).every(loadItem => loadItem == false)) {
       main()
     }
   }, [loading, fontsLoaded])
@@ -100,7 +103,9 @@ export default function App() {
   // }
   return (<>
     <UserAndCrewContextProvider setLoading={setLoading}>
-      {loading ? <></> :
+      {!Object.values(loading).every(loadItem => loadItem == false) ? <>
+        {/* some oops something went wrong screen */}
+      </> :
         <GestureHandlerRootView style={{ flex: 1 }}>
           <NavigationContainer>
             <Tab.Navigator screenOptions={{ tabBarActiveTintColor: 'white', headerShown: false, tabBarStyle: { backgroundColor: 'rgba(10,19,16,1)', height: 85 } }} >

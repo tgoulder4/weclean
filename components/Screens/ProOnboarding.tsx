@@ -8,7 +8,7 @@ import ProPerk from './GoPro/ProPerk';
 import performHaptic from '../../lib/performHaptic';
 import ActionSheet, { ActionSheetRef } from "react-native-actions-sheet";
 import { useNavigation } from '@react-navigation/native';
-import { pricePerCrewMember } from '../../lib/backend/mockData';
+import { pricePerCrewMember } from '../../app/backend/mockData';
 import { IGoProPerk, ILevelUpPerk } from '../../lib/types';
 import { Screen } from '../ScreenFactory';
 import PerkListing from './LevelUp/PerkListing';

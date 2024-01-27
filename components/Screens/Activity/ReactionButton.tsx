@@ -4,11 +4,11 @@ import Button from '../../Ui/button';
 import { IReaction } from './ReactionSet';
 import { spacing } from '../../../lib/constants';
 import { colours } from '../../../lib/constants';
-import { addReactionToTask, removeReactionFromTask } from '../../../lib/backend/actions';
+import { addReactionToTask, removeReactionFromTask } from '../../../app/backend/actions';
 import { UserAndCrewContext } from '../../Context/Context';
 
-const ReactionButton = (props: { userID: string, taskID: string, crewID: string, reaction: IReaction }) => {
-    const { reaction, taskID, userID, crewID } = props;
+const ReactionButton = (props: { addReaction: (reaction: string) => Promise<void>, removeReaction: (reaction: IReaction) => Promise<void>, userID: string, taskID: string, crewID: string, reaction: IReaction }) => {
+    const { reaction, taskID, userID, crewID, addReaction, removeReaction } = props;
     const [state, setState] = useState({
         selected: false,
         count: props.reaction.userIDs.length,
@@ -16,12 +16,12 @@ const ReactionButton = (props: { userID: string, taskID: string, crewID: string,
     })
     async function toggleReaction(reaction: IReaction) {
         if (state.selected) {
-            await removeReactionFromTask(taskID, reaction.reaction, userID, reaction.id);
             setState({ selected: false, backgroundColour: colours.light.input.background, count: state.count - 1 })
+            await removeReaction(reaction);
         }
         else {
-            await addReactionToTask(userID, crewID, taskID, reaction.reaction);
             setState({ selected: true, backgroundColour: colours.accent, count: state.count + 1 })
+            await addReaction(reaction.reaction);
         }
     }
     useEffect(() => {

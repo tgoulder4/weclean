@@ -1,5 +1,3 @@
-
-import { IColour } from "./types";
 export let mode = "dev";
 export let brandName = "WeClean";
 

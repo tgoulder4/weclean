@@ -1,7 +1,7 @@
 import { View, Text, TextInput, ScrollView } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import Member from './Member'
-import { getProfileBackgroundColour, getUsersInCrew, } from '../../../lib/backend/actions'
+import { getProfileBackgroundColour, getUsersInCrew, } from '../../../app/backend/actions'
 import { IColour, IUser } from '../../../lib/types'
 import { colours, spacing } from '../../../lib/constants'
 import { PulseComponent } from '../animations'
@@ -22,7 +22,6 @@ const SelectMembers = (props: {
 }) => {
     const { darkMode, action, setSelectedMembers, _members, alreadySelectedMembers, _viewingMode, hideSummary } = props;
     const [OriginalMembers, setOriginalMembers] = useState<Array<IUser>>(_members ? _members : [] as IUser[]);
-    console.log("OriginalMembers: ", OriginalMembers);
     const [members, setMembers] = useState<Array<IUser>>(OriginalMembers);
     const [viewingMode, setViewingMode] = useState(_viewingMode);
 
@@ -44,7 +43,7 @@ const SelectMembers = (props: {
         setOriginalMembers(mem)
         setMembers(mem);
     }
-    //if the members aren't passed, get users in crew from backend
+    //if the members aren't passed, get all users in crew from backend
     useEffect(() => {
         if (!props._members) main();
     }, []

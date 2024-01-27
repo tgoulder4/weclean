@@ -2,7 +2,7 @@ import { View, Text } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { IUser } from '../../lib/types'
-import { checkLoginSuccessAndReturnUserObject, checkUnmodifiedLocalUser, setUserCheckCode } from '../../lib/backend/actions'
+import { checkLoginSuccessAndReturnUserObject, checkUnmodifiedLocalUser, setUserCheckCode } from '../../app/backend/actions'
 import * as SecureStore from 'expo-secure-store';
 
 const Login = () => {

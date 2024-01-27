@@ -12,7 +12,11 @@ export const UserAndCrewContext = createContext(
         user: {} as IUser //get user in secureStore.
     }
 );
-const UserAndCrewContextProvider = (props: { setLoading: (isLoading: boolean) => void, children: React.ReactNode }) => {
+const UserAndCrewContextProvider = (props: {
+    setLoading: React.Dispatch<React.SetStateAction<{
+        UserAndCrewContextProvider: boolean;
+    }>>, children: React.ReactNode
+}) => {
     const { children } = props;
     const [state, setState] = useState({
         user: {} as IUser,
@@ -75,7 +79,9 @@ const UserAndCrewContextProvider = (props: { setLoading: (isLoading: boolean) =>
                 crews: userObj.crews
             })
             console.log("context is setting loading false")
-            props.setLoading(false);
+            props.setLoading({
+                UserAndCrewContextProvider: false
+            });
         }
         getInfo()
     }, [])

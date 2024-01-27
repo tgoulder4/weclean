@@ -1,6 +1,6 @@
 import { UserAndCrewContext } from "../../components/Context/Context";
 import { IReaction } from "../../components/Screens/Activity/ReactionSet";
-import { ITask, IUser, ICrew, IGoProPerk, ILevelUpPerk } from "../types"
+import { ITask, IUser, ICrew, IGoProPerk, ILevelUpPerk } from "../../lib/types"
 import { users, crews, pricePerCrewMember, perks } from "./mockData";
 var equal = require('deep-equal');
 

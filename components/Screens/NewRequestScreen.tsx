@@ -1,19 +1,21 @@
 import { View, Text } from 'react-native'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Screen } from '../ScreenFactory'
 import Pod from '../Ui/Pod'
 import { colours } from '../../lib/constants'
 import SelectMembers from '../Ui/SelectMembers/SelectMembers'
-import { getUsersInCrew } from '../../lib/backend/actions'
+import { getUsersInCrew } from '../../app/backend/actions'
 import { IUser } from '../../lib/types'
+import { UserAndCrewContext } from '../Context/Context'
 const NewRequestScreen = () => {
     const [stage, setStage] = useState(0);
     const [selectedMembers, setSelectedMembers] = useState<string[]>([]);
     const [usersInThisCrew, setUsersInThisCrew] = useState({ usersInThisCrew: [] as IUser[] });
     console.log("usersInThisCrew: ", usersInThisCrew)
     //this crew ID should be passed into screen as props, as if it were a URL.
-    const thisCrewID = "C1";
-    const userIDLoggedIn = "GHI789";
+    const context = useContext(UserAndCrewContext);
+    const userIDLoggedIn = context.user.id;
+    const thisCrewID = context.currentCrewID;
     useEffect(() => {
         async function getUserCrewInfo() {
             await getUsersInCrew(thisCrewID, userIDLoggedIn).then((users) => {
