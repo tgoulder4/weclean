@@ -8,7 +8,7 @@ export const UserAndCrewContext = createContext(
             crewID: string;
             crewMemberSince: string;
         }[],//get crew info from crewid in user info from userid in asyncStorage
-        currentCrewID: "",
+        currentCrewID: "C1",
         user: {} as IUser //get user in secureStore.
     }
 );
@@ -69,6 +69,7 @@ const UserAndCrewContextProvider = (props: {
             }
 
             const currentCrewID = userObj.crews?.find(crew => crew.current == true)?.crewID;
+            console.log("currentCrewID", currentCrewID)
             if (!currentCrewID) {
                 console.error("No current crew was found, context cannot be set")
                 return;

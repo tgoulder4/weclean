@@ -29,6 +29,7 @@ export async function getProfileBackgroundColour(userID: string): Promise<string
 export async function getUsersInCrew(crewID: string, inPerspectiveOfUserID?: string): Promise<IUser[]> {
     await sleep(1000);
     const crew = crews.find(crew => crew.id === crewID);
+    console.log("my crew: ", crew);
     if (crew === undefined) return [];
     const usersInCrew: IUser[] = [];
     for (const userID of crew.members) {
@@ -100,7 +101,7 @@ export async function fetchCompletedTasksInRange(crewID: string, startIndex: num
     const completedTasks = crew.tasks.filter(task => {
         return task.markedAsCompletedAt !== null
     })
-    console.log("completedTasks", completedTasks);
+    // console.log("completedTasks", completedTasks);
     return completedTasks;
 }
 export async function addReactionToTask(userID: string, crewID: string, taskID: string, _reaction: string): Promise<void> {

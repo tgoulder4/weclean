@@ -12,7 +12,7 @@ import { isAfter, isBefore } from 'date-fns'
 import PlaceholderPod from '../Ui/PlaceholderPod'
 var equal = require('deep-equal')
 
-const subtitle = <Text className='text-xs text-black font-bold'>Chun lee baddies Crew Score: <Text className='text-red-700'>2.9★</Text></Text>
+const subtitle = <Text className='text-xs text-black font-bold'>My crew score: <Text className='text-red-700'>2.9★</Text></Text>
 const ActivityScreen = () => {
   //get crew info from local storage then use the task ids to get the tasks from the server
   const [events, setEvents] = useState({ recent: [{} as ITask], older: [{} as ITask] } as null | { recent: ITask[], older: ITask[] });

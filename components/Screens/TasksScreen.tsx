@@ -26,6 +26,7 @@ const TasksScreen = () => {
     useEffect(() => {
         async function main() {
             await getCrewTasks(crewID).then((tasks: ITask[] | null) => {
+                console.log("tasks", tasks)
                 if (!tasks) return null;
                 tasks.sort((a, b) => {
                     return isBefore(a.assignedAt, b.assignedAt) ? 1 : -1

@@ -48,6 +48,7 @@ export const crews: ICrew[] = [
                 id: "T5",
                 userID: "OPQ012",
                 name: "Mike",
+                media: "https://www.iqstudentaccommodation.com/sites/default/files/inline-images/How%20to%20decorate%20your%20uni%20room-plants.jpg",
                 summary: "Dust the bedroom",
                 type: "Request",
                 idOfUserWhoRequested: ["R1"],
